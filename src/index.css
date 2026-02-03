@@ -1,0 +1,307 @@
+@import "tailwindcss";
+
+/* Fluent 2 / WinUI 3 Design System */
+:root {
+  /* Typography */
+  font-family: "Segoe UI Variable", "Segoe UI", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  font-feature-settings: "ss01", "cv01";
+  
+  /* Dynamic Accent - Default to Lavender */
+  --accent-hsl: 265 40% 56%;
+  --accent-color: #8764B8;
+  
+  /* Timing */
+  --duration-fast: 100ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+  --easing: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ============================================
+   DARK THEME (Default)
+   ============================================ */
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+  
+  /* Backgrounds - Sidebar lighter, Content darker for distinction */
+  --bg-solid: #1a1a1a;
+  --bg-mica: #242424;
+  --bg-mica-alt: #2c2c2c;
+  --bg-content: #181818;
+  
+  /* Layers */
+  --layer-default: rgba(255, 255, 255, 0.045);
+  --layer-alt: rgba(255, 255, 255, 0.06);
+  --layer-hover: rgba(255, 255, 255, 0.08);
+  --layer-active: rgba(255, 255, 255, 0.035);
+  
+  /* Strokes */
+  --stroke-card: rgba(255, 255, 255, 0.0837);
+  --stroke-surface: rgba(255, 255, 255, 0.0578);
+  --stroke-divider: rgba(255, 255, 255, 0.0803);
+  --stroke-focus: hsl(var(--accent-hsl));
+  
+  /* Text */
+  --text-primary: #ffffff;
+  --text-secondary: rgba(255, 255, 255, 0.786);
+  --text-tertiary: rgba(255, 255, 255, 0.544);
+  --text-disabled: rgba(255, 255, 255, 0.364);
+  --text-accent: hsl(var(--accent-hsl) / 1);
+  
+  /* Accent Variations */
+  --accent-default: hsl(var(--accent-hsl));
+  --accent-light: hsl(var(--accent-hsl) / 0.9);
+  --accent-subtle: hsl(var(--accent-hsl) / 0.15);
+  --accent-subtle-hover: hsl(var(--accent-hsl) / 0.22);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.32);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.32);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.48);
+  --shadow-dialog: 0 24px 48px rgba(0, 0, 0, 0.56);
+  
+  /* Overlay */
+  --overlay: rgba(0, 0, 0, 0.5);
+}
+
+/* ============================================
+   LIGHT THEME
+   ============================================ */
+[data-theme="light"] {
+  color-scheme: light;
+  
+  /* Backgrounds - Sidebar slightly tinted, Content pure white */
+  --bg-solid: #ffffff;
+  --bg-mica: #f5f5f5;
+  --bg-mica-alt: #fafafa;
+  --bg-content: #fefefe;
+  
+  /* Layers */
+  --layer-default: rgba(255, 255, 255, 0.7);
+  --layer-alt: rgba(255, 255, 255, 0.5);
+  --layer-hover: rgba(0, 0, 0, 0.04);
+  --layer-active: rgba(0, 0, 0, 0.025);
+  
+  /* Strokes */
+  --stroke-card: rgba(0, 0, 0, 0.0578);
+  --stroke-surface: rgba(0, 0, 0, 0.0373);
+  --stroke-divider: rgba(0, 0, 0, 0.0803);
+  --stroke-focus: hsl(var(--accent-hsl));
+  
+  /* Text */
+  --text-primary: #1a1a1a;
+  --text-secondary: rgba(0, 0, 0, 0.706);
+  --text-tertiary: rgba(0, 0, 0, 0.5);
+  --text-disabled: rgba(0, 0, 0, 0.364);
+  --text-accent: hsl(var(--accent-hsl) / 1);
+  
+  /* Accent Variations */
+  --accent-default: hsl(var(--accent-hsl));
+  --accent-light: hsl(var(--accent-hsl) / 0.85);
+  --accent-subtle: hsl(var(--accent-hsl) / 0.1);
+  --accent-subtle-hover: hsl(var(--accent-hsl) / 0.18);
+  
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+  --shadow-dialog: 0 24px 48px rgba(0, 0, 0, 0.18);
+  
+  /* Overlay */
+  --overlay: rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   TAILWIND THEME CONFIGURATION
+   ============================================ */
+@theme {
+  /* Background */
+  --color-mica: var(--bg-mica);
+  --color-mica-alt: var(--bg-mica-alt);
+  --color-solid: var(--bg-solid);
+  --color-content: var(--bg-content);
+  
+  /* Layers */
+  --color-layer: var(--layer-default);
+  --color-layer-alt: var(--layer-alt);
+  --color-layer-hover: var(--layer-hover);
+  --color-layer-active: var(--layer-active);
+  
+  /* Strokes */
+  --color-stroke: var(--stroke-card);
+  --color-stroke-surface: var(--stroke-surface);
+  --color-stroke-hover: var(--stroke-divider);
+  --color-divider: var(--stroke-divider);
+  
+  /* Accent */
+  --color-accent: var(--accent-default);
+  --color-accent-light: var(--accent-light);
+  --color-accent-subtle: var(--accent-subtle);
+  --color-accent-subtle-hover: var(--accent-subtle-hover);
+  
+  /* Text */
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-text-disabled: var(--text-disabled);
+  --color-text-accent: var(--text-accent);
+  
+  /* Shadows */
+  --shadow-sm: var(--shadow-sm);
+  --shadow-md: var(--shadow-md);
+  --shadow-lg: var(--shadow-lg);
+  --shadow-dialog: var(--shadow-dialog);
+  
+  /* Overlay */
+  --color-overlay: var(--overlay);
+}
+
+/* ============================================
+   BASE STYLES
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--bg-mica);
+  color: var(--text-primary);
+  overflow: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color var(--duration-normal) var(--easing),
+              color var(--duration-normal) var(--easing);
+}
+
+/* Fluent Scrollbar - Dark */
+[data-theme="dark"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 10px;
+}
+
+[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* Fluent Scrollbar - Light */
+[data-theme="light"] ::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+/* Selection */
+::selection {
+  background: hsl(var(--accent-hsl) / 0.35);
+}
+
+/* Focus Ring - Subtle and refined */
+:focus-visible {
+  outline: 2px solid var(--accent-default);
+  outline-offset: 2px;
+}
+
+/* Remove default focus for inputs - we'll handle it custom */
+input:focus,
+input:focus-visible,
+input[type="text"]:focus,
+input[type="text"]:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+  border-color: transparent !important;
+}
+
+/* Remove all focus outlines from command palette inputs specifically */
+[class*="fluent-input"] input,
+[class*="fluent-input"] input:focus,
+[class*="fluent-input"] input:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Fluent-style input focus indicator (bottom border glow) */
+.fluent-input-wrapper {
+  position: relative;
+}
+
+.fluent-input-wrapper::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--accent-default);
+  border-radius: 1px;
+  transition: width var(--duration-normal) var(--easing), 
+              left var(--duration-normal) var(--easing);
+}
+
+.fluent-input-wrapper:focus-within::after {
+  width: 100%;
+  left: 0;
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { 
+    opacity: 0; 
+    transform: translateY(8px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
+@keyframes scaleIn {
+  from { 
+    opacity: 0; 
+    transform: scale(0.96); 
+  }
+  to { 
+    opacity: 1; 
+    transform: scale(1); 
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn var(--duration-normal) var(--easing);
+}
+
+.animate-slide-up {
+  animation: slideUp var(--duration-normal) var(--easing);
+}
+
+.animate-scale-in {
+  animation: scaleIn var(--duration-normal) var(--easing);
+}

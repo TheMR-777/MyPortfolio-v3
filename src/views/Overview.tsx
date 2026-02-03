@@ -1,0 +1,317 @@
+import { motion } from "framer-motion";
+import { ArrowRight, MapPin, Github, Linkedin, Globe, Mail } from "lucide-react";
+import { portfolioData } from "../data/portfolio";
+import { Tooltip } from "../components/Tooltip";
+import type { TabId } from "../App";
+
+interface OverviewProps {
+  onNavigate: (tab: TabId) => void;
+}
+
+export function Overview({ onNavigate }: OverviewProps) {
+  const { personal, experience, projects, skills } = portfolioData;
+
+  return (
+    <div className="max-w-4xl mx-auto px-8 py-12">
+      {/* Hero Section */}
+      <section className="mb-16">
+        <motion.div
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        >
+          {/* Status Badge */}
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-accent-subtle text-accent text-xs font-medium mb-6">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            Available for opportunities
+          </div>
+
+          {/* Name & Title */}
+          <h1 className="text-4xl font-semibold text-text-primary tracking-tight mb-3">
+            {personal.name}
+          </h1>
+          
+          <p className="text-xl text-text-secondary mb-4">
+            {personal.role}
+          </p>
+
+          <div className="flex items-center gap-2 text-sm text-text-tertiary mb-6">
+            <MapPin className="w-4 h-4" strokeWidth={1.5} />
+            <span>{personal.location}</span>
+          </div>
+
+          {/* Tagline */}
+          <p className="text-base text-text-secondary leading-relaxed max-w-2xl mb-8">
+            {personal.about}
+          </p>
+
+          {/* Social Links */}
+          <div className="flex items-center gap-3">
+            <a
+              href={personal.social.github}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-lg bg-layer border border-stroke text-text-secondary hover:text-accent hover:border-stroke-hover transition-colors"
+            >
+              <Github className="w-4 h-4" strokeWidth={1.5} />
+            </a>
+            <a
+              href={personal.social.linkedin}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-lg bg-layer border border-stroke text-text-secondary hover:text-accent hover:border-stroke-hover transition-colors"
+            >
+              <Linkedin className="w-4 h-4" strokeWidth={1.5} />
+            </a>
+            <a
+              href={personal.social.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-2.5 rounded-lg bg-layer border border-stroke text-text-secondary hover:text-accent hover:border-stroke-hover transition-colors"
+            >
+              <Globe className="w-4 h-4" strokeWidth={1.5} />
+            </a>
+            <a
+              href={`mailto:${personal.email}`}
+              className="p-2.5 rounded-lg bg-layer border border-stroke text-text-secondary hover:text-accent hover:border-stroke-hover transition-colors"
+            >
+              <Mail className="w-4 h-4" strokeWidth={1.5} />
+            </a>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Stats with Tooltips */}
+      <motion.section 
+        className="mb-16"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <Tooltip
+            content={{
+              title: "5+ Years Experience",
+              description: "From teenage cybersecurity research to professional software architecture, spanning mobile, web, and enterprise systems.",
+              meta: "Since 2019"
+            }}
+            action={{
+              label: "View experience",
+              onClick: () => onNavigate("experience")
+            }}
+          >
+            <div className="p-4 rounded-xl bg-layer border border-stroke hover:border-stroke-hover transition-colors cursor-default">
+              <div className="text-2xl font-semibold text-text-primary mb-1">
+                {personal.stats.experience}
+              </div>
+              <div className="text-xs text-text-tertiary">
+                Experience
+              </div>
+            </div>
+          </Tooltip>
+
+          <Tooltip
+            content={{
+              title: "20+ Projects Delivered",
+              description: "Enterprise systems, open source libraries, research simulations, and mobile applications across diverse domains.",
+              meta: "Portfolio"
+            }}
+            action={{
+              label: "Explore projects",
+              onClick: () => onNavigate("projects")
+            }}
+          >
+            <div className="p-4 rounded-xl bg-layer border border-stroke hover:border-stroke-hover transition-colors cursor-default">
+              <div className="text-2xl font-semibold text-text-primary mb-1">
+                {personal.stats.projects}
+              </div>
+              <div className="text-xs text-text-tertiary">
+                Projects
+              </div>
+            </div>
+          </Tooltip>
+
+          <Tooltip
+            content={{
+              title: "200% Productivity Boost",
+              description: "Achieved through the Employee Monitoring Suite — a flagship system engineered solo with zero defects at launch.",
+              meta: "Impact"
+            }}
+            action={{
+              label: "See how",
+              onClick: () => onNavigate("projects")
+            }}
+          >
+            <div className="p-4 rounded-xl bg-layer border border-stroke hover:border-stroke-hover transition-colors cursor-default">
+              <div className="text-2xl font-semibold text-accent mb-1">
+                {personal.stats.productivity}
+              </div>
+              <div className="text-xs text-text-tertiary">
+                Productivity
+              </div>
+            </div>
+          </Tooltip>
+
+          <Tooltip
+            content={{
+              title: "3.73 / 4.0 CGPA",
+              description: "BS Computer Science from University of the Punjab. Unofficial C++ TA from 2nd semester, first team to complete FYP and research simultaneously.",
+              meta: "Academic"
+            }}
+            action={{
+              label: "View credentials",
+              onClick: () => onNavigate("skills")
+            }}
+          >
+            <div className="p-4 rounded-xl bg-layer border border-stroke hover:border-stroke-hover transition-colors cursor-default">
+              <div className="text-2xl font-semibold text-text-primary mb-1">
+                {personal.stats.cgpa}
+              </div>
+              <div className="text-xs text-text-tertiary">
+                CGPA
+              </div>
+            </div>
+          </Tooltip>
+        </div>
+      </motion.section>
+
+      {/* Core Skills Preview */}
+      <motion.section 
+        className="mb-16"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-lg font-semibold text-text-primary">
+            Core Expertise
+          </h2>
+          <button 
+            onClick={() => onNavigate("skills")}
+            className="flex items-center gap-1 text-xs text-text-tertiary hover:text-accent transition-colors"
+          >
+            View all <ArrowRight className="w-3 h-3" />
+          </button>
+        </div>
+
+        <div className="flex flex-wrap gap-2">
+          {skills.core.map((skill) => (
+            <Tooltip
+              key={skill.name}
+              content={{
+                title: skill.name,
+                description: skill.description
+              }}
+            >
+              <span className="px-3 py-2 rounded-lg bg-layer border border-stroke text-sm text-text-secondary hover:border-stroke-hover transition-colors cursor-default">
+                {skill.name}
+              </span>
+            </Tooltip>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* Recent Experience */}
+      <motion.section 
+        className="mb-16"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-lg font-semibold text-text-primary">
+            Recent Experience
+          </h2>
+          <button 
+            onClick={() => onNavigate("experience")}
+            className="flex items-center gap-1 text-xs text-text-tertiary hover:text-accent transition-colors"
+          >
+            View all <ArrowRight className="w-3 h-3" />
+          </button>
+        </div>
+
+        <div className="space-y-3">
+          {experience.slice(0, 2).map((job) => (
+            <div
+              key={job.company}
+              onClick={() => onNavigate("experience")}
+              className="group p-5 rounded-xl bg-layer border border-stroke cursor-pointer hover:bg-layer-hover hover:border-stroke-hover transition-colors"
+            >
+              <div className="flex items-start justify-between mb-2">
+                <div>
+                  <h3 className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors">
+                    {job.role}
+                  </h3>
+                  <p className="text-sm text-accent">{job.company}</p>
+                </div>
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-text-tertiary whitespace-nowrap">
+                    {job.period}
+                  </span>
+                  <ArrowRight className="w-3.5 h-3.5 text-text-disabled group-hover:text-text-tertiary group-hover:translate-x-0.5 transition-all" />
+                </div>
+              </div>
+              <p className="text-xs text-text-secondary line-clamp-2">
+                {job.summary}
+              </p>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* Featured Projects */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="flex items-center justify-between mb-5">
+          <h2 className="text-lg font-semibold text-text-primary">
+            Featured Projects
+          </h2>
+          <button 
+            onClick={() => onNavigate("projects")}
+            className="flex items-center gap-1 text-xs text-text-tertiary hover:text-accent transition-colors"
+          >
+            View all <ArrowRight className="w-3 h-3" />
+          </button>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {projects.slice(0, 4).map((project) => (
+            <div
+              key={project.title}
+              onClick={() => onNavigate("projects")}
+              className="group p-5 rounded-xl bg-layer border border-stroke cursor-pointer hover:bg-layer-hover hover:border-stroke-hover transition-colors"
+            >
+              <div className="flex items-start justify-between mb-3">
+                <div>
+                  <span className="text-[10px] uppercase tracking-wider text-accent font-medium">
+                    {project.category}
+                  </span>
+                  <h3 className="text-sm font-medium text-text-primary mt-1 group-hover:text-accent transition-colors">
+                    {project.title}
+                  </h3>
+                </div>
+                <ArrowRight className="w-3.5 h-3.5 text-text-disabled group-hover:text-text-tertiary group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+              </div>
+              <p className="text-xs text-text-secondary line-clamp-2 mb-3">
+                {project.summary}
+              </p>
+              <div className="flex flex-wrap gap-1.5">
+                {project.tech.slice(0, 3).map((t) => (
+                  <span 
+                    key={t}
+                    className="px-2 py-0.5 text-[10px] rounded-md bg-layer-active border border-stroke text-text-tertiary"
+                  >
+                    {t}
+                  </span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+    </div>
+  );
+}
