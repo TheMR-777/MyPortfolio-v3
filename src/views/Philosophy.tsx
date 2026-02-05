@@ -89,7 +89,7 @@ const Philosophy = () => {
             {/* Emotional Opening Statement - Refined sizing */}
             <div className="relative">
               {/* Subtle Accent Line */}
-              <div className="relative pl-5 border-l-2 border-accent/40" />
+              <div className="absolute left-0 top-1 bottom-1 w-0.5 rounded-full bg-gradient-to-b from-accent/70 via-accent/40 to-transparent" />
               
               <p className="pl-5 text-lg lg:text-xl text-text-secondary font-light leading-relaxed">
                 The scale of the goal has{' '}
