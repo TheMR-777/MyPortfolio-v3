@@ -7,6 +7,7 @@ import {
   Briefcase,
   FolderKanban,
   Wrench,
+  Sparkles,
   Sun,
   Moon,
   Monitor,
@@ -66,6 +67,15 @@ export function CommandPalette({ isOpen, onClose, onNavigate }: CommandPalettePr
         category: "navigation",
         action: () => { onNavigate("about"); onClose(); },
         keywords: ["about", "me", "info", "personal", "bio"],
+      },
+      {
+        id: "nav-philosophy",
+        label: "Philosophy",
+        description: "Engineering mindset & principles",
+        icon: Sparkles,
+        category: "navigation",
+        action: () => { onNavigate("philosophy"); onClose(); },
+        keywords: ["philosophy", "mindset", "principles", "values", "driving force"],
       },
       {
         id: "nav-experience",
@@ -332,7 +342,7 @@ export function CommandPalette({ isOpen, onClose, onNavigate }: CommandPalettePr
                             onClick={item.action}
                             onMouseEnter={() => setSelectedIndex(currentIndex)}
                             className={cn(
-                              "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors",
+                              "w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left transition-colors focus:outline-none focus:ring-0",
                               isSelected
                                 ? "bg-accent-subtle text-text-primary"
                                 : "text-text-secondary hover:bg-layer-hover"
@@ -342,8 +352,10 @@ export function CommandPalette({ isOpen, onClose, onNavigate }: CommandPalettePr
                             {item.accent ? (
                               <div
                                 className={cn(
-                                  "w-5 h-5 rounded-full shrink-0 border-2",
-                                  accent.name === item.accent.name ? "border-text-primary" : "border-transparent"
+                                  "w-5 h-5 rounded-full shrink-0 ring-2 ring-offset-2 ring-offset-solid",
+                                  accent.name === item.accent.name 
+                                    ? "ring-text-tertiary" 
+                                    : "ring-transparent"
                                 )}
                                 style={{ backgroundColor: item.accent.value }}
                               />

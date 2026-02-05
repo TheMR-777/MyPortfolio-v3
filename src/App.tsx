@@ -7,8 +7,9 @@ import { Experience } from "./views/Experience";
 import { Projects } from "./views/Projects";
 import { Skills } from "./views/Skills";
 import { About } from "./views/About";
+import Philosophy from "./views/Philosophy";
 
-export type TabId = "home" | "about" | "experience" | "projects" | "skills";
+export type TabId = "home" | "about" | "philosophy" | "experience" | "projects" | "skills";
 
 export function App() {
   const [activeTab, setActiveTab] = useState<TabId>("home");
@@ -33,6 +34,8 @@ export function App() {
         return <Overview onNavigate={setActiveTab} />;
       case "about":
         return <About />;
+      case "philosophy":
+        return <Philosophy />;
       case "experience":
         return <Experience />;
       case "projects":

@@ -1,7 +1,7 @@
 import { motion } from "framer-motion";
 import { 
   MapPin, Calendar, Languages, GraduationCap, 
-  Phone, Mail, ExternalLink, Quote, Sparkles,
+  Phone, Mail, ExternalLink, Sparkles,
   Telescope, Atom, Brain
 } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
@@ -118,24 +118,16 @@ export function About() {
         </div>
       </motion.section>
 
-      {/* Philosophy */}
+      {/* About Summary */}
       <motion.section
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-10 p-6 rounded-xl bg-accent-subtle border border-accent/20"
+        className="mb-10 p-6 rounded-xl bg-layer border border-stroke"
       >
-        <div className="flex items-start gap-4">
-          <Quote className="w-8 h-8 text-accent flex-shrink-0" strokeWidth={1} />
-          <div>
-            <p className="text-sm text-text-primary leading-relaxed italic">
-              "{personal.philosophy}"
-            </p>
-            <p className="text-xs text-accent mt-3 font-medium">
-              — Engineering Philosophy
-            </p>
-          </div>
-        </div>
+        <p className="text-sm text-text-secondary leading-relaxed">
+          {personal.about}
+        </p>
       </motion.section>
 
       {/* Journey Timeline */}

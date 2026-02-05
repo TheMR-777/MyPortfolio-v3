@@ -15,7 +15,6 @@ export const portfolioData = {
       "AI-Powered Innovation Engineer"
     ],
     about: "A lifelong journey of innovation and engineering excellence, from age 3 to industry leader. I blend low-level mastery (C++, Cryptography) with high-level architecture (.NET, AI) to solve problems others consider impossible.",
-    philosophy: "I don't accept 'because that's how it's done' as an answer. True mastery shows in making complex things simple, not simple things complex. Each problem deserves a solution tailored to its unique constraints.",
     social: {
       github: "https://github.com/TheMR-777",
       linkedin: "https://www.linkedin.com/in/777-ammar",
@@ -36,38 +35,86 @@ export const portfolioData = {
     interests: [
       {
         name: "Astronomy",
-        description: "Second-largest passion after computing. I study the cosmos to build intuition about black holes, stellar evolution, and cosmic structure."
+        description: "Second-largest passion after computing. I study the cosmos through expert voices to build intuition—not rote facts—about black holes, stellar evolution, and cosmic structure."
       },
       {
         name: "Physics",
-        description: "A late-blooming love that became a core lens. I reason about electromagnetism, chip fabrication, GPUs, and hardware architectures."
+        description: "A late-blooming love that became a core lens. I build intuitive models about electromagnetism, chip fabrication, GPUs, and hardware architectures through thoughtful exploration."
       },
       {
         name: "Psychology",
-        description: "Nurtured by my psychologist mother. I study cognitive biases and social dynamics to design humane products and lead better teams."
+        description: "Nurtured by my psychologist mother's open conversations. I study cognitive biases, learning science, and social dynamics to design humane products and lead better teams."
       }
     ]
   },
 
+  // NEW: Philosophy section
+  philosophy: {
+    title: "The Driving Force",
+    subtitle: "The Joy of Discovery",
+    mainQuote: "The destination is just a waypoint—the real reward is the infinite richness of the journey itself.",
+    sections: [
+      {
+        title: "The Journey Over the Goal",
+        content: "The scale of the goal has never mattered to me—what matters is the journey of getting there. Whether I'm architecting a comprehensive system like mr_crypt or the Employee Monitoring Suite, or spending hours refining something as 'simple' as a Fibonacci sequence, the experience is the same: an insatiable curiosity that drives me to discover one more micro-optimization, one more elegant simplification, one more insight I hadn't seen before."
+      },
+      {
+        title: "The Beauty in Fundamentals",
+        content: "I vividly remember iterating on fundamental algorithms for far longer than anyone would consider 'reasonable'—not because I had to, but because each iteration revealed something new. A zero-branch Fibonacci by seeding with −1 and 1. A sieve optimization that shaved microseconds. These aren't just technical wins; they're discoveries, and each one felt as profound as solving a major architectural problem."
+      },
+      {
+        title: "Succeeding Within the Failures",
+        content: "Sometimes the original goal remains out of reach—but along the way, I stumble upon something profound. A technique. An insight. A connection I hadn't anticipated. These discoveries often prove more valuable than the goal itself. Failure, in this framing, isn't an endpoint—it's a checkpoint where unexpected treasures reveal themselves."
+      },
+      {
+        title: "Beyond Computer Science",
+        content: "This philosophy extends far beyond computing. It applies to Mathematics, where a proof's elegance can be refined endlessly. It applies to Physics, where understanding one concept unlocks intuition for a dozen others. It applies to every domain where depth is possible—and depth is always possible."
+      }
+    ],
+    principles: [
+      {
+        title: "Questioning the Status Quo",
+        description: "I don't accept 'because that's how it's done' as an answer. I question existing implementations, challenge assumptions, and seek deeper understanding."
+      },
+      {
+        title: "Simplicity as Sophistication",
+        description: "True mastery shows in making complex things simple, not simple things complex. I constantly seek to eliminate unnecessary complexity and find elegant paths."
+      },
+      {
+        title: "Optimization Instinct",
+        description: "I naturally spot inefficiencies and improvement opportunities. This isn't premature optimization; it's seeing where small changes yield disproportionate gains."
+      },
+      {
+        title: "Domain-Specific Solutions",
+        description: "Each problem deserves a solution tailored to its unique constraints. I craft patterns and architectures specific to the domain rather than forcing generic templates."
+      },
+      {
+        title: "Continuous Betterment",
+        description: "I'm driven by making things genuinely better, not just different. Whether it's a codebase, process, or interface, I seek meaningful improvements that create lasting value."
+      }
+    ],
+    coreInsight: "This is my innermost driving force. I don't pursue projects for the end result alone; I pursue them for what I'll discover along the way. It's why I can spend weeks on something others finish in hours, and why the 'simplest' problems often teach me the most."
+  },
+
   journey: {
     genesis: {
-      title: "The Genesis (Age 3-10)",
-      period: "1994 - 2011",
+      title: "The Genesis",
+      period: "Age 3-10",
       description: "My journey began at age 3, influenced by my uncle who ran a computer lab in Rawalpindi. Early exposure through games like GTA Vice City and SEGA Master Collection wasn't just entertainment—it was the foundation of my lifelong passion. When gifted a high-spec PC with Windows XP, limited access became my greatest teacher. I learned to troubleshoot independently, often finding myself more capable than local tech experts."
     },
     awakening: {
-      title: "The Awakening (Teenage Years)",
-      period: "2017 - 2019",
+      title: "The Awakening",
+      period: "Teenage Years",
       description: "Watching 'Inkeshaaf' on 24 News sparked my passion for ethical hacking. I set an ambitious goal: hack my Android phone from another Android—a challenge many considered impossible. Over a year, I mastered Linux, Python, networking, and pioneered mobile-to-mobile penetration testing. My article became the second most-read on Null Byte (2018-2020), and I founded an international cybersecurity community spanning 6 countries."
     },
     academic: {
-      title: "Academic Excellence (2019-2023)",
-      period: "2019 - 2023",
+      title: "Academic Excellence",
+      period: "2019-2023",
       description: "At University of the Punjab, I achieved a 3.73 CGPA while going far beyond curriculum. Became an unofficial C++ teaching assistant in my second semester, served as deputy class representative during COVID-19, and was the first team to complete both FYP and research papers simultaneously."
     },
     professional: {
-      title: "Professional Evolution (2023-Present)",
-      period: "2023 - Present",
+      title: "Professional Evolution",
+      period: "2023-Present",
       description: "My industry transition was strategic. Selected immediately by ACE's CTO, I now serve as .NET Developer & Architecture Consultant, transforming enterprise systems. The defining achievement: devoting an entire year to the Employee Monitoring Suite—a system I consider a professional masterpiece."
     }
   },
@@ -105,8 +152,122 @@ export const portfolioData = {
       role: ".NET Developer & Architecture Consultant",
       period: "Jun 2023 — Present",
       location: "Remote/Hybrid",
-      summary: "Transforming enterprise systems into multi-tenant SaaS platforms. Single-handedly engineered the Employee Monitoring Suite achieving 200% productivity boost with zero defects at launch.",
-      description: "Progressed from UI/UX to leading core platform modules and multi-tenant migration decisions. Focus on building reusable primitives that power every business module.",
+      summary: "Transforming enterprise systems into multi-tenant SaaS platforms. Engineered flagship systems including the Employee Monitoring Suite (200% productivity boost, zero defects) and comprehensive ERP platform.",
+      description: "Progressed from UI/UX to leading core platform modules and multi-tenant migration decisions. My focus has been on building reusable primitives that power every business module—not one-off solutions.",
+      
+      // NEW: Organized projects at ACE
+      aceProjects: [
+        {
+          name: "Employee Monitoring Suite",
+          type: "Flagship • Solo Project",
+          period: "1 Year Development",
+          summary: "Company-wide monitoring system achieving 200% productivity boost with zero defects at launch.",
+          description: "Single-handedly designed and engineered over the course of one year. Treated as a personal masterpiece, blending architecture, UI/UX, real-time data processing, and security. Widely recognized inside ACE for directly enabling productivity improvements and setting a new benchmark for internal tools.",
+          architecturalPhilosophy: "This project was a crucible for my understanding of design patterns. I didn't just memorize patterns—I understood them at their core: what problem each pattern solves, how it solves it, why it was even needed, and where it falls short. This depth of understanding enabled me to architect a custom architecture that wasn't constrained by textbook templates.",
+          architecturalOutcomes: [
+            "Minimal and elegant: No unnecessary abstractions; every component earned its place",
+            "Efficient and optimized: Performance was a first-class citizen, not an afterthought",
+            "Extendable: New features integrated seamlessly without architectural surgery",
+            "Maintainable: Clear separation of concerns made the codebase approachable",
+            "Consistent and predictable: Behavior was deterministic; no surprises in production"
+          ],
+          impact: [
+            "Zero defects at production launch",
+            "200% productivity increase measured company-wide",
+            "35% reduction in unauthorized breaks",
+            "Recognized by CTO as a professional masterpiece",
+            "Established as company standard for monitoring"
+          ],
+          tech: [".NET", "Blazor", "GraphQL", "ApexCharts", "Micro-ORM"]
+        },
+        {
+          name: "ERP Platform Core",
+          type: "Platform • Architecture",
+          period: "2023 — Dec 2025",
+          summary: "Multi-tenant platform with composable subsystems powering all business modules.",
+          description: "Built and standardized ERP as a multi-tenant platform by engineering reusable core subsystems—not one-off module logic. Every business module now plugs into this backbone.",
+          modules: [
+            { name: "Composable Permissions & Rights", description: "Tenant-aware, module-agnostic access control designed for easy integration.", impact: "Eliminated redundant auth code across 5+ modules" },
+            { name: "Approvals Orchestration Engine", description: "Generic plug-in workflow layer (approve/reject/escalate) usable by any module.", impact: "Reduced approval implementation time by 80%" },
+            { name: "Rules + Thresholds Framework", description: "Centralized policy engine driving approvals, restrictions, escalations, and notifications.", impact: "Enabled non-developer policy changes" },
+            { name: "Notifications & Template Center", description: "Multi-channel delivery (Email/In-App/Push/WhatsApp) with runtime-managed, localizable templates.", impact: "Unified notification logic, 60% less code" },
+            { name: "Dynamic JSON Form Engine", description: "Schema-driven UI generation in TypeScript. Theme-compliant and reusable across modules.", impact: "Cut form development time by 70%" },
+            { name: "Command Palette", description: "Rights-compliant navigation with fuzzy search and score-based ranking. VS Code/Spotlight-style UX.", impact: "Improved navigation efficiency 3x" },
+            { name: "Documents Management", description: "Blob storage + AWS time-bound links + fallback handling; extremely reusable with minimal API.", impact: "Standardized file handling across platform" },
+            { name: "Audit Logging & Dashboards", description: "Action-level traceability for compliance and investigations.", impact: "Complete audit trail for all operations" }
+          ],
+          impact: [
+            "Enabled rapid rollout of 5+ business modules",
+            "Transformed single-company tools into marketable SaaS product",
+            "90% reduction in module development time",
+            "Multi-company support without code changes"
+          ],
+          tech: [".NET 9", "TypeScript", "Angular", "SignalR", "PostgreSQL"]
+        },
+        {
+          name: "ERP Business Modules",
+          type: "Business Logic • Full-Stack",
+          period: "2024 — 2025",
+          summary: "End-to-end business modules built on the ERP platform core, each tightly integrated.",
+          description: "Shipped production-ready business modules that leverage the platform core. Each module demonstrates the power of the reusable backbone.",
+          modules: [
+            { name: "Project Management", description: "Multi-company/department/team structure; foundation for downstream modules.", impact: "Enabled organizational hierarchy modeling" },
+            { name: "Budget Management", description: "Templates + allocation/validation + multi-currency conversion and presentation.", impact: "Streamlined financial planning" },
+            { name: "Procurement (Odoo-inspired)", description: "PR → RFQ/PO → 2-level inspection → issuance/intake verification, with full audit trail.", impact: "Complete procurement lifecycle" },
+            { name: "Liquidity & Cash Positioning", description: "Deeply integrated with Transactions Management + real-time voucher generation.", impact: "Real-time treasury visibility" },
+            { name: "Forecasting Engine", description: "Weighted linear regression to project liquidity/cash positions (up to ~7 years).", impact: "Data-driven financial planning" }
+          ],
+          impact: [
+            "5 major business modules shipped to production",
+            "Tight integration proving platform architecture",
+            "Odoo-level features with custom enhancements"
+          ],
+          tech: ["Angular 20", ".NET 9", "PrimeNG", "PostgreSQL"]
+        },
+        {
+          name: "ACE Password Vault",
+          type: "Security • Cryptography",
+          period: "2023",
+          summary: "Multi-layered encryption system with custom cryptographic protocols exceeding industry standards.",
+          description: "Financial credentials required security beyond standard password managers. Designed a defense-in-depth architecture with custom auditing and key rotation.",
+          approach: "Designed multi-layered security: inner loops use C++ for raw cryptographic operations via OpenSSL wrappers; outer layers use .NET for secure memory management and PWA interface. Implemented zero-knowledge principles where applicable.",
+          impact: [
+            "Became critical company infrastructure",
+            "Set new internal security standards",
+            "Zero security incidents since deployment",
+            "Protected most sensitive credentials"
+          ],
+          tech: ["C++", ".NET", "OpenSSL", "AES-256", "RSA-4096"]
+        },
+        {
+          name: "External Partner Integrations",
+          type: "Integrations • API",
+          period: "2023 — Present",
+          summary: "Integrated major payment partners including Mastercard, HBL, and PNB with robust, secure payment flows.",
+          description: "Delivered bank partner integrations engineering resilient adapters, retries, idempotency, and observability. Extensive experience consuming external services via well-typed client libraries and SLA-aware timeouts.",
+          partners: ["Mastercard", "HBL (Habib Bank Limited)", "PNB (Punjab National Bank, India)"],
+          impact: [
+            "Highly praised by Mastercard team for implementation quality",
+            "Robust error handling and retry mechanisms",
+            "Complete observability and monitoring"
+          ],
+          tech: [".NET", "REST APIs", "SOAP", "OAuth2", "HMAC"]
+        },
+        {
+          name: "Real-time Infrastructure",
+          type: "Infrastructure • SignalR",
+          period: "2024",
+          summary: "Established SignalR infrastructure for notifications and real-time features across ERP.",
+          description: "Built real-time communication layer including connection lifecycle, delivery semantics, and scale considerations. Applied RPC concepts within event-driven systems.",
+          impact: [
+            "Live notifications across all ERP modules",
+            "Reliable delivery with fallback mechanisms",
+            "Scalable architecture for future growth"
+          ],
+          tech: ["SignalR", ".NET", "WebSockets", "Redis"]
+        }
+      ],
+      
       highlights: [
         "Architected Employee Monitoring Suite solo — zero defects at launch",
         "Designed 'ACE Password Vault' with multi-layered cryptography",
@@ -114,45 +275,13 @@ export const portfolioData = {
         "Integrated Mastercard, HBL, and PNB payment services",
         "Received direct commendation from CTO for architectural innovations"
       ],
-      modules: [
-        {
-          name: "Composable Permissions",
-          description: "Tenant-aware, module-agnostic access control. Designed for seamless integration across the entire ERP suite without modification.",
-          impact: "Eliminated redundant auth code across 5+ modules"
-        },
-        {
-          name: "Approvals Orchestration Engine",
-          description: "Generic plug-in workflow layer supporting approve/reject/escalate flows. Any module can integrate approvals with minimal configuration.",
-          impact: "Reduced approval implementation time by 80%"
-        },
-        {
-          name: "Rules + Thresholds Framework",
-          description: "Centralized policy engine driving business logic. Handles approvals, restrictions, escalations, and notifications through declarative rules.",
-          impact: "Enabled non-developer policy changes"
-        },
-        {
-          name: "Notifications & Template Center",
-          description: "Multi-channel delivery (Email/In-App/Push/WhatsApp) with runtime-managed, localizable templates.",
-          impact: "Unified notification logic, 60% less code"
-        },
-        {
-          name: "Dynamic JSON Form Engine",
-          description: "Schema-driven UI generation in TypeScript. Theme-compliant, reusable across modules, eliminates form boilerplate.",
-          impact: "Cut form development time by 70%"
-        },
-        {
-          name: "Command Palette",
-          description: "Rights-compliant navigation with fuzzy search and score-based ranking. VS Code/Spotlight-style UX for enterprise applications.",
-          impact: "Improved navigation efficiency 3x"
-        }
-      ],
       impact: [
         "200% productivity increase via Employee Monitoring Suite",
         "35% reduction in unauthorized breaks",
         "5+ major modules standardized on new platform",
         "Multi-tenant architecture enabling SaaS transformation"
       ],
-      tech: [".NET 9", "Blazor", "Angular", "GraphQL", "SignalR", "PostgreSQL"]
+      tech: [".NET 9", "Blazor", "Angular", "GraphQL", "SignalR", "PostgreSQL", "C++"]
     },
     {
       company: "MIMOS Berhad (Malaysia)",
@@ -168,21 +297,9 @@ export const portfolioData = {
         "Received exceptional praise for accuracy and attention to detail"
       ],
       modules: [
-        {
-          name: "Simulation Engine",
-          description: "C# 13 and .NET 9 core modeling signal attenuation, reflection, and geometric constraints with high precision.",
-          impact: "Matched physical test results within 5% margin"
-        },
-        {
-          name: "Signal Processing Pipeline",
-          description: "Python 3.13 modules using NumPy/SciPy for computational geometry and heatmap generation.",
-          impact: "Real-time updates for large floorplans"
-        },
-        {
-          name: "Visualization Layer",
-          description: "WPF interface integrating Matplotlib for coverage analysis. Interactive anchor placement and optimization.",
-          impact: "Intuitive UI praised by client"
-        }
+        { name: "Simulation Engine", description: "C# 13 and .NET 9 core modeling signal attenuation, reflection, and geometric constraints with high precision.", impact: "Matched physical test results within 5% margin" },
+        { name: "Signal Processing Pipeline", description: "Python 3.13 modules using NumPy/SciPy for computational geometry and heatmap generation.", impact: "Real-time updates for large floorplans" },
+        { name: "Visualization Layer", description: "WPF interface integrating Matplotlib for coverage analysis. Interactive anchor placement and optimization.", impact: "Intuitive UI praised by client" }
       ],
       impact: [
         "Eliminated need for initial physical site surveys",
@@ -204,16 +321,8 @@ export const portfolioData = {
         "Optimized for low-bandwidth environments"
       ],
       modules: [
-        {
-          name: "Chirp",
-          description: "Social media application with real-time feeds, interactions, and notifications using Firebase.",
-          impact: "Full MVP in 6 weeks"
-        },
-        {
-          name: "Sara Kuch",
-          description: "E-commerce platform integrating Shopify REST API with cart, checkout, and order tracking.",
-          impact: "Complete e-commerce flow delivered"
-        }
+        { name: "Chirp", description: "Social media application with real-time feeds, interactions, and notifications using Firebase.", impact: "Full MVP in 6 weeks" },
+        { name: "Sara Kuch", description: "E-commerce platform integrating Shopify REST API with cart, checkout, and order tracking.", impact: "Complete e-commerce flow delivered" }
       ],
       impact: [
         "Delivered two full MVP applications in 3 months",
@@ -229,9 +338,10 @@ export const portfolioData = {
       category: "Flagship • Enterprise",
       tech: [".NET", "Blazor", "GraphQL", "ApexCharts", "Micro-ORM"],
       summary: "Company-wide monitoring system achieving 200% productivity boost with zero defects at launch.",
-      description: "Single-handedly designed and engineered over the course of one year. Widely recognized inside ACE for directly enabling productivity improvements and setting a new benchmark for internal tools.",
+      description: "Single-handedly designed and engineered over the course of one year. This project was a crucible for my understanding of design patterns—I understood them at their core, enabling a custom architecture that wasn't constrained by textbook templates.",
       challenge: "The company lacked visibility into remote work patterns. Existing solutions were either invasive, inaccurate, or lacked context-aware reporting. Privacy concerns made aggressive tracking unacceptable.",
       approach: "Engineered a privacy-conscious, OS-level monitoring agent that respects boundaries while providing meaningful insights. Built a real-time Blazor dashboard with GraphQL for efficient data pipelines. Used Micro-ORM for high-throughput logging without the overhead of full ORMs.",
+      architecturalPhilosophy: "The result was minimal and elegant (no unnecessary abstractions), efficient and optimized (performance as first-class citizen), extendable (new features without architectural surgery), maintainable (clear separation of concerns), and consistent (deterministic behavior in production).",
       impact: [
         "Zero defects at production launch",
         "200% productivity increase measured company-wide",
@@ -262,7 +372,7 @@ export const portfolioData = {
       category: "SaaS • Architecture",
       tech: [".NET 9", "TypeScript", "Angular", "SignalR", "PostgreSQL"],
       summary: "Multi-tenant platform with composable subsystems powering all business modules.",
-      description: "Transformed fragmented internal tools into a unified, multi-tenant SaaS ecosystem. Architected reusable engines rather than one-off module logic.",
+      description: "Transformed fragmented internal tools into a unified, multi-tenant SaaS ecosystem. Architected reusable engines (Approvals, Rules, Notifications, Rights) rather than one-off module logic.",
       challenge: "Legacy tools were fragmented, single-tenant, and hard to maintain. Adding a new module meant reinventing authentication, approvals, and logging from scratch.",
       approach: "Architected a 'SaaS Backbone' containing generic Approvals, Rules, Notifications, and Rights engines. Business modules plug into this backbone. Used EAV patterns for flexibility and multi-tenant isolation.",
       impact: [
@@ -404,3 +514,4 @@ export const portfolioData = {
 
 export type Project = typeof portfolioData.projects[0];
 export type Experience = typeof portfolioData.experience[0];
+export type AceProject = NonNullable<typeof portfolioData.experience[0]['aceProjects']>[0];

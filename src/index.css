@@ -217,10 +217,18 @@ body {
   background: hsl(var(--accent-hsl) / 0.35);
 }
 
-/* Focus Ring - Subtle and refined */
+/* Focus Ring - Subtle and refined - Only for keyboard navigation */
 :focus-visible {
   outline: 2px solid var(--accent-default);
   outline-offset: 2px;
+}
+
+/* Remove focus rings from buttons that have their own visual feedback */
+button:focus,
+button:focus-visible,
+[role="button"]:focus,
+[role="button"]:focus-visible {
+  outline: none !important;
 }
 
 /* Remove default focus for inputs - we'll handle it custom */
@@ -231,6 +239,7 @@ input[type="text"]:focus-visible {
   outline: none !important;
   box-shadow: none !important;
   border-color: transparent !important;
+  ring: none !important;
 }
 
 /* Remove all focus outlines from command palette inputs specifically */
@@ -239,6 +248,15 @@ input[type="text"]:focus-visible {
 [class*="fluent-input"] input:focus-visible {
   outline: none !important;
   box-shadow: none !important;
+}
+
+/* Remove focus ring from color swatches and interactive elements in command palette */
+.command-palette-item:focus,
+.command-palette-item:focus-visible,
+.color-swatch:focus,
+.color-swatch:focus-visible {
+  outline: none !important;
+  ring: none !important;
 }
 
 /* Fluent-style input focus indicator (bottom border glow) */
@@ -283,6 +301,17 @@ input[type="text"]:focus-visible {
   }
 }
 
+@keyframes slideUpLarge {
+  from { 
+    opacity: 0; 
+    transform: translateY(24px); 
+  }
+  to { 
+    opacity: 1; 
+    transform: translateY(0); 
+  }
+}
+
 @keyframes scaleIn {
   from { 
     opacity: 0; 
@@ -294,6 +323,21 @@ input[type="text"]:focus-visible {
   }
 }
 
+@keyframes shimmer {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes pulse-subtle {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 0.7; }
+}
+
 .animate-fade-in {
   animation: fadeIn var(--duration-normal) var(--easing);
 }
@@ -302,6 +346,156 @@ input[type="text"]:focus-visible {
   animation: slideUp var(--duration-normal) var(--easing);
 }
 
+.animate-slide-up-large {
+  animation: slideUpLarge 0.6s var(--easing);
+}
+
 .animate-scale-in {
   animation: scaleIn var(--duration-normal) var(--easing);
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
+}
+
+.animate-pulse-subtle {
+  animation: pulse-subtle 3s ease-in-out infinite;
+}
+
+/* ============================================
+   PHILOSOPHY PAGE SPECIAL STYLES
+   ============================================ */
+
+/* Hero gradient overlay - Dark theme */
+[data-theme="dark"] .philosophy-hero {
+  background: 
+    radial-gradient(ellipse 100% 70% at 75% 20%, hsl(var(--accent-hsl) / 0.08) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 50% at 20% 80%, hsl(var(--accent-hsl) / 0.05) 0%, transparent 50%),
+    var(--bg-content);
+}
+
+/* Hero gradient overlay - Light theme */
+[data-theme="light"] .philosophy-hero {
+  background: 
+    radial-gradient(ellipse 100% 70% at 75% 20%, hsl(var(--accent-hsl) / 0.06) 0%, transparent 50%),
+    radial-gradient(ellipse 80% 50% at 20% 80%, hsl(var(--accent-hsl) / 0.04) 0%, transparent 50%),
+    var(--bg-content);
+}
+
+/* Quote typography */
+.philosophy-quote {
+  font-family: "Segoe UI Variable Display", "Segoe UI Variable", "Segoe UI", system-ui, sans-serif;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  line-height: 1.3;
+}
+
+/* Decorative line */
+.philosophy-line {
+  width: 64px;
+  height: 2px;
+  background: linear-gradient(90deg, var(--accent-default), transparent);
+  border-radius: 1px;
+}
+
+/* Principle card hover effect */
+.principle-card {
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--duration-normal) var(--easing),
+              box-shadow var(--duration-normal) var(--easing);
+}
+
+.principle-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--accent-default), transparent);
+  opacity: 0;
+  transition: opacity var(--duration-normal) var(--easing);
+}
+
+.principle-card:hover {
+  transform: translateY(-2px);
+}
+
+.principle-card:hover::before {
+  opacity: 1;
+}
+
+/* Story section marker */
+.story-marker {
+  position: relative;
+  padding-left: 24px;
+}
+
+.story-marker::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent-default);
+}
+
+.story-marker::after {
+  content: "";
+  position: absolute;
+  left: 3px;
+  top: 16px;
+  width: 2px;
+  height: calc(100% - 12px);
+  background: linear-gradient(180deg, var(--accent-default), transparent);
+  border-radius: 1px;
+}
+
+/* Elegant blockquote */
+.elegant-blockquote {
+  position: relative;
+  padding-left: 24px;
+  border-left: 2px solid hsl(var(--accent-hsl) / 0.3);
+}
+
+.elegant-blockquote::before {
+  content: "\201C";
+  position: absolute;
+  left: -8px;
+  top: -16px;
+  font-size: 64px;
+  font-family: Georgia, serif;
+  color: hsl(var(--accent-hsl) / 0.15);
+  line-height: 1;
+}
+
+/* Number decoration */
+.decorated-number {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  background: var(--accent-subtle);
+  color: var(--text-accent);
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ============================================
+   FORCE REMOVE FOCUS RINGS GLOBALLY
+   ============================================ */
+*:focus {
+  outline: none !important;
+}
+
+/* Only show focus ring for keyboard navigation on specific elements */
+a:focus-visible,
+[tabindex]:focus-visible:not(button):not(input) {
+  outline: 2px solid var(--accent-default) !important;
+  outline-offset: 2px !important;
 }

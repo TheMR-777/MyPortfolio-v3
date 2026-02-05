@@ -81,12 +81,14 @@ export function Overview({ onNavigate }: OverviewProps) {
         </motion.div>
       </section>
 
+      {/* Philosophy Teaser Removed */}
+
       {/* Stats with Tooltips */}
       <motion.section 
         className="mb-16"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.4, delay: 0.12, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Tooltip
@@ -180,7 +182,7 @@ export function Overview({ onNavigate }: OverviewProps) {
         className="mb-16"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.4, delay: 0.16, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-lg font-semibold text-text-primary">
@@ -263,7 +265,7 @@ export function Overview({ onNavigate }: OverviewProps) {
       <motion.section
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        transition={{ duration: 0.4, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
       >
         <div className="flex items-center justify-between mb-5">
           <h2 className="text-lg font-semibold text-text-primary">
@@ -312,6 +314,25 @@ export function Overview({ onNavigate }: OverviewProps) {
           ))}
         </div>
       </motion.section>
+
+      {/* Signature & Philosophy Link */}
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
+        className="mt-16 pt-8 border-t border-stroke flex flex-col items-center text-center pb-8"
+      >
+        <p className="text-sm text-text-tertiary mb-4">
+          "Creating what hasn't been built before, <em className="text-accent">one innovation at a time.</em>"
+        </p>
+        <button 
+          onClick={() => onNavigate("philosophy")}
+          className="group flex items-center gap-2 text-xs text-text-tertiary hover:text-accent transition-colors"
+        >
+          <span>Explore my philosophy</span>
+          <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
+        </button>
+      </motion.div>
     </div>
   );
 }

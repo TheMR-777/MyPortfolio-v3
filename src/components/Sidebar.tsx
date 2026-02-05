@@ -5,6 +5,7 @@ import {
   Briefcase, 
   FolderKanban, 
   Wrench,
+  Sparkles,
   Github,
   Linkedin,
   Mail,
@@ -25,6 +26,7 @@ interface SidebarProps {
 const navItems: { id: TabId; label: string; icon: typeof Home }[] = [
   { id: "home", label: "Home", icon: Home },
   { id: "about", label: "About", icon: User },
+  { id: "philosophy", label: "Philosophy", icon: Sparkles },
   { id: "experience", label: "Experience", icon: Briefcase },
   { id: "projects", label: "Projects", icon: FolderKanban },
   { id: "skills", label: "Skills", icon: Wrench },
@@ -70,7 +72,7 @@ export function Sidebar({ activeTab, setActiveTab, onOpenCommandPalette }: Sideb
       <div className="px-3 pt-4 pb-2">
         <button
           onClick={onOpenCommandPalette}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-layer border border-stroke hover:bg-layer-hover hover:border-stroke-hover transition-all duration-150 group"
+          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg bg-layer border border-stroke hover:bg-layer-hover hover:border-stroke-hover transition-all duration-150 group focus:outline-none"
         >
           <Command className="w-4 h-4 text-text-tertiary group-hover:text-text-secondary" strokeWidth={1.5} />
           <span className="flex-1 text-left text-sm text-text-tertiary group-hover:text-text-secondary">
@@ -94,7 +96,7 @@ export function Sidebar({ activeTab, setActiveTab, onOpenCommandPalette }: Sideb
               key={item.id}
               onClick={() => setActiveTab(item.id)}
               className={cn(
-                "relative w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150",
+                "relative w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm transition-all duration-150 focus:outline-none",
                 isActive
                   ? "bg-accent-subtle text-text-primary"
                   : "text-text-secondary hover:bg-layer-hover hover:text-text-primary"
@@ -128,7 +130,7 @@ export function Sidebar({ activeTab, setActiveTab, onOpenCommandPalette }: Sideb
         {/* Theme Toggle */}
         <button
           onClick={toggleTheme}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-text-secondary hover:bg-layer-hover hover:text-text-primary transition-all duration-150"
+          className="w-full flex items-center gap-3 px-3 py-2 rounded-lg text-sm text-text-secondary hover:bg-layer-hover hover:text-text-primary transition-all duration-150 focus:outline-none"
         >
           {resolvedMode === "dark" ? (
             <Sun className="w-[18px] h-[18px] text-text-tertiary" strokeWidth={1.5} />
