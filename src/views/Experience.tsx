@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Building2, Calendar, MapPin, ChevronRight, ChevronDown,
-  Sparkles, Target, Layers, Shield, Zap, Globe, Radio
+  Sparkles, Target, Layers, Shield, Zap, Globe, Radio, Cog, FileText
 } from "lucide-react";
 import { portfolioData, type Experience, type AceProject } from "../data/portfolio";
 import DetailSheet from "../components/DetailSheet";
@@ -13,7 +13,9 @@ const projectIcons: Record<string, typeof Layers> = {
   "ERP Business Modules": Zap,
   "ACE Password Vault": Shield,
   "External Partner Integrations": Globe,
-  "Real-time Infrastructure": Radio
+  "Real-time Infrastructure": Radio,
+  "Background Jobs Framework": Cog,
+  "Logging Framework": FileText
 };
 
 export function Experience() {
@@ -357,6 +359,24 @@ export function Experience() {
                 <p className="text-sm text-text-secondary leading-relaxed p-4 rounded-lg bg-layer border border-stroke">
                   {selectedAceProject.approach}
                 </p>
+              </div>
+            )}
+
+            {/* Architectural Highlights - if exists (for infrastructure projects) */}
+            {'architecturalHighlights' in selectedAceProject && selectedAceProject.architecturalHighlights && (
+              <div>
+                <h4 className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <Cog className="w-3.5 h-3.5" />
+                  Architectural Highlights
+                </h4>
+                <div className="p-4 rounded-lg bg-layer border border-stroke space-y-2">
+                  {(selectedAceProject.architecturalHighlights as string[]).map((highlight, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 text-sm text-text-secondary">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                      {highlight}
+                    </div>
+                  ))}
+                </div>
               </div>
             )}
 

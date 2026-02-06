@@ -265,6 +265,50 @@ export const portfolioData = {
             "Scalable architecture for future growth"
           ],
           tech: ["SignalR", ".NET", "WebSockets", "Redis"]
+        },
+        {
+          name: "Background Jobs Framework",
+          type: "Infrastructure • Core",
+          period: "2024 — Present",
+          summary: "Unbreakable background jobs management system with highest reliability, adopted across multiple projects to solve a long-standing infrastructure gap.",
+          description: "First introduced in EMS as a personal engineering necessity, this framework proved so robust and reliable at launch that other teams—facing persistent job management issues—ported my module to handle their background processing. I unknowingly solved a centuries-old problem that ACE Money Transfer's infrastructure badly needed. Built leveraging .NET's best practices with focus on reliability, maintainability, composability, extensibility, and configurability.",
+          architecturalHighlights: [
+            "Composable job definitions with dependency injection",
+            "Configurable retry policies with exponential backoff",
+            "Dead-letter handling for failed jobs with investigation support",
+            "Graceful shutdown with job state preservation",
+            "Health monitoring and observability built-in",
+            "Zero job loss guarantee even during deployments"
+          ],
+          impact: [
+            "Unbreakable since launch — zero job failures in production",
+            "Adopted by 3+ other projects facing job management issues",
+            "Solved a long-standing infrastructure problem across ACE",
+            "Became the de-facto standard for background processing"
+          ],
+          tech: [".NET 10", "Background Services", "Channels", "PostgreSQL"]
+        },
+        {
+          name: "Logging Framework",
+          type: "Infrastructure • Observability",
+          period: "2024 — Present",
+          summary: "Pluggable, configurable logging framework providing in-depth, readable logs with stack traces and investigative information.",
+          description: "Engineered a comprehensive logging framework in the most .NET-optimized way possible. Designed to be pluggable to any project, providing readable and configurable logs with adjustable verbosity levels. Captures stack traces and investigative information essential for debugging production issues.",
+          architecturalHighlights: [
+            "Pluggable architecture — drop into any .NET project",
+            "Configurable verbosity levels (Trace → Critical)",
+            "Structured logging with semantic context",
+            "Readable formatting for human investigation",
+            "Full stack traces with source file references",
+            "Performance-optimized using source generators"
+          ],
+          impact: [
+            "Standardized logging across multiple ACE projects",
+            "Reduced debugging time by providing clear investigation paths",
+            "Configurable verbosity prevents log noise in production",
+            "Adopted alongside Background Jobs Framework"
+          ],
+          tech: [".NET", "Source Generators", "Structured Logging", "Serilog Integration"]
         }
       ],
       
@@ -272,6 +316,8 @@ export const portfolioData = {
         "Architected Employee Monitoring Suite solo — zero defects at launch",
         "Designed 'ACE Password Vault' with multi-layered cryptography",
         "Led ERP Platform Engineering: Rules, Approvals, Rights, Notifications",
+        "Built unbreakable Background Jobs Framework — adopted company-wide",
+        "Engineered pluggable Logging Framework for in-depth observability",
         "Integrated Mastercard, HBL, and PNB payment services",
         "Received direct commendation from CTO for architectural innovations"
       ],
