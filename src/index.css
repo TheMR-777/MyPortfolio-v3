@@ -328,6 +328,46 @@ input[type="text"]:focus-visible {
   100% { background-position: 200% center; }
 }
 
+/* Discovery gradient text - subtle accent shimmer */
+@keyframes discovery-shimmer {
+  0% { background-position: 200% center; }
+  100% { background-position: -200% center; }
+}
+
+.discovery-text {
+  --shimmer-base: var(--accent-color);
+  background: linear-gradient(
+    90deg,
+    var(--shimmer-base) 0%,
+    color-mix(in srgb, var(--shimmer-base), white 35%) 25%,
+    var(--shimmer-base) 50%,
+    color-mix(in srgb, var(--shimmer-base), white 35%) 75%,
+    var(--shimmer-base) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: discovery-shimmer 8s ease-in-out infinite;
+}
+
+/* Light theme: use darker mix for shimmer */
+[data-theme="light"] .discovery-text {
+  background: linear-gradient(
+    90deg,
+    var(--shimmer-base) 0%,
+    color-mix(in srgb, var(--shimmer-base), black 15%) 25%,
+    var(--shimmer-base) 50%,
+    color-mix(in srgb, var(--shimmer-base), white 25%) 75%,
+    var(--shimmer-base) 100%
+  );
+  background-size: 200% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: discovery-shimmer 8s ease-in-out infinite;
+}
+
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }

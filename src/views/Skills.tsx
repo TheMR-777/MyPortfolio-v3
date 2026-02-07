@@ -2,6 +2,54 @@ import { motion } from "framer-motion";
 import { Code2, Layers, Wrench, Brain, Award, GraduationCap } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
 
+function CgpaRing({ value, total, label }: { value: number; total: number; label: string }) {
+  const percentage = (value / total) * 100;
+  const radius = 44;
+  const circumference = 2 * Math.PI * radius;
+  const strokeDashoffset = circumference - (circumference * percentage) / 100;
+
+  return (
+    <div className="flex flex-col items-center">
+      <div className="relative w-28 h-28">
+        {/* SVG Ring */}
+        <svg className="w-full h-full -rotate-90" viewBox="0 0 100 100">
+          {/* Background track */}
+          <circle
+            cx="50"
+            cy="50"
+            r={radius}
+            fill="none"
+            stroke="var(--stroke-card)"
+            strokeWidth="4"
+          />
+          {/* Progress arc */}
+          <motion.circle
+            cx="50"
+            cy="50"
+            r={radius}
+            fill="none"
+            stroke="var(--accent-color)"
+            strokeWidth="4"
+            strokeLinecap="round"
+            strokeDasharray={circumference}
+            initial={{ strokeDashoffset: circumference }}
+            animate={{ strokeDashoffset }}
+            transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+          />
+        </svg>
+        {/* Center text */}
+        <div className="absolute inset-0 flex flex-col items-center justify-center">
+          <div className="flex items-baseline gap-0.5">
+            <span className="text-2xl font-semibold text-accent tabular-nums">{value}</span>
+          </div>
+          <span className="text-[10px] text-text-tertiary mt-0.5">/ {total}</span>
+        </div>
+      </div>
+      <span className="text-[10px] text-text-tertiary uppercase tracking-wider mt-2">{label}</span>
+    </div>
+  );
+}
+
 export function Skills() {
   const { skills, certifications, education } = portfolioData;
 
@@ -209,7 +257,8 @@ export function Skills() {
           </h2>
         </div>
 
-        <div className="flex flex-col md:flex-row md:items-start gap-6">
+        <div className="flex flex-col md:flex-row md:items-center gap-8">
+          {/* Info */}
           <div className="flex-1">
             <h3 className="text-lg font-medium text-text-primary">
               {education.degree}
@@ -222,22 +271,29 @@ export function Skills() {
             </p>
           </div>
           
-          <div className="flex gap-6">
-            <div className="text-center">
-              <div className="text-2xl font-semibold text-accent">
-                {education.cgpa}
+          {/* CGPA & Percentage Visual */}
+          <div className="flex items-center gap-8">
+            <CgpaRing value={3.73} total={4.0} label="CGPA" />
+            <div className="flex flex-col items-center">
+              <div className="relative w-28 h-28 flex items-center justify-center">
+                {/* Subtle ring for percentage */}
+                <svg className="absolute w-full h-full -rotate-90" viewBox="0 0 100 100">
+                  <circle cx="50" cy="50" r="44" fill="none" stroke="var(--stroke-card)" strokeWidth="4" />
+                  <motion.circle
+                    cx="50" cy="50" r="44" fill="none"
+                    stroke="var(--text-tertiary)"
+                    strokeWidth="4" strokeLinecap="round"
+                    strokeDasharray={2 * Math.PI * 44}
+                    initial={{ strokeDashoffset: 2 * Math.PI * 44 }}
+                    animate={{ strokeDashoffset: 2 * Math.PI * 44 - (2 * Math.PI * 44 * 84) / 100 }}
+                    transition={{ duration: 1.2, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                </svg>
+                <div className="flex flex-col items-center">
+                  <span className="text-2xl font-semibold text-text-primary tabular-nums">84<span className="text-base text-text-tertiary">%</span></span>
+                </div>
               </div>
-              <div className="text-[10px] text-text-tertiary uppercase tracking-wider">
-                CGPA
-              </div>
-            </div>
-            <div className="text-center">
-              <div className="text-2xl font-semibold text-text-primary">
-                {education.percentage}
-              </div>
-              <div className="text-[10px] text-text-tertiary uppercase tracking-wider">
-                Percentage
-              </div>
+              <span className="text-[10px] text-text-tertiary uppercase tracking-wider mt-2">Percentage</span>
             </div>
           </div>
         </div>

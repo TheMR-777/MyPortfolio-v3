@@ -48,7 +48,6 @@ export const portfolioData = {
     ]
   },
 
-  // NEW: Philosophy section
   philosophy: {
     title: "The Driving Force",
     subtitle: "The Joy of Discovery",
@@ -91,8 +90,20 @@ export const portfolioData = {
       {
         title: "Continuous Betterment",
         description: "I'm driven by making things genuinely better, not just different. Whether it's a codebase, process, or interface, I seek meaningful improvements that create lasting value."
+      },
+      {
+        title: "Philosophical Depth",
+        description: "I think deeply about the 'why' behind decisions. Understanding systems holistically, building intuition over recipes."
       }
     ],
+    toolsPhilosophy: {
+      title: "Tools That Transform",
+      subtitle: "The distinction between storing information and creating value",
+      content: "There is a philosophy I hold deeply about the kind of software worth building. In the most distilled form, much of corporate software — including the ERP systems I've engineered — is sophisticated notekeeping. We record, organize, and retrieve. It's necessary, and I take pride in doing it exceptionally well. But it's not what sets my soul on fire.",
+      essence: "What truly excites me is building tools that transform. Software where you provide an input and receive something genuinely new in return — a processed value, an insight, a capability that didn't exist before. Not storage, but synthesis. Not records, but results.",
+      examples: "Every personal project I build follows this principle. A physics simulation that reveals hidden patterns. A schema analyzer that untangles database relationships. A markdown converter that eliminates hours of manual work. A CLI tool that automates tedious cleanup. These are small, sometimes simple — but each one takes something in and produces something of real, tangible value.",
+      closing: "This is the kind of engineering that matters to me: building things that actually do something. Tools that process, transform, and create — not just remember."
+    },
     coreInsight: "This is my innermost driving force. I don't pursue projects for the end result alone; I pursue them for what I'll discover along the way. It's why I can spend weeks on something others finish in hours, and why the 'simplest' problems often teach me the most."
   },
 
@@ -155,7 +166,6 @@ export const portfolioData = {
       summary: "Transforming enterprise systems into multi-tenant SaaS platforms. Engineered flagship systems including the Employee Monitoring Suite (200% productivity boost, zero defects) and comprehensive ERP platform.",
       description: "Progressed from UI/UX to leading core platform modules and multi-tenant migration decisions. My focus has been on building reusable primitives that power every business module—not one-off solutions.",
       
-      // NEW: Organized projects at ACE
       aceProjects: [
         {
           name: "Employee Monitoring Suite",
@@ -270,8 +280,8 @@ export const portfolioData = {
           name: "Background Jobs Framework",
           type: "Infrastructure • Core",
           period: "2024 — Present",
-          summary: "Unbreakable background jobs management system with highest reliability, adopted across multiple projects to solve a long-standing infrastructure gap.",
-          description: "First introduced in EMS as a personal engineering necessity, this framework proved so robust and reliable at launch that other teams—facing persistent job management issues—ported my module to handle their background processing. I unknowingly solved a centuries-old problem that ACE Money Transfer's infrastructure badly needed. Built leveraging .NET's best practices with focus on reliability, maintainability, composability, extensibility, and configurability.",
+          summary: "Unbreakable background jobs management system adopted across multiple projects to solve a long-standing infrastructure gap.",
+          description: "First introduced in EMS as a personal engineering necessity, this framework proved so robust and reliable at launch that other teams — facing persistent job management issues — ported my module to handle their background processing. I unknowingly solved a long-standing problem that ACE's infrastructure badly needed.",
           architecturalHighlights: [
             "Composable job definitions with dependency injection",
             "Configurable retry policies with exponential backoff",
@@ -281,7 +291,7 @@ export const portfolioData = {
             "Zero job loss guarantee even during deployments"
           ],
           impact: [
-            "Unbreakable since launch — zero job failures in production",
+            "Unbreakable since launch — zero job failures",
             "Adopted by 3+ other projects facing job management issues",
             "Solved a long-standing infrastructure problem across ACE",
             "Became the de-facto standard for background processing"
@@ -292,8 +302,8 @@ export const portfolioData = {
           name: "Logging Framework",
           type: "Infrastructure • Observability",
           period: "2024 — Present",
-          summary: "Pluggable, configurable logging framework providing in-depth, readable logs with stack traces and investigative information.",
-          description: "Engineered a comprehensive logging framework in the most .NET-optimized way possible. Designed to be pluggable to any project, providing readable and configurable logs with adjustable verbosity levels. Captures stack traces and investigative information essential for debugging production issues.",
+          summary: "Pluggable logging framework providing in-depth, readable logs with configurable verbosity and investigative context.",
+          description: "Engineered a comprehensive logging framework in the most .NET-optimized way possible. Designed to be pluggable to any project, providing readable and configurable logs with adjustable verbosity levels.",
           architecturalHighlights: [
             "Pluggable architecture — drop into any .NET project",
             "Configurable verbosity levels (Trace → Critical)",
@@ -304,11 +314,11 @@ export const portfolioData = {
           ],
           impact: [
             "Standardized logging across multiple ACE projects",
-            "Reduced debugging time by providing clear investigation paths",
+            "Reduced debugging time with clear investigation paths",
             "Configurable verbosity prevents log noise in production",
             "Adopted alongside Background Jobs Framework"
           ],
-          tech: [".NET", "Source Generators", "Structured Logging", "Serilog Integration"]
+          tech: [".NET", "Source Generators", "Structured Logging", "Serilog"]
         }
       ],
       
@@ -378,6 +388,7 @@ export const portfolioData = {
     }
   ],
 
+  // Flagship Projects — large, impactful, enterprise-grade
   projects: [
     {
       title: "Employee Monitoring Suite",
@@ -479,6 +490,52 @@ export const portfolioData = {
     }
   ],
 
+  // Personal Craft — smaller, passion-driven tools that transform
+  personalProjects: [
+    {
+      title: "Moiré Effect Demo",
+      category: "Physics • Visualization",
+      description: "Spotted a mesmerizing pattern on a van's metal door during a ride home and couldn't rest until I understood it. Turned out to be the Moiré effect — an optical interference phenomenon. Built an interactive demo to develop intuitive understanding of the mechanism, and it fascinated not just me, but friends and colleagues alike.",
+      origin: "Curiosity from observing a real-world physics phenomenon",
+      tech: ["HTML/CSS/JS", "Canvas", "Gemini 3", "Claude Opus 4.5"],
+      link: "https://themr-777.github.io/moire-effect-demo/",
+      repo: "https://github.com/TheMR-777/moire-effect-demo"
+    },
+    {
+      title: "Schema Weaver",
+      category: "Developer Tool • Visualization",
+      description: "Always struggled to visualize relationships between SQL tables. So I built a tool that takes raw SQL schemas (supports TablePlus exports out of the box), smartly identifies relationships using robust heuristics based on naming conventions and foreign key patterns, and renders an auto-decluttered 3D visualization showing which columns link which tables. The algorithm always produces clean, readable layouts.",
+      origin: "Frustration with manual DBML conversion and relationship mapping",
+      tech: ["Three.js", "JavaScript", "SQL Parsing"],
+      link: "https://themr-777.github.io/schema-weaver/",
+      repo: "https://github.com/TheMR-777/schema-weaver"
+    },
+    {
+      title: "GitHubify-MD",
+      category: "Developer Tool • CLI",
+      description: "Converting Markdown to GitHub-styled HTML was always a pain — VS Code plugins existed but their CSS would break. Built a rich TUI application that converts .md files to pixel-perfect GitHub-flavored HTML with extensive customization, minimal interactions, and full CLI argument support for one-liner conversions.",
+      origin: "Broken CSS in existing VS Code Markdown export plugins",
+      tech: ["Python", "Rich TUI", "Markdown", "GitHub CSS"],
+      repo: "https://github.com/TheMR-777/githubify-md"
+    },
+    {
+      title: "Simple Smart Cleanup",
+      category: "Utility • Automation",
+      description: "A simple Python program I've been maintaining for a while. It scans and cleans specific directories on my system regularly. Configurable, extensible — users can add their own target locations. It's simple, very simple, but has proven genuinely useful for keeping my system tidy. Shared it because good tools deserve to be shared.",
+      origin: "Personal need for systematic, repeatable system maintenance",
+      tech: ["Python", "OS APIs", "Configuration"],
+      repo: "https://github.com/TheMR-777/simple-smart-cleanup.py"
+    },
+    {
+      title: "LetItGo",
+      category: "Mobile • Personal",
+      description: "A minimalist, aesthetically crafted Android app that saves timestamps and shows elapsed time in years, months, days, hours, minutes, and seconds. Designed with obsessive attention to UI elegance. Supports multiple memories — I've saved my birthday, job joining date, graduation, and more. It's a tiny app with a lot of heart.",
+      origin: "Wanting a beautiful way to visualize the passage of time",
+      tech: ["Flutter", "Dart", "Local Storage", "Material Design"],
+      repo: "https://github.com/TheMR-777/just_letitgo"
+    }
+  ],
+
   publications: [
     {
       title: "Identification of Paddy Disease Along Its Processing Time",
@@ -559,5 +616,6 @@ export const portfolioData = {
 };
 
 export type Project = typeof portfolioData.projects[0];
+export type PersonalProject = typeof portfolioData.personalProjects[0];
 export type Experience = typeof portfolioData.experience[0];
 export type AceProject = NonNullable<typeof portfolioData.experience[0]['aceProjects']>[0];

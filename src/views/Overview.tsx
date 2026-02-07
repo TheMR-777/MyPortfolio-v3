@@ -263,6 +263,7 @@ export function Overview({ onNavigate }: OverviewProps) {
 
       {/* Featured Projects */}
       <motion.section
+        className="mb-16"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
@@ -310,6 +311,55 @@ export function Overview({ onNavigate }: OverviewProps) {
                   </span>
                 ))}
               </div>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* Personal Craft Teaser */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.28, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <div className="flex items-center justify-between mb-5">
+          <div className="flex items-center gap-2">
+            <h2 className="text-lg font-semibold text-text-primary">
+              Personal Craft
+            </h2>
+            <span className="text-xs text-text-disabled">
+              — tools that transform
+            </span>
+          </div>
+          <button 
+            onClick={() => onNavigate("projects")}
+            className="flex items-center gap-1 text-xs text-text-tertiary hover:text-accent transition-colors"
+          >
+            View all <ArrowRight className="w-3 h-3" />
+          </button>
+        </div>
+
+        <div className="space-y-2">
+          {portfolioData.personalProjects.slice(0, 3).map((project) => (
+            <div
+              key={project.title}
+              onClick={() => onNavigate("projects")}
+              className="group flex items-center gap-4 p-4 rounded-xl bg-layer border border-stroke cursor-pointer hover:bg-layer-hover hover:border-stroke-hover transition-colors"
+            >
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center gap-2 mb-0.5">
+                  <h3 className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors truncate">
+                    {project.title}
+                  </h3>
+                  <span className="text-[10px] text-text-disabled uppercase tracking-wider whitespace-nowrap">
+                    {project.category}
+                  </span>
+                </div>
+                <p className="text-xs text-text-secondary line-clamp-1">
+                  {project.description}
+                </p>
+              </div>
+              <ArrowRight className="w-3.5 h-3.5 text-text-disabled group-hover:text-text-tertiary group-hover:translate-x-0.5 transition-all flex-shrink-0" />
             </div>
           ))}
         </div>

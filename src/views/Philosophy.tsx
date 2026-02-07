@@ -59,9 +59,8 @@ const Philosophy = () => {
         {/* Continuous Vertical Anchor Line */}
         <div className="absolute left-8 lg:left-12 top-0 bottom-0 w-px bg-stroke/50 hidden md:block" />
 
-        {/* Hero Section */}
+        {/* ─── Hero Section ─── */}
         <section className="relative pb-16 pl-0 md:pl-12">
-          {/* Subtle decorative elements */}
           <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-accent/5 blur-3xl animate-pulse-subtle pointer-events-none" />
           
           <motion.div
@@ -69,7 +68,6 @@ const Philosophy = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            {/* Section Label */}
             <div className="flex items-center gap-3 mb-8">
               <div className="w-8 h-px bg-accent hidden md:block" />
               <span className="text-accent text-sm font-medium tracking-wide uppercase">
@@ -77,18 +75,14 @@ const Philosophy = () => {
               </span>
             </div>
 
-            {/* Main Quote */}
             <h1 className="philosophy-quote text-4xl lg:text-5xl text-text-primary mb-8 font-light tracking-tight">
               The Joy of{' '}
-              <span className="font-normal text-text-primary relative inline-block">
+              <span className="discovery-text font-normal relative inline-block">
                 Discovery
-                <span className="absolute bottom-0.5 left-0 right-0 h-2.5 bg-accent/10 -z-10 transform -rotate-1" />
               </span>
             </h1>
 
-            {/* Emotional Opening Statement - Refined sizing */}
             <div className="relative">
-              {/* Static Accent Line */}
               <div className="absolute left-0 top-1 bottom-1 w-0.5 rounded-full bg-accent/50" />
               
               <p className="pl-5 text-lg lg:text-xl text-text-secondary font-light leading-relaxed">
@@ -102,7 +96,7 @@ const Philosophy = () => {
           </motion.div>
         </section>
 
-        {/* The Driving Force - Enhanced Card */}
+        {/* ─── The Driving Force Card ─── */}
         <section className="py-10 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -110,11 +104,9 @@ const Philosophy = () => {
             transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="relative p-6 lg:p-8 rounded-xl bg-layer border border-stroke">
-              {/* Top accent line */}
               <div className="absolute top-0 left-6 right-6 h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
               
               <div className="flex gap-5">
-                {/* Left accent element */}
                 <div className="hidden sm:flex flex-col items-center pt-1">
                   <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center">
                     <Sparkles className="w-4 h-4 text-accent" />
@@ -122,7 +114,6 @@ const Philosophy = () => {
                   <div className="flex-1 w-px bg-gradient-to-b from-accent/20 to-transparent mt-3" />
                 </div>
                 
-                {/* Content */}
                 <div className="flex-1 min-w-0">
                   <p className="text-base lg:text-lg text-text-secondary leading-relaxed">
                     Whether I'm architecting a comprehensive system like the{' '}
@@ -139,7 +130,7 @@ const Philosophy = () => {
           </motion.div>
         </section>
 
-        {/* Journey Steps */}
+        {/* ─── Journey Steps ─── */}
         <section className="py-12 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
@@ -163,7 +154,6 @@ const Philosophy = () => {
                   className="group relative"
                 >
                   <div className="space-y-4">
-                    {/* Step Number & Title */}
                     <div className="flex items-center gap-4">
                       <span className="text-accent/60 text-sm font-mono">0{index + 1}</span>
                       <h3 className="text-lg font-semibold text-text-primary">
@@ -171,12 +161,10 @@ const Philosophy = () => {
                       </h3>
                     </div>
                     
-                    {/* Content */}
                     <p className="text-text-secondary leading-relaxed pl-10">
                       {step.content}
                     </p>
                     
-                    {/* Highlighted Quote */}
                     <div className="ml-10 mt-4 pl-4 border-l-2 border-accent/30 py-1">
                       <p className="text-accent text-sm italic font-medium leading-relaxed">
                         "{step.highlight}"
@@ -189,14 +177,95 @@ const Philosophy = () => {
           </motion.div>
         </section>
 
-        {/* Guiding Principles */}
+        {/* ─── Tools That Transform ─── */}
         <section className="py-12 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-             <div className="flex items-center gap-4 mb-10 -ml-[19px] md:-ml-[25px]">
+            <div className="flex items-center gap-4 mb-10 -ml-[19px] md:-ml-[25px]">
+              <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden md:block" />
+              <h2 className="text-sm font-medium text-text-tertiary uppercase tracking-wide">
+                Tools That Transform
+              </h2>
+            </div>
+
+            {/* Main Card Container — Mica-style layering */}
+            <div className="rounded-2xl bg-layer border border-stroke overflow-hidden">
+              {/* Top accent line */}
+              <div className="h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
+              
+              {/* Opening — The Reflection */}
+              <div className="px-6 lg:px-8 pt-8 pb-6 space-y-4">
+                <p className="text-base text-text-secondary leading-relaxed">
+                  Most software exists to <em className="not-italic text-text-primary">remember</em>. 
+                  It stores, organizes, and retrieves — digital filing cabinets 
+                  dressed in modern interfaces. There is deep craft in building these systems 
+                  well, and I take genuine pride in that craft.
+                </p>
+                <p className="text-base text-text-primary font-medium">
+                  But it's not what sets my soul on fire.
+                </p>
+                <p className="text-text-secondary leading-relaxed">
+                  What drives me is software that{' '}
+                  <span className="text-accent font-semibold">transforms</span> — where 
+                  something goes in, and something fundamentally{' '}
+                  <em className="not-italic text-text-primary">new</em>{' '}
+                  comes out. An insight that wasn't visible. A capability that didn't exist.  
+                  A connection that was never possible before.
+                </p>
+              </div>
+
+              {/* Divider with mantra — clean line treatment */}
+              <div className="flex items-center gap-5 px-6 lg:px-8 py-6">
+                <div className="h-px flex-1 bg-stroke" />
+                <p className="text-xs text-text-tertiary tracking-[0.2em] uppercase font-medium whitespace-nowrap">
+                  Not storage, but <span className="text-accent font-semibold">synthesis</span>
+                </p>
+                <div className="h-px flex-1 bg-stroke" />
+              </div>
+
+              {/* The essence — abstract categories of transformation */}
+              <div className="mx-4 lg:mx-6 mb-4 lg:mb-6 rounded-xl bg-mica border border-stroke/50 p-5 lg:p-6">
+                <div className="grid sm:grid-cols-2 gap-x-10 gap-y-5">
+                  {[
+                    { verb: 'Revealing', essence: 'making the invisible visible, surfacing patterns hidden in plain sight' },
+                    { verb: 'Simplifying', essence: 'reducing a hundred steps of complexity into ten clear ones' },
+                    { verb: 'Automating', essence: 'freeing humans from repetitive work they shouldn\'t be doing' },
+                    { verb: 'Connecting', essence: 'bridging systems, ideas, or people that were isolated before' },
+                    { verb: 'Simulating', essence: 'replacing costly real-world trial with precise digital insight' },
+                    { verb: 'Empowering', essence: 'giving someone a capability they simply didn\'t have before' },
+                  ].map((item) => (
+                    <div key={item.verb} className="group py-1">
+                      <span className="text-sm text-accent font-semibold tracking-wide">{item.verb}</span>
+                      <p className="text-sm text-text-tertiary mt-0.5 leading-relaxed">{item.essence}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Closing — subtle footer strip */}
+              <div className="px-6 lg:px-8 py-4 border-t border-stroke/50">
+                <p className="text-sm text-text-tertiary leading-relaxed">
+                  The tools I build are a reflection of this belief — each one takes{' '}
+                  <span className="text-text-secondary font-medium">something in</span>, and gives{' '}
+                  <span className="text-text-secondary font-medium">something new</span> back
+                  <span className="text-text-disabled"> — that's the only kind of software worth losing sleep over.</span>
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </section>
+
+        {/* ─── Guiding Principles ─── */}
+        <section className="py-12 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <div className="flex items-center gap-4 mb-10 -ml-[19px] md:-ml-[25px]">
                <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden md:block" />
                <h2 className="text-sm font-medium text-text-tertiary uppercase tracking-wide">
                 Guiding Principles
@@ -209,7 +278,7 @@ const Philosophy = () => {
                   key={principle.title}
                   initial={{ opacity: 0, y: 12 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.4, delay: 0.3 + index * 0.05, ease: [0.16, 1, 0.3, 1] }}
+                  transition={{ duration: 0.4, delay: 0.4 + index * 0.05, ease: [0.16, 1, 0.3, 1] }}
                   className="principle-card group p-6 rounded-xl bg-layer border border-stroke hover:border-accent/30 hover:bg-layer-hover transition-all"
                 >
                   <div className="flex items-start gap-4">
@@ -231,12 +300,12 @@ const Philosophy = () => {
           </motion.div>
         </section>
 
-        {/* Architectural Philosophy */}
+        {/* ─── Architectural Philosophy ─── */}
         <section className="py-12 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
             <div className="flex items-center gap-4 mb-10 -ml-[19px] md:-ml-[25px]">
                <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden md:block" />
@@ -277,12 +346,12 @@ const Philosophy = () => {
           </motion.div>
         </section>
 
-        {/* Closing Quote */}
+        {/* ─── Closing Quote ─── */}
         <section className="py-20 pl-0 md:pl-12">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            transition={{ duration: 0.5, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className="text-center"
           >
             <div className="inline-block p-4 rounded-full bg-layer mb-6">
