@@ -16,7 +16,7 @@ export function About() {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-8 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -54,7 +54,7 @@ export function About() {
           </div>
 
           {/* Info Grid */}
-          <div className="flex-1 grid grid-cols-2 gap-4">
+          <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0">
                 <MapPin className="w-3.5 h-3.5 text-accent" strokeWidth={1.5} />
@@ -142,14 +142,14 @@ export function About() {
         </h2>
 
         <div className="relative">
-          {/* Timeline line */}
-          <div className="absolute left-[19px] top-6 bottom-6 w-px bg-stroke" />
+          {/* Timeline line - hidden on mobile */}
+          <div className="absolute left-[19px] top-6 bottom-6 w-px bg-stroke hidden sm:block" />
 
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             {Object.values(journey).map((phase) => (
-              <div key={phase.title} className="relative pl-12">
-                {/* Timeline dot */}
-                <div className="absolute left-[15px] top-2 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content" />
+              <div key={phase.title} className="relative pl-0 sm:pl-12">
+                {/* Timeline dot - hidden on mobile */}
+                <div className="absolute left-[15px] top-2 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content hidden sm:block" />
 
                 <div className="p-5 rounded-xl bg-layer border border-stroke">
                   <div className="flex items-start justify-between gap-4 mb-2">

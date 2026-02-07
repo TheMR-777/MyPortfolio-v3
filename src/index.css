@@ -174,6 +174,23 @@ body {
               color var(--duration-normal) var(--easing);
 }
 
+/* Safe area for notched devices */
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+/* Hide scrollbar on mobile for cleaner look */
+@media (max-width: 640px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  * {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 /* Fluent Scrollbar - Dark */
 [data-theme="dark"] ::-webkit-scrollbar {
   width: 8px;

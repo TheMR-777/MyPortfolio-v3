@@ -12,7 +12,7 @@ export function Overview({ onNavigate }: OverviewProps) {
   const { personal, experience, projects, skills } = portfolioData;
 
   return (
-    <div className="max-w-4xl mx-auto px-8 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12">
       {/* Hero Section */}
       <section className="mb-16">
         <motion.div
@@ -27,7 +27,7 @@ export function Overview({ onNavigate }: OverviewProps) {
           </div>
 
           {/* Name & Title */}
-          <h1 className="text-4xl font-semibold text-text-primary tracking-tight mb-3">
+          <h1 className="text-3xl sm:text-4xl font-semibold text-text-primary tracking-tight mb-3">
             {personal.name}
           </h1>
           

@@ -54,7 +54,7 @@ export function Skills() {
   const { skills, certifications, education } = portfolioData;
 
   return (
-    <div className="max-w-4xl mx-auto px-8 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}

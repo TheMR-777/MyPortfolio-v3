@@ -25,7 +25,7 @@ export function Experience() {
   const [expandedCompany, setExpandedCompany] = useState<string | null>("ACE Money Transfer");
 
   return (
-    <div className="max-w-4xl mx-auto px-8 py-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -43,10 +43,10 @@ export function Experience() {
 
       {/* Timeline */}
       <div className="relative">
-        {/* Timeline line */}
-        <div className="absolute left-[19px] top-8 bottom-8 w-px bg-stroke" />
+        {/* Timeline line - hidden on mobile */}
+        <div className="absolute left-[19px] top-8 bottom-8 w-px bg-stroke hidden sm:block" />
 
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
           {experience.map((job, index) => {
             const isACE = job.company === "ACE Money Transfer";
             const isExpanded = expandedCompany === job.company;
@@ -57,10 +57,10 @@ export function Experience() {
                 initial={{ opacity: 0, y: 12 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.4, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                className="relative pl-12"
+                className="relative pl-0 sm:pl-12"
               >
-                {/* Timeline dot */}
-                <div className="absolute left-[15px] top-6 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content" />
+                {/* Timeline dot - hidden on mobile */}
+                <div className="absolute left-[15px] top-6 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content hidden sm:block" />
 
                 {/* Card */}
                 <div className="rounded-xl bg-layer border border-stroke overflow-hidden">

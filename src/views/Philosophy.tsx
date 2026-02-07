@@ -55,12 +55,12 @@ const Philosophy = () => {
 
   return (
     <div className="philosophy-hero min-h-full">
-      <div className="max-w-4xl mx-auto px-8 lg:px-12 pt-16 pb-24 relative">
-        {/* Continuous Vertical Anchor Line */}
-        <div className="absolute left-8 lg:left-12 top-0 bottom-0 w-px bg-stroke/50 hidden md:block" />
+      <div className="max-w-4xl mx-auto px-4 sm:px-8 lg:px-12 pt-8 sm:pt-16 pb-24 sm:pb-24 relative">
+        {/* Continuous Vertical Anchor Line - only on larger screens */}
+        <div className="absolute left-8 lg:left-12 top-0 bottom-0 w-px bg-stroke/50 hidden lg:block" />
 
         {/* ─── Hero Section ─── */}
-        <section className="relative pb-16 pl-0 md:pl-12">
+        <section className="relative pb-12 sm:pb-16 pl-0 lg:pl-12">
           <div className="absolute top-0 right-0 w-64 h-64 rounded-full bg-accent/5 blur-3xl animate-pulse-subtle pointer-events-none" />
           
           <motion.div
@@ -68,14 +68,14 @@ const Philosophy = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center gap-3 mb-8">
-              <div className="w-8 h-px bg-accent hidden md:block" />
+            <div className="flex items-center gap-3 mb-6 sm:mb-8">
+              <div className="w-8 h-px bg-accent hidden lg:block" />
               <span className="text-accent text-sm font-medium tracking-wide uppercase">
                 Philosophy
               </span>
             </div>
 
-            <h1 className="philosophy-quote text-4xl lg:text-5xl text-text-primary mb-8 font-light tracking-tight">
+            <h1 className="philosophy-quote text-3xl sm:text-4xl lg:text-5xl text-text-primary mb-6 sm:mb-8 font-light tracking-tight">
               The Joy of{' '}
               <span className="discovery-text font-normal relative inline-block">
                 Discovery
@@ -97,7 +97,7 @@ const Philosophy = () => {
         </section>
 
         {/* ─── The Driving Force Card ─── */}
-        <section className="py-10 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
+        <section className="py-8 sm:py-10 pl-0 lg:pl-12 border-l-0 lg:border-l border-stroke/50">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,14 +131,14 @@ const Philosophy = () => {
         </section>
 
         {/* ─── Journey Steps ─── */}
-        <section className="py-12 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
+        <section className="py-10 sm:py-12 pl-0 lg:pl-12 border-l-0 lg:border-l border-stroke/50">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center gap-4 mb-10 -ml-[19px] md:-ml-[25px]">
-               <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden md:block" />
+            <div className="flex items-center gap-3 mb-8 sm:mb-10">
+               <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden lg:block lg:-ml-[25px]" />
                <h2 className="text-sm font-medium text-text-tertiary uppercase tracking-wide">
                 The Driving Force
               </h2>
@@ -178,14 +178,14 @@ const Philosophy = () => {
         </section>
 
         {/* ─── Tools That Transform ─── */}
-        <section className="py-12 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
+        <section className="py-10 sm:py-12 pl-0 lg:pl-12 border-l-0 lg:border-l border-stroke/50">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center gap-4 mb-10 -ml-[19px] md:-ml-[25px]">
-              <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden md:block" />
+            <div className="flex items-center gap-3 mb-8 sm:mb-10">
+              <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden lg:block lg:-ml-[25px]" />
               <h2 className="text-sm font-medium text-text-tertiary uppercase tracking-wide">
                 Tools That Transform
               </h2>
@@ -259,20 +259,20 @@ const Philosophy = () => {
         </section>
 
         {/* ─── Guiding Principles ─── */}
-        <section className="py-12 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
+        <section className="py-10 sm:py-12 pl-0 lg:pl-12 border-l-0 lg:border-l border-stroke/50">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center gap-4 mb-10 -ml-[19px] md:-ml-[25px]">
-               <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden md:block" />
+            <div className="flex items-center gap-3 mb-8 sm:mb-10">
+               <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden lg:block lg:-ml-[25px]" />
                <h2 className="text-sm font-medium text-text-tertiary uppercase tracking-wide">
                 Guiding Principles
               </h2>
             </div>
 
-            <div className="grid gap-4 md:grid-cols-2">
+            <div className="grid gap-3 sm:gap-4 sm:grid-cols-2">
               {principles.map((principle, index) => (
                 <motion.div
                   key={principle.title}
@@ -301,14 +301,14 @@ const Philosophy = () => {
         </section>
 
         {/* ─── Architectural Philosophy ─── */}
-        <section className="py-12 pl-0 md:pl-12 border-l-0 md:border-l border-stroke/50">
+        <section className="py-10 sm:py-12 pl-0 lg:pl-12 border-l-0 lg:border-l border-stroke/50">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center gap-4 mb-10 -ml-[19px] md:-ml-[25px]">
-               <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden md:block" />
+            <div className="flex items-center gap-3 mb-8 sm:mb-10">
+               <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden lg:block lg:-ml-[25px]" />
                <h2 className="text-sm font-medium text-text-tertiary uppercase tracking-wide">
                 Architectural Philosophy
               </h2>
@@ -347,7 +347,7 @@ const Philosophy = () => {
         </section>
 
         {/* ─── Closing Quote ─── */}
-        <section className="py-20 pl-0 md:pl-12">
+        <section className="py-16 sm:py-20 pl-0 lg:pl-12">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}

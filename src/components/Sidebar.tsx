@@ -46,7 +46,7 @@ export function Sidebar({ activeTab, setActiveTab, onOpenCommandPalette }: Sideb
   };
 
   return (
-    <aside className="w-64 h-screen flex flex-col bg-mica border-r border-stroke shrink-0 transition-colors duration-200">
+    <aside className="hidden lg:flex w-64 h-screen flex-col bg-mica border-r border-stroke shrink-0 transition-colors duration-200">
       {/* Header */}
       <div className="p-5 border-b border-divider">
         <div className="flex items-center gap-3">

@@ -290,15 +290,15 @@ export function CommandPalette({ isOpen, onClose, onNavigate }: CommandPalettePr
             onClick={onClose}
           />
 
-          {/* Dialog */}
+          {/* Desktop Dialog - Center top */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -10 }}
             transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed top-[15%] left-1/2 -translate-x-1/2 z-50 w-full max-w-xl"
+            className="fixed top-[10%] sm:top-[15%] left-1/2 -translate-x-1/2 z-50 w-full max-w-xl px-4 sm:px-0"
           >
-            <div className="mx-4 overflow-hidden rounded-xl bg-solid border border-stroke shadow-dialog">
+            <div className="overflow-hidden rounded-xl bg-solid border border-stroke shadow-dialog">
               {/* Search Input - Fluent style with bottom border animation */}
               <div className="fluent-input-wrapper border-b border-divider">
                 <div className="flex items-center gap-3 px-4 py-3.5">
@@ -393,8 +393,8 @@ export function CommandPalette({ isOpen, onClose, onNavigate }: CommandPalettePr
                 )}
               </div>
 
-              {/* Footer */}
-              <div className="flex items-center justify-between px-4 py-2.5 border-t border-divider bg-layer/50">
+              {/* Footer - Hidden on very small screens */}
+              <div className="hidden sm:flex items-center justify-between px-4 py-2.5 border-t border-divider bg-layer/50">
                 <div className="flex items-center gap-4 text-[11px] text-text-tertiary">
                   <span className="flex items-center gap-1.5">
                     <kbd className="px-1.5 py-0.5 rounded-md bg-layer border border-stroke font-medium">↑</kbd>
