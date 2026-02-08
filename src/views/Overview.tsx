@@ -365,21 +365,23 @@ export function Overview({ onNavigate }: OverviewProps) {
         </div>
       </motion.section>
 
-      {/* Signature & Philosophy Link */}
+      {/* Signature */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.6 }}
-        className="mt-16 pt-8 border-t border-stroke flex flex-col items-center text-center pb-8"
+        className="mt-20 mb-8 flex flex-col items-center text-center"
       >
-        <p className="text-sm text-text-tertiary mb-4">
-          "Creating what hasn't been built before, <em className="text-accent">one innovation at a time.</em>"
+        <div className="w-8 h-px bg-stroke mb-6" />
+        <p className="text-sm text-text-tertiary leading-relaxed">
+          "Creating what hasn't been built before,{' '}
+          <em className="text-accent italic">one innovation at a time.</em>"
         </p>
         <button 
           onClick={() => onNavigate("philosophy")}
-          className="group flex items-center gap-2 text-xs text-text-tertiary hover:text-accent transition-colors"
+          className="group flex items-center gap-1.5 mt-4 text-xs text-text-disabled hover:text-accent transition-colors"
         >
-          <span>Explore my philosophy</span>
+          <span>Read my philosophy</span>
           <ArrowRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
         </button>
       </motion.div>

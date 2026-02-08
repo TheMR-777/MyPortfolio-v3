@@ -65,6 +65,9 @@ const DetailSheet: React.FC<DetailSheetProps> = ({
             aria-modal="true"
             aria-labelledby="sheet-title-desktop"
           >
+            {/* Subtle top accent */}
+            <div className="h-px bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+            
             {/* Header */}
             <header className="flex-shrink-0 px-6 py-5 border-b border-divider bg-mica">
               <div className="flex items-start justify-between gap-4">

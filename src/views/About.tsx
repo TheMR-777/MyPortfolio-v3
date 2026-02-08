@@ -1,13 +1,15 @@
-import { motion } from "framer-motion";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   MapPin, Calendar, Languages, GraduationCap, 
   Phone, Mail, ExternalLink, Sparkles,
-  Telescope, Atom, Brain
+  Telescope, Atom, Brain, X
 } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
 
 export function About() {
   const { personal, journey, publications, nullbyteArticles } = portfolioData;
+  const [showProfilePreview, setShowProfilePreview] = useState(false);
 
   const interestIcons = {
     Astronomy: Telescope,
@@ -43,13 +45,19 @@ export function About() {
           {/* Profile Image */}
           <div className="flex-shrink-0">
             <div className="relative group">
-              <div className="w-32 h-32 rounded-xl overflow-hidden border-2 border-stroke group-hover:border-accent/30 transition-colors">
+              <button
+                onClick={() => setShowProfilePreview(true)}
+                className="w-32 h-32 rounded-xl overflow-hidden border-2 border-stroke group-hover:border-accent/40 transition-all duration-300 cursor-pointer focus:outline-none"
+                style={{ boxShadow: 'none' }}
+                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 8px 24px var(--accent-subtle)'}
+                onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
+              >
                 <img
                   src={personal.profileImage}
                   alt={personal.name}
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
                 />
-              </div>
+              </button>
             </div>
           </div>
 
@@ -293,6 +301,82 @@ export function About() {
           </a>
         </div>
       </motion.section>
+
+      {/* Profile Picture Lightbox */}
+      <AnimatePresence>
+        {showProfilePreview && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-8"
+            onClick={() => setShowProfilePreview(false)}
+          >
+            {/* Dimmed backdrop */}
+            <div className="absolute inset-0 bg-black/70" />
+            
+            {/* Subtle accent vignette */}
+            <div 
+              className="absolute inset-0 pointer-events-none"
+              style={{
+                background: `radial-gradient(ellipse 70% 50% at 50% 50%, hsl(var(--accent-hsl) / 0.08) 0%, transparent 70%)`,
+              }}
+            />
+            
+            {/* Image Container */}
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0, y: 12 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 8 }}
+              transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
+              className="relative max-w-sm w-full"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Fluent Close Button */}
+              <button
+                onClick={() => setShowProfilePreview(false)}
+                className="absolute -top-14 right-0 w-10 h-10 rounded-lg bg-mica border border-stroke shadow-sm flex items-center justify-center text-text-tertiary hover:text-text-primary hover:bg-mica-alt hover:border-stroke-hover active:scale-95 transition-all duration-200"
+              >
+                <X className="w-4 h-4" strokeWidth={1.5} />
+              </button>
+              
+              {/* Fluent Image Card */}
+              <div className="rounded-2xl overflow-hidden bg-layer border border-stroke shadow-dialog">
+                {/* Mica background for PNG transparency */}
+                <div 
+                  className="relative"
+                  style={{
+                    background: `
+                      radial-gradient(ellipse 80% 60% at 50% 35%, hsl(var(--accent-hsl) / 0.10) 0%, transparent 65%),
+                      var(--bg-content)
+                    `,
+                  }}
+                >
+                  {/* Subtle noise texture */}
+                  <div className="absolute inset-0 mica-surface opacity-40" />
+                  
+                  <img
+                    src={personal.profileImage}
+                    alt={personal.name}
+                    className="w-full h-auto relative z-10"
+                  />
+                </div>
+                
+                {/* Caption inside card - Fluent style footer */}
+                <div className="px-5 py-4 border-t border-stroke bg-mica">
+                  <p className="text-center text-sm text-text-primary font-medium">
+                    {personal.name}
+                  </p>
+                  <p className="text-center text-xs text-text-tertiary mt-0.5">
+                    Software Architect & Security Engineer
+                  </p>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

@@ -89,7 +89,7 @@ const Philosophy = () => {
                 The scale of the goal has{' '}
                 <span className="text-text-primary">never</span>{' '}
                 mattered to me—what matters is the{' '}
-                <em className="not-italic font-medium text-accent">journey</em>{' '}
+                <span className="font-medium text-accent">journey</span>{' '}
                 of getting there.
               </p>
             </div>
@@ -166,7 +166,7 @@ const Philosophy = () => {
                     </p>
                     
                     <div className="ml-10 mt-4 pl-4 border-l-2 border-accent/30 py-1">
-                      <p className="text-accent text-sm italic font-medium leading-relaxed">
+                      <p className="text-accent text-sm font-medium leading-relaxed italic">
                         "{step.highlight}"
                       </p>
                     </div>
@@ -199,7 +199,7 @@ const Philosophy = () => {
               {/* Opening — The Reflection */}
               <div className="px-6 lg:px-8 pt-8 pb-6 space-y-4">
                 <p className="text-base text-text-secondary leading-relaxed">
-                  Most software exists to <em className="not-italic text-text-primary">remember</em>. 
+                  Most software exists to <span className="text-text-primary">remember</span>. 
                   It stores, organizes, and retrieves — digital filing cabinets 
                   dressed in modern interfaces. There is deep craft in building these systems 
                   well, and I take genuine pride in that craft.
@@ -211,13 +211,13 @@ const Philosophy = () => {
                   What drives me is software that{' '}
                   <span className="text-accent font-semibold">transforms</span> — where 
                   something goes in, and something fundamentally{' '}
-                  <em className="not-italic text-text-primary">new</em>{' '}
+                  <span className="text-text-primary italic">new</span>{' '}
                   comes out. An insight that wasn't visible. A capability that didn't exist.  
                   A connection that was never possible before.
                 </p>
               </div>
 
-              {/* Divider with mantra — clean line treatment */}
+              {/* Divider with mantra */}
               <div className="flex items-center gap-5 px-6 lg:px-8 py-6">
                 <div className="h-px flex-1 bg-stroke" />
                 <p className="text-xs text-text-tertiary tracking-[0.2em] uppercase font-medium whitespace-nowrap">
@@ -316,7 +316,7 @@ const Philosophy = () => {
 
             <div className="p-8 rounded-2xl bg-gradient-to-br from-layer to-layer/50 border border-stroke">
               <p className="text-lg text-text-secondary leading-relaxed mb-8">
-                I don't just <em className="text-text-primary not-italic">memorize</em> patterns—I 
+                I don't just <span className="text-text-primary">memorize</span> patterns—I 
                 understand them at their core: <span className="text-accent">what problem</span> each 
                 pattern solves, <span className="text-accent">how</span> it solves it, and <span className="text-accent">where it falls short</span>.
               </p>
@@ -359,9 +359,9 @@ const Philosophy = () => {
             </div>
             
             <blockquote className="text-xl lg:text-2xl text-text-primary mb-6 font-light">
-              "Creating what hasn't been built before,
+              "<span className="italic">Creating what hasn't been built before,</span>
               <br />
-              <em className="text-accent font-normal">one innovation at a time.</em>"
+              <em className="text-accent font-normal italic">one innovation at a time.</em>"
             </blockquote>
             
             <div className="w-12 h-1 bg-accent mx-auto rounded-full opacity-50" />

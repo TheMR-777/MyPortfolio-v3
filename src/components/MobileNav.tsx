@@ -25,8 +25,8 @@ const navItems: { id: TabId; label: string; icon: typeof Home }[] = [
 export function MobileNav({ activeTab, setActiveTab, onOpenMenu }: MobileNavProps) {
   return (
     <nav className="fixed bottom-0 left-0 right-0 z-40 lg:hidden">
-      {/* Frosted glass background */}
-      <div className="absolute inset-0 bg-mica/90 backdrop-blur-xl border-t border-stroke" />
+      {/* Frosted glass background with subtle top shadow */}
+      <div className="absolute inset-0 bg-mica/95 backdrop-blur-2xl border-t border-stroke shadow-[0_-4px_16px_rgba(0,0,0,0.08)]" />
       
       {/* Safe area spacer for notched devices */}
       <div className="relative flex items-stretch justify-around px-2 h-16 pb-safe">

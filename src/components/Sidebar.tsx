@@ -51,11 +51,15 @@ export function Sidebar({ activeTab, setActiveTab, onOpenCommandPalette }: Sideb
       <div className="p-5 border-b border-divider">
         <div className="flex items-center gap-3">
           {/* Avatar with accent ring */}
-          <div 
-            className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-base shadow-sm"
-            style={{ backgroundColor: "var(--accent-color)" }}
-          >
-            M
+          <div className="relative">
+            <div 
+              className="w-10 h-10 rounded-lg flex items-center justify-center text-white font-semibold text-base shadow-sm"
+              style={{ backgroundColor: "var(--accent-color)" }}
+            >
+              M
+            </div>
+            {/* Status dot */}
+            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-mica" />
           </div>
           <div className="flex-1 min-w-0">
             <h1 className="text-sm font-semibold text-text-primary truncate">

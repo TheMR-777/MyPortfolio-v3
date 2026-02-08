@@ -272,7 +272,7 @@ export function Skills() {
           </div>
           
           {/* CGPA & Percentage Visual */}
-          <div className="flex items-center gap-8">
+          <div className="flex items-center justify-center md:justify-start gap-8 flex-wrap">
             <CgpaRing value={3.73} total={4.0} label="CGPA" />
             <div className="flex flex-col items-center">
               <div className="relative w-28 h-28 flex items-center justify-center">

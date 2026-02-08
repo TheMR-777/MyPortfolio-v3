@@ -102,11 +102,14 @@ export function MobileMenu({
             {/* Header */}
             <div className="flex items-center justify-between px-5 pb-4 border-b border-divider">
               <div className="flex items-center gap-3">
-                <div 
-                  className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-semibold text-base shadow-sm"
-                  style={{ backgroundColor: "var(--accent-color)" }}
-                >
-                  M
+                <div className="relative">
+                  <div 
+                    className="w-10 h-10 rounded-xl flex items-center justify-center text-white font-semibold text-base shadow-sm"
+                    style={{ backgroundColor: "var(--accent-color)" }}
+                  >
+                    M
+                  </div>
+                  <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 rounded-full bg-emerald-500 border-2 border-mica" />
                 </div>
                 <div>
                   <h2 className="text-base font-semibold text-text-primary">
@@ -230,20 +233,17 @@ export function MobileMenu({
                     <Palette size={14} strokeWidth={1.5} />
                     Accent Color
                   </p>
-                  <div className="grid grid-cols-4 gap-2">
+                  <div className="grid grid-cols-4 gap-3">
                     {accentColors.map((color) => (
                       <button
                         key={color.name}
                         onClick={() => setAccent(color)}
-                        className={cn(
-                          "aspect-square rounded-xl flex items-center justify-center transition-all duration-150",
-                          accent.name === color.name 
-                            ? "ring-2 ring-offset-2 ring-offset-mica" 
-                            : "hover:scale-105"
-                        )}
+                        className="aspect-square rounded-xl flex items-center justify-center transition-all duration-150 hover:scale-105 active:scale-95"
                         style={{ 
                           backgroundColor: color.value,
-                          ...(accent.name === color.name ? { ringColor: color.value } : {})
+                          boxShadow: accent.name === color.name 
+                            ? `0 0 0 2px var(--bg-mica), 0 0 0 4px ${color.value}` 
+                            : 'none'
                         }}
                         title={color.name}
                       >
@@ -251,7 +251,7 @@ export function MobileMenu({
                           <motion.div
                             initial={{ scale: 0 }}
                             animate={{ scale: 1 }}
-                            className="w-2 h-2 rounded-full bg-white shadow-sm"
+                            className="w-2.5 h-2.5 rounded-full bg-white shadow-sm"
                           />
                         )}
                       </button>

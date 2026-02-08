@@ -351,13 +351,13 @@ export function CommandPalette({ isOpen, onClose, onNavigate }: CommandPalettePr
                             {/* Icon or Color Swatch */}
                             {item.accent ? (
                               <div
-                                className={cn(
-                                  "w-5 h-5 rounded-full shrink-0 ring-2 ring-offset-2 ring-offset-solid",
-                                  accent.name === item.accent.name 
-                                    ? "ring-text-tertiary" 
-                                    : "ring-transparent"
-                                )}
-                                style={{ backgroundColor: item.accent.value }}
+                                className="w-5 h-5 rounded-full shrink-0 transition-shadow duration-150"
+                                style={{ 
+                                  backgroundColor: item.accent.value,
+                                  boxShadow: accent.name === item.accent.name
+                                    ? `0 0 0 2px var(--bg-solid), 0 0 0 4px ${item.accent.value}`
+                                    : 'none'
+                                }}
                               />
                             ) : (
                               <item.icon
