@@ -191,70 +191,77 @@ const Philosophy = () => {
               </h2>
             </div>
 
-            {/* Main Card Container — Mica-style layering */}
-            <div className="rounded-2xl bg-layer border border-stroke overflow-hidden">
-              {/* Top accent line */}
-              <div className="h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent" />
-              
-              {/* Opening — The Reflection */}
-              <div className="px-6 lg:px-8 pt-8 pb-6 space-y-4">
-                <p className="text-base text-text-secondary leading-relaxed">
-                  Most software exists to <span className="text-text-primary">remember</span>. 
-                  It stores, organizes, and retrieves — digital filing cabinets 
-                  dressed in modern interfaces. There is deep craft in building these systems 
-                  well, and I take genuine pride in that craft.
-                </p>
-                <p className="text-base text-text-primary font-medium">
-                  But it's not what sets my soul on fire.
-                </p>
-                <p className="text-text-secondary leading-relaxed">
-                  What drives me is software that{' '}
-                  <span className="text-accent font-semibold">transforms</span> — where 
-                  something goes in, and something fundamentally{' '}
-                  <span className="text-text-primary italic">new</span>{' '}
-                  comes out. An insight that wasn't visible. A capability that didn't exist.  
-                  A connection that was never possible before.
-                </p>
-              </div>
-
-              {/* Divider with mantra */}
-              <div className="flex items-center gap-5 px-6 lg:px-8 py-6">
-                <div className="h-px flex-1 bg-stroke" />
-                <p className="text-xs text-text-tertiary tracking-[0.2em] uppercase font-medium whitespace-nowrap">
-                  Not storage, but <span className="text-accent font-semibold">synthesis</span>
-                </p>
-                <div className="h-px flex-1 bg-stroke" />
-              </div>
-
-              {/* The essence — abstract categories of transformation */}
-              <div className="mx-4 lg:mx-6 mb-4 lg:mb-6 rounded-xl bg-mica border border-stroke/50 p-5 lg:p-6">
-                <div className="grid sm:grid-cols-2 gap-x-10 gap-y-5">
-                  {[
-                    { verb: 'Revealing', essence: 'making the invisible visible, surfacing patterns hidden in plain sight' },
-                    { verb: 'Simplifying', essence: 'reducing a hundred steps of complexity into ten clear ones' },
-                    { verb: 'Automating', essence: 'freeing humans from repetitive work they shouldn\'t be doing' },
-                    { verb: 'Connecting', essence: 'bridging systems, ideas, or people that were isolated before' },
-                    { verb: 'Simulating', essence: 'replacing costly real-world trial with precise digital insight' },
-                    { verb: 'Empowering', essence: 'giving someone a capability they simply didn\'t have before' },
-                  ].map((item) => (
-                    <div key={item.verb} className="group py-1">
-                      <span className="text-sm text-accent font-semibold tracking-wide">{item.verb}</span>
-                      <p className="text-sm text-text-tertiary mt-0.5 leading-relaxed">{item.essence}</p>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              {/* Closing — subtle footer strip */}
-              <div className="px-6 lg:px-8 py-4 border-t border-stroke/50">
-                <p className="text-sm text-text-tertiary leading-relaxed">
-                  The tools I build are a reflection of this belief — each one takes{' '}
-                  <span className="text-text-secondary font-medium">something in</span>, and gives{' '}
-                  <span className="text-text-secondary font-medium">something new</span> back
-                  <span className="text-text-disabled"> — that's the only kind of software worth losing sleep over.</span>
-                </p>
-              </div>
+            {/* Core Statement - Expanded for clarity */}
+            <div className="mb-8 space-y-4">
+              <p className="text-base lg:text-lg text-text-secondary leading-relaxed">
+                Most software exists to <span className="text-text-primary font-medium">remember</span> — 
+                to store records, log transactions, and keep notes organized. Important work, 
+                but not what ignites my passion.
+              </p>
+              <p className="text-base lg:text-lg text-text-primary leading-relaxed">
+                What excites me is building software that takes something <span className="text-text-secondary">in</span>, 
+                and gives something <span className="text-accent font-medium">genuinely new</span> back. 
+                Software that <span className="text-accent font-medium">transforms</span>.
+              </p>
             </div>
+
+            {/* Visual Transformation Grid - Cards with inline hover description */}
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-8">
+              {[
+                { verb: 'Reveal', icon: '◐', description: 'Making the invisible visible — uncovering hidden patterns' },
+                { verb: 'Simplify', icon: '◇', description: 'Reducing complexity to clarity — distilling essence' },
+                { verb: 'Automate', icon: '↻', description: 'Freeing humans from repetitive, mundane work' },
+                { verb: 'Connect', icon: '⬡', description: 'Bridging isolated systems — creating synergy' },
+                { verb: 'Simulate', icon: '◈', description: 'Replacing costly trials with digital insight' },
+                { verb: 'Empower', icon: '△', description: 'Enabling capabilities that didn\'t exist before' },
+              ].map((item, index) => (
+                <motion.div
+                  key={item.verb}
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 0.35 + index * 0.05 }}
+                  className="group relative p-4 sm:p-5 rounded-xl bg-layer border border-stroke hover:border-accent/40 hover:bg-layer-hover transition-all duration-500 ease-out overflow-hidden min-h-[100px] sm:min-h-[110px]"
+                >
+                  {/* Default state - icon and verb centered */}
+                  <div className="absolute inset-0 p-4 sm:p-5 flex flex-col items-center justify-center text-center transition-all duration-500 ease-out group-hover:opacity-0 group-hover:-translate-y-3">
+                    <span className="block text-2xl sm:text-3xl text-accent/50 mb-2 transition-colors duration-500 group-hover:text-accent">
+                      {item.icon}
+                    </span>
+                    <span className="text-sm font-medium text-text-primary">
+                      {item.verb}
+                    </span>
+                  </div>
+                  
+                  {/* Hover state - description revealed */}
+                  <div className="absolute inset-0 p-4 sm:p-5 flex flex-col justify-center items-center text-center opacity-0 translate-y-3 transition-all duration-500 ease-out delay-75 group-hover:opacity-100 group-hover:translate-y-0">
+                    <span className="text-accent font-semibold text-sm mb-2">
+                      {item.verb}
+                    </span>
+                    <p className="text-xs text-text-secondary leading-relaxed">
+                      {item.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* The Mantra - Mobile responsive */}
+            <div className="flex items-center justify-center gap-3 sm:gap-4 py-6">
+              <div className="h-px flex-1 max-w-8 sm:max-w-12 bg-gradient-to-r from-transparent to-stroke" />
+              <div className="flex items-center gap-2 sm:gap-3 text-[10px] sm:text-xs text-text-tertiary tracking-[0.15em] sm:tracking-[0.25em] uppercase font-medium">
+                <span>Input</span>
+                <span className="text-accent/50">→</span>
+                <span className="text-accent">Transformation</span>
+                <span className="text-accent/50">→</span>
+                <span>Value</span>
+              </div>
+              <div className="h-px flex-1 max-w-8 sm:max-w-12 bg-gradient-to-l from-transparent to-stroke" />
+            </div>
+
+            {/* Closing Thought */}
+            <p className="text-center text-sm text-text-tertiary italic">
+              Software worth building leaves the world different than it found it.
+            </p>
           </motion.div>
         </section>
 

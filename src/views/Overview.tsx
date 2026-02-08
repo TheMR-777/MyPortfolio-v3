@@ -196,7 +196,7 @@ export function Overview({ onNavigate }: OverviewProps) {
           </button>
         </div>
 
-        <div className="flex flex-wrap gap-2">
+        <div className="flex flex-wrap" style={{ gap: '12px 8px' }}>
           {skills.core.map((skill) => (
             <Tooltip
               key={skill.name}
@@ -205,7 +205,7 @@ export function Overview({ onNavigate }: OverviewProps) {
                 description: skill.description
               }}
             >
-              <span className="px-3 py-2 rounded-lg bg-layer border border-stroke text-sm text-text-secondary hover:border-stroke-hover transition-colors cursor-default">
+              <span className="inline-block px-3 py-2 rounded-lg bg-layer border border-stroke text-sm text-text-secondary hover:border-stroke-hover transition-colors cursor-default">
                 {skill.name}
               </span>
             </Tooltip>

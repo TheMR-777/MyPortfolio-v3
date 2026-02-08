@@ -7,7 +7,7 @@ export const portfolioData = {
     phone: "+92 314 5401405",
     dob: "April 1, 2001",
     nationality: "Pakistani",
-    profileImage: "https://i.imgur.com/c9vQr7Y.png",
+    profileImage: "https://i.ibb.co/2Y8YWR1X/freepik-br-2a5d6513-6583-40a5-8ab6-1a77d56608c6.png",
     taglines: [
       "Creating What Hasn't Been Built Before",
       "Software Architect & Security Engineer",
