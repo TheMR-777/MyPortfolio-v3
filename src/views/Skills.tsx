@@ -1,6 +1,31 @@
 import { motion } from "framer-motion";
-import { Code2, Layers, Wrench, Brain, Award, GraduationCap } from "lucide-react";
+import { Code2, Layers, Wrench, Brain, Award, GraduationCap, Sparkles, BookOpen, Shield, Cpu, Zap } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
+
+// Skill proficiency bar component
+function SkillBar({ level, years }: { level: string; years: string }) {
+  const levelMap: Record<string, number> = {
+    'Expert': 95,
+    'Advanced': 80,
+    'Proficient': 70,
+    'Intermediate': 60
+  };
+  const percentage = levelMap[level] || 50;
+  
+  return (
+    <div className="flex items-center gap-3 flex-shrink-0">
+      <span className="text-[10px] text-text-disabled w-8 text-right">{years}</span>
+      <div className="w-16 h-1.5 rounded-full bg-stroke overflow-hidden">
+        <motion.div
+          className="h-full rounded-full bg-accent"
+          initial={{ width: 0 }}
+          animate={{ width: `${percentage}%` }}
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+        />
+      </div>
+    </div>
+  );
+}
 
 function CgpaRing({ value, total, label }: { value: number; total: number; label: string }) {
   const percentage = (value / total) * 100;
@@ -65,10 +90,32 @@ export function Skills() {
         <h1 className="text-2xl font-semibold text-text-primary tracking-tight mb-2">
           Skills & Expertise
         </h1>
-        <p className="text-sm text-text-secondary">
-          Technical proficiencies developed over 20+ years of hands-on experience
+        <p className="text-sm text-text-secondary max-w-2xl">
+          Technical proficiencies forged over two decades of hands-on exploration — from age 3 to industry architect. Each skill earned through building, breaking, and rebuilding.
         </p>
       </motion.div>
+
+      {/* Mentor Influence Card */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.02, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-6 p-5 rounded-xl bg-layer border border-stroke"
+      >
+        <div className="flex items-start gap-4">
+          <div className="w-10 h-10 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0">
+            <Sparkles className="w-5 h-5 text-accent" strokeWidth={1.5} />
+          </div>
+          <div className="flex-1 min-w-0">
+            <h2 className="text-sm font-semibold text-text-primary mb-1">
+              The Mentor Influence
+            </h2>
+            <p className="text-xs text-text-secondary leading-relaxed">
+              My C++ journey was shaped by <span className="text-accent font-medium">TheCherno's</span> mentorship — instilling a discipline of performance-first thinking, explicit trade-off reasoning, and attention to every detail. This mindset now informs all my work, from .NET to TypeScript.
+            </p>
+          </div>
+        </div>
+      </motion.section>
 
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Programming Languages */}
@@ -90,24 +137,22 @@ export function Skills() {
             {skills.languages.map((lang) => (
               <div
                 key={lang.name}
-                className="flex items-center justify-between p-3 rounded-lg bg-layer-active border border-stroke"
+                className="flex items-center justify-between p-3 rounded-lg bg-layer-active border border-stroke group hover:border-accent/30 transition-colors duration-200"
               >
-                <div>
-                  <h3 className="text-sm font-medium text-text-primary">
-                    {lang.name}
-                  </h3>
-                  <p className="text-[11px] text-text-tertiary mt-0.5">
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2">
+                    <h3 className="text-sm font-medium text-text-primary">
+                      {lang.name}
+                    </h3>
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent/10 text-accent font-medium">
+                      {lang.level}
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-text-tertiary mt-1 truncate">
                     {lang.note}
                   </p>
                 </div>
-                <div className="text-right flex-shrink-0 ml-4">
-                  <span className="text-xs font-medium text-accent">
-                    {lang.level}
-                  </span>
-                  <p className="text-[10px] text-text-disabled">
-                    {lang.years}
-                  </p>
-                </div>
+                <SkillBar level={lang.level} years={lang.years} />
               </div>
             ))}
           </div>
@@ -179,19 +224,28 @@ export function Skills() {
             </h2>
           </div>
           <div className="space-y-3">
-            {skills.core.map((skill) => (
-              <div
-                key={skill.name}
-                className="p-3 rounded-lg bg-layer-active border border-stroke"
-              >
-                <h3 className="text-sm font-medium text-text-primary mb-1">
-                  {skill.name}
-                </h3>
-                <p className="text-[11px] text-text-tertiary">
-                  {skill.description}
-                </p>
-              </div>
-            ))}
+            {skills.core.map((skill, idx) => {
+              const icons = [Cpu, Shield, Zap, Shield, Sparkles];
+              const Icon = icons[idx % icons.length];
+              return (
+                <div
+                  key={skill.name}
+                  className="flex items-start gap-3 p-3 rounded-lg bg-layer-active border border-stroke group hover:border-accent/30 transition-colors duration-200"
+                >
+                  <div className="w-7 h-7 rounded-md bg-mica flex items-center justify-center flex-shrink-0 group-hover:bg-accent/10 transition-colors duration-200">
+                    <Icon className="w-3.5 h-3.5 text-text-tertiary group-hover:text-accent transition-colors duration-200" strokeWidth={1.5} />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-sm font-medium text-text-primary mb-0.5">
+                      {skill.name}
+                    </h3>
+                    <p className="text-[11px] text-text-tertiary leading-relaxed">
+                      {skill.description}
+                    </p>
+                  </div>
+                </div>
+              );
+            })}
           </div>
         </motion.section>
 
@@ -214,7 +268,7 @@ export function Skills() {
             {certifications.map((cert) => (
               <div
                 key={cert.name}
-                className="p-3 rounded-lg bg-layer-active border border-stroke"
+                className="p-3 rounded-lg bg-layer-active border border-stroke hover:border-accent/30 transition-colors duration-200"
               >
                 <div className="flex items-start justify-between gap-2">
                   <h3 className="text-sm font-medium text-text-primary">
@@ -240,6 +294,116 @@ export function Skills() {
           </div>
         </motion.section>
       </div>
+
+      {/* AI as Force Multiplier */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
+        className="mt-6 p-6 rounded-xl bg-layer border border-stroke"
+      >
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-9 h-9 rounded-lg bg-accent-subtle flex items-center justify-center">
+            <Sparkles className="w-4 h-4 text-accent" strokeWidth={1.5} />
+          </div>
+          <div>
+            <h2 className="text-base font-semibold text-text-primary">
+              {skills.ai.title}
+            </h2>
+          </div>
+        </div>
+        
+        <p className="text-xs text-text-secondary leading-relaxed mb-5">
+          {skills.ai.description}
+        </p>
+
+        <div className="grid sm:grid-cols-2 gap-4">
+          {/* Models */}
+          <div className="p-4 rounded-lg bg-layer-active border border-stroke">
+            <span className="text-[10px] font-medium text-text-tertiary uppercase tracking-wider">
+              Models
+            </span>
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {skills.ai.models.map((model) => (
+                <span
+                  key={model}
+                  className="px-2 py-1 text-xs rounded-md bg-mica border border-stroke text-text-secondary"
+                >
+                  {model}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          {/* Tools */}
+          <div className="p-4 rounded-lg bg-layer-active border border-stroke">
+            <span className="text-[10px] font-medium text-text-tertiary uppercase tracking-wider">
+              Tools
+            </span>
+            <div className="flex flex-wrap gap-1.5 mt-2">
+              {skills.ai.tools.map((tool) => (
+                <span
+                  key={tool}
+                  className="px-2 py-1 text-xs rounded-md bg-mica border border-stroke text-text-secondary"
+                >
+                  {tool}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Skills list */}
+        <div className="mt-4 pt-4 border-t border-stroke">
+          <ul className="grid sm:grid-cols-2 gap-2">
+            {skills.ai.skills.map((skill, idx) => (
+              <li 
+                key={idx}
+                className="flex items-start gap-2 text-xs text-text-secondary"
+              >
+                <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                {skill}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </motion.section>
+
+      {/* DSA Mastery */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
+        className="mt-6 p-6 rounded-xl bg-layer border border-stroke"
+      >
+        <div className="flex items-center gap-3 mb-4">
+          <div className="w-9 h-9 rounded-lg bg-accent-subtle flex items-center justify-center">
+            <BookOpen className="w-4 h-4 text-accent" strokeWidth={1.5} />
+          </div>
+          <div>
+            <h2 className="text-base font-semibold text-text-primary">
+              {skills.dsa.title}
+            </h2>
+            <span className="text-[10px] text-text-tertiary">Pre-Coursework Self-Study</span>
+          </div>
+        </div>
+        
+        <p className="text-xs text-text-secondary leading-relaxed mb-4">
+          {skills.dsa.description}
+        </p>
+
+        <div className="grid sm:grid-cols-2 gap-2">
+          {skills.dsa.highlights.map((highlight, idx) => (
+            <div
+              key={idx}
+              className="flex items-start gap-2 p-3 rounded-lg bg-layer-active border border-stroke"
+            >
+              <span className="text-accent font-mono text-xs mt-0.5">{String(idx + 1).padStart(2, '0')}</span>
+              <span className="text-xs text-text-secondary">{highlight}</span>
+            </div>
+          ))}
+        </div>
+      </motion.section>
 
       {/* Education */}
       <motion.section

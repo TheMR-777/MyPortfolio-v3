@@ -148,12 +148,34 @@ export const portfolioData = {
       { name: "GraphQL", category: "API" }
     ],
     core: [
-      { name: "System Architecture", description: "Microservices, Event-Driven, Multi-tenant, DDD" },
-      { name: "Cryptography", description: "AES-256, RSA-4096, ECC, Key Management" },
-      { name: "Performance Engineering", description: "Optimization, Profiling, Low-latency systems" },
-      { name: "Security Engineering", description: "Penetration Testing, Zero-Trust, Secure Design" },
-      { name: "AI Integration", description: "Prompt Engineering, LLM Integration, Copilot workflows" }
+      { name: "System Architecture", description: "Microservices, Event-Driven, Multi-tenant, DDD, CQRS" },
+      { name: "Cryptography", description: "AES-256, RSA-4096, ECC, Key Management, Zero-Knowledge" },
+      { name: "Performance Engineering", description: "Optimization, Profiling, Low-latency, Memory-aware" },
+      { name: "Security Engineering", description: "Penetration Testing, Zero-Trust, Secure-by-Design" },
+      { name: "AI Integration", description: "Prompt Engineering, LLM Integration, AI-accelerated workflows" }
     ],
+    ai: {
+      title: "AI as Force Multiplier",
+      description: "I leverage AI not as a crutch, but as an accelerator — treating it as a thinking partner that amplifies engineering velocity while maintaining quality and originality.",
+      models: ["Claude", "GPT-4", "LLaMA", "Command R+", "Mixtral", "Gemini"],
+      tools: ["GitHub Copilot", "Cursor", "v0.dev"],
+      skills: [
+        "Advanced prompt engineering for complex code generation",
+        "AI-assisted architecture design and review",
+        "LLM integration into production systems",
+        "Systematic prompting for research and synthesis"
+      ]
+    },
+    dsa: {
+      title: "DSA Mastery",
+      description: "A full year before formal coursework, I implemented every fundamental data structure and algorithm in modern C++ — not procedural C, but proper OOP with RAII, move semantics, and STL-style interfaces.",
+      highlights: [
+        "Trees (BST, AVL, Red-Black), Graphs, Heaps, Hash Tables",
+        "Sorting (Quick, Merge, Heap), Searching (Binary, A*)",
+        "Benchmarked against reference implementations",
+        "Comprehensive documentation in GitHub (MyUniversity)"
+      ]
+    },
     tools: ["Docker", "Git", "Azure DevOps", "PostgreSQL", "Redis", "OpenSSL", "VS Code", "IntelliJ IDEA"]
   },
 
