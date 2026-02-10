@@ -132,20 +132,58 @@ export const portfolioData = {
 
   skills: {
     languages: [
-      { name: "C++", level: "Expert", years: "6+", note: "Modern C++23/26, Template Metaprogramming, STL" },
-      { name: "C# / .NET", level: "Advanced", years: "3+", note: ".NET 9, LINQ, Async/Await, Performance" },
-      { name: "Python", level: "Intermediate", years: "5+", note: "Scientific Computing, Automation, ML" },
-      { name: "TypeScript", level: "Intermediate", years: "2+", note: "Angular, Node.js, Modern ES6+" },
-      { name: "SQL", level: "Advanced", years: "4+", note: "Complex Queries, Optimization" },
-      { name: "Dart", level: "Proficient", years: "3+", note: "Flutter, State Management" }
+      { 
+        name: "C++", 
+        level: "Expert", 
+        years: "6+", 
+        tags: ["Modern C++23/26", "Template Metaprogramming", "STL"],
+        extraTags: ["SFINAE & Concepts", "Lock-free Programming", "Memory Management", "RAII", "Move Semantics"]
+      },
+      { 
+        name: "C# / .NET", 
+        level: "Advanced", 
+        years: "3+", 
+        tags: [".NET 9", "LINQ", "Async/Await"],
+        extraTags: ["Blazor", "EF Core", "Source Generators", "Minimal APIs", "SignalR"]
+      },
+      { 
+        name: "Python", 
+        level: "Intermediate", 
+        years: "5+", 
+        tags: ["Scientific Computing", "Automation", "ML"],
+        extraTags: ["NumPy", "SciPy", "Matplotlib", "Rich TUI", "Scripting"]
+      },
+      { 
+        name: "TypeScript", 
+        level: "Intermediate", 
+        years: "2+", 
+        tags: ["Angular", "Node.js", "ES6+"],
+        extraTags: ["Type Safety", "Generics", "RxJS", "PrimeNG"]
+      },
+      { 
+        name: "SQL", 
+        level: "Advanced", 
+        years: "4+", 
+        tags: ["Complex Queries", "Optimization"],
+        extraTags: ["PostgreSQL", "Stored Procedures", "Indexing", "Query Planning"]
+      },
+      { 
+        name: "Dart", 
+        level: "Proficient", 
+        years: "3+", 
+        tags: ["Flutter", "State Management"],
+        extraTags: ["Provider", "Riverpod", "Material Design", "Responsive UI"]
+      }
     ],
     frameworks: [
-      { name: ".NET Core / Blazor", category: "Backend" },
-      { name: "Angular 20", category: "Frontend" },
-      { name: "Flutter", category: "Mobile" },
-      { name: "AvaloniaUI / WPF", category: "Desktop" },
-      { name: "SignalR / gRPC", category: "Real-time" },
-      { name: "GraphQL", category: "API" }
+      { name: ".NET Core / Blazor", category: "Backend", tags: ["ASP.NET Core", "EF Core", "Minimal APIs"] },
+      { name: "Angular 20", category: "Frontend", tags: ["PrimeNG", "RxJS", "TypeScript"] },
+      { name: "Flutter", category: "Mobile", tags: ["Dart", "Provider", "Material Design"] },
+      { name: "AvaloniaUI / WPF", category: "Desktop", tags: ["XAML", "MVVM", "Cross-platform"] },
+      { name: "SignalR / gRPC", category: "Real-time", tags: ["WebSockets", "Streaming", "Bi-directional"] },
+      { name: "GraphQL", category: "API", tags: ["Hot Chocolate", "Subscriptions", "Type-safe"] },
+      { name: "Entity Framework", category: "ORM", tags: ["Code-First", "Migrations", "LINQ"] },
+      { name: "OpenSSL", category: "Security", tags: ["Cryptography", "TLS", "Certificates"] }
     ],
     core: [
       { name: "System Architecture", description: "Microservices, Event-Driven, Multi-tenant, DDD, CQRS" },
@@ -157,8 +195,26 @@ export const portfolioData = {
     ai: {
       title: "AI as Force Multiplier",
       description: "I leverage AI not as a crutch, but as an accelerator — treating it as a thinking partner that amplifies engineering velocity while maintaining quality and originality.",
-      models: ["Claude", "GPT-4", "LLaMA", "Command R+", "Mixtral", "Gemini"],
-      tools: ["GitHub Copilot", "Cursor", "v0.dev"],
+      models: [
+        { name: "Claude 4.6", variants: "Opus / Sonnet / Haiku" },
+        { name: "GPTs", variants: "GPT-5.3, Codex-series" },
+        { name: "Gemini 3", variants: "Pro, Flash" },
+        { name: "Grok 4", variants: "Thinking, Fast" },
+        { name: "GLM 4.7", variants: "Air" },
+        { name: "Kimi K2.5", variants: "" },
+        { name: "Qwen 3", variants: "Coder, Max" }
+      ],
+      tools: [
+        { name: "GitHub Copilot", link: "" },
+        { name: "Cursor", link: "" },
+        { name: "Antigravity", note: "by Google" },
+        { name: "Kiro", note: "by Amazon" },
+        { name: "Qoder", note: "by Alibaba" },
+        { name: "Gemini CLI", link: "" },
+        { name: "OpenClaw", note: "ClawdBot" },
+        { name: "LMArena", link: "https://arena.ai" },
+        { name: "Design Arena", link: "https://designarena.ai" }
+      ],
       skills: [
         "Advanced prompt engineering for complex code generation",
         "AI-assisted architecture design and review",
@@ -176,7 +232,7 @@ export const portfolioData = {
         "Comprehensive documentation in GitHub (MyUniversity)"
       ]
     },
-    tools: ["Docker", "Git", "Azure DevOps", "PostgreSQL", "Redis", "OpenSSL", "VS Code", "IntelliJ IDEA"]
+    tools: ["Docker", "Git", "Azure DevOps", "PostgreSQL", "Redis", "OpenSSL", "VS Code", "IntelliJ IDEA", "Rider", "DataGrip", "TablePlus", "Postman", "GitHub Actions", "Linux/WSL", "Nginx"]
   },
 
   experience: [

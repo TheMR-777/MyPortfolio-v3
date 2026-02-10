@@ -1,6 +1,19 @@
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Code2, Layers, Wrench, Brain, Award, GraduationCap, Sparkles, BookOpen, Shield, Cpu, Zap } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
+
+// Hook to detect mobile
+const useIsMobile = () => {
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 640);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+};
 
 // Skill proficiency bar component
 function SkillBar({ level, years }: { level: string; years: string }) {
@@ -77,6 +90,8 @@ function CgpaRing({ value, total, label }: { value: number; total: number; label
 
 export function Skills() {
   const { skills, certifications, education } = portfolioData;
+  const isMobile = useIsMobile();
+  const [showIeltsPopover, setShowIeltsPopover] = useState(false);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12">
@@ -137,22 +152,59 @@ export function Skills() {
             {skills.languages.map((lang) => (
               <div
                 key={lang.name}
-                className="flex items-center justify-between p-3 rounded-lg bg-layer-active border border-stroke group hover:border-accent/30 transition-colors duration-200"
+                className="group relative p-3 rounded-lg bg-layer-active border border-stroke hover:border-accent/30 transition-all duration-300"
               >
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2 min-w-0">
                     <h3 className="text-sm font-medium text-text-primary">
                       {lang.name}
                     </h3>
-                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent/10 text-accent font-medium">
+                    <span className="text-[10px] px-1.5 py-0.5 rounded bg-layer border border-stroke text-text-secondary font-medium flex-shrink-0">
                       {lang.level}
                     </span>
                   </div>
-                  <p className="text-[11px] text-text-tertiary mt-1 truncate">
-                    {lang.note}
-                  </p>
+                  <SkillBar level={lang.level} years={lang.years} />
                 </div>
-                <SkillBar level={lang.level} years={lang.years} />
+                
+                {/* Tags row — all visible */}
+                <div className="mt-2 flex flex-wrap items-center gap-1.5">
+                  {lang.tags.map((tag: string, idx: number) => (
+                    <span
+                      key={idx}
+                      className="text-[10px] px-1.5 py-0.5 rounded bg-mica border border-stroke text-text-tertiary"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                  
+                  {/* "+N more" indicator with tooltip popover */}
+                  {lang.extraTags && lang.extraTags.length > 0 && (
+                    <span className="relative text-[10px] text-accent cursor-default px-1.5 py-0.5 rounded bg-accent/5 border border-accent/20 hover:bg-accent/10 transition-colors">
+                      +{lang.extraTags.length} more
+                      
+                      {/* Tooltip popover — appears on hover */}
+                      <span className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-50 w-max max-w-[200px]">
+                        <span className="block p-2.5 rounded-lg bg-mica border border-stroke shadow-lg">
+                          <span className="block text-[10px] text-text-tertiary uppercase tracking-wider mb-2">
+                            Also includes
+                          </span>
+                          <span className="flex flex-wrap gap-1">
+                            {lang.extraTags.map((tag: string, idx: number) => (
+                              <span
+                                key={idx}
+                                className="text-[10px] px-1.5 py-0.5 rounded bg-layer border border-stroke text-text-secondary"
+                              >
+                                {tag}
+                              </span>
+                            ))}
+                          </span>
+                        </span>
+                        {/* Arrow */}
+                        <span className="absolute left-4 -bottom-1 w-2 h-2 bg-mica border-r border-b border-stroke rotate-45" />
+                      </span>
+                    </span>
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -177,12 +229,31 @@ export function Skills() {
             {skills.frameworks.map((fw) => (
               <div
                 key={fw.name}
-                className="px-3 py-2 rounded-lg bg-layer-active border border-stroke"
+                className="group relative px-3 py-2 rounded-lg bg-layer-active border border-stroke hover:border-stroke-hover transition-colors cursor-default"
               >
                 <span className="text-sm text-text-primary">{fw.name}</span>
                 <span className="text-[10px] text-text-disabled ml-2">
                   {fw.category}
                 </span>
+                
+                {/* Tooltip with tags on hover */}
+                {fw.tags && fw.tags.length > 0 && (
+                  <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-50 w-max max-w-[180px]">
+                    <div className="p-2.5 rounded-lg bg-mica border border-stroke shadow-lg">
+                      <div className="flex flex-wrap gap-1">
+                        {fw.tags.map((tag: string, idx: number) => (
+                          <span
+                            key={idx}
+                            className="text-[10px] px-1.5 py-0.5 rounded bg-layer border border-stroke text-text-secondary"
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <span className="absolute left-4 -bottom-1 w-2 h-2 bg-mica border-r border-b border-stroke rotate-45" />
+                  </div>
+                )}
               </div>
             ))}
           </div>
@@ -265,32 +336,147 @@ export function Skills() {
             </h2>
           </div>
           <div className="space-y-3">
-            {certifications.map((cert) => (
-              <div
-                key={cert.name}
-                className="p-3 rounded-lg bg-layer-active border border-stroke hover:border-accent/30 transition-colors duration-200"
-              >
-                <div className="flex items-start justify-between gap-2">
-                  <h3 className="text-sm font-medium text-text-primary">
-                    {cert.name}
-                  </h3>
-                  {cert.score && (
-                    <span className="text-xs font-medium text-accent flex-shrink-0">
-                      {cert.score}
-                    </span>
+            {certifications.map((cert) => {
+              const isIELTS = cert.name.includes("IELTS");
+              const ieltsScores = isIELTS ? [
+                { label: "Listening", score: 8.5, color: "bg-accent" },
+                { label: "Reading", score: 7.0, color: "bg-text-secondary" },
+                { label: "Writing", score: 7.0, color: "bg-text-secondary" },
+                { label: "Speaking", score: 7.0, color: "bg-text-secondary" }
+              ] : [];
+              
+              return (
+                <div
+                  key={cert.name}
+                  className="group relative p-3 rounded-lg bg-layer-active border border-stroke hover:border-accent/30 transition-colors duration-200"
+                >
+                  <div className="flex items-start justify-between gap-2">
+                    <h3 className="text-sm font-medium text-text-primary">
+                      {cert.name}
+                    </h3>
+                    {cert.score && (
+                      <span className="text-xs font-medium text-accent flex-shrink-0">
+                        {cert.score}
+                      </span>
+                    )}
+                  </div>
+                  <p className="text-[11px] text-text-tertiary mt-0.5">
+                    {cert.issuer}
+                    {cert.note && ` • ${cert.note}`}
+                  </p>
+                  {cert.breakdown && !isIELTS && (
+                    <p className="text-[10px] text-text-disabled mt-1">
+                      {cert.breakdown}
+                    </p>
+                  )}
+                  
+                  {/* IELTS tap/hover indicator */}
+                  {isIELTS && (
+                    <p 
+                      className="text-[10px] text-accent mt-1.5 flex items-center gap-1 cursor-pointer sm:cursor-default"
+                      onClick={() => isMobile && setShowIeltsPopover(!showIeltsPopover)}
+                    >
+                      <span className="inline-block w-1 h-1 rounded-full bg-accent animate-pulse" />
+                      {isMobile ? 'Tap to see score breakdown' : 'Hover to see score breakdown'}
+                    </p>
+                  )}
+                  
+                  {/* IELTS Score Breakdown Popover - Desktop (hover) */}
+                  {isIELTS && !isMobile && (
+                    <div className="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block z-50">
+                      <div className="p-4 rounded-xl bg-mica border border-stroke shadow-dialog mx-auto max-w-[280px]">
+                        {/* Header */}
+                        <div className="flex items-center justify-between mb-3">
+                          <span className="text-[10px] text-text-tertiary uppercase tracking-wider">
+                            IELTS Band Breakdown
+                          </span>
+                          <span className="text-lg font-semibold text-accent">7.5</span>
+                        </div>
+                        
+                        {/* Score bars */}
+                        <div className="space-y-2.5">
+                          {ieltsScores.map((item) => (
+                            <div key={item.label} className="flex items-center gap-3">
+                              <span className="text-[11px] text-text-secondary w-16">
+                                {item.label}
+                              </span>
+                              <div className="flex-1 h-2 rounded-full bg-stroke overflow-hidden">
+                                <motion.div
+                                  className={`h-full rounded-full ${item.color}`}
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${(item.score / 9) * 100}%` }}
+                                  transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                />
+                              </div>
+                              <span className={`text-xs font-medium tabular-nums w-6 text-right ${item.score >= 8 ? 'text-accent' : 'text-text-secondary'}`}>
+                                {item.score}
+                              </span>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        {/* Footer note */}
+                        <p className="text-[10px] text-text-disabled mt-3 pt-2 border-t border-stroke">
+                          British Council • Academic
+                        </p>
+                        
+                        {/* Arrow */}
+                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-1 w-2 h-2 bg-mica border-r border-b border-stroke rotate-45" />
+                      </div>
+                    </div>
+                  )}
+                  
+                  {/* IELTS Score Breakdown - Mobile (fixed position on tap) */}
+                  {isIELTS && isMobile && showIeltsPopover && (
+                    <>
+                      {/* Backdrop */}
+                      <div 
+                        className="fixed inset-0 z-40 bg-black/40"
+                        onClick={() => setShowIeltsPopover(false)}
+                      />
+                      <div className="fixed left-4 right-4 bottom-20 z-50 mx-auto max-w-[320px]">
+                        <div className="p-5 rounded-xl bg-mica border border-stroke shadow-dialog">
+                          {/* Header */}
+                          <div className="flex items-center justify-between mb-4">
+                            <span className="text-xs text-text-tertiary uppercase tracking-wider">
+                              IELTS Band Breakdown
+                            </span>
+                            <span className="text-xl font-semibold text-accent">7.5</span>
+                          </div>
+                          
+                          {/* Score bars */}
+                          <div className="space-y-3">
+                            {ieltsScores.map((item) => (
+                              <div key={item.label} className="flex items-center gap-3">
+                                <span className="text-sm text-text-secondary w-20">
+                                  {item.label}
+                                </span>
+                                <div className="flex-1 h-2.5 rounded-full bg-stroke overflow-hidden">
+                                  <motion.div
+                                    className={`h-full rounded-full ${item.color}`}
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${(item.score / 9) * 100}%` }}
+                                    transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                                  />
+                                </div>
+                                <span className={`text-sm font-medium tabular-nums w-8 text-right ${item.score >= 8 ? 'text-accent' : 'text-text-secondary'}`}>
+                                  {item.score}
+                                </span>
+                              </div>
+                            ))}
+                          </div>
+                          
+                          {/* Footer */}
+                          <p className="text-xs text-text-disabled mt-4 pt-3 border-t border-stroke text-center">
+                            British Council • Academic
+                          </p>
+                        </div>
+                      </div>
+                    </>
                   )}
                 </div>
-                <p className="text-[11px] text-text-tertiary mt-0.5">
-                  {cert.issuer}
-                  {cert.note && ` • ${cert.note}`}
-                </p>
-                {cert.breakdown && (
-                  <p className="text-[10px] text-text-disabled mt-1">
-                    {cert.breakdown}
-                  </p>
-                )}
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.section>
       </div>
@@ -300,13 +486,13 @@ export function Skills() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-6 p-6 rounded-xl bg-layer border border-stroke"
+        className="mt-6 p-6 rounded-xl bg-layer border border-stroke overflow-hidden"
       >
         <div className="flex items-center gap-3 mb-4">
-          <div className="w-9 h-9 rounded-lg bg-accent-subtle flex items-center justify-center">
+          <div className="w-9 h-9 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0">
             <Sparkles className="w-4 h-4 text-accent" strokeWidth={1.5} />
           </div>
-          <div>
+          <div className="min-w-0">
             <h2 className="text-base font-semibold text-text-primary">
               {skills.ai.title}
             </h2>
@@ -319,34 +505,46 @@ export function Skills() {
 
         <div className="grid sm:grid-cols-2 gap-4">
           {/* Models */}
-          <div className="p-4 rounded-lg bg-layer-active border border-stroke">
+          <div className="p-4 rounded-lg bg-layer-active border border-stroke overflow-hidden">
             <span className="text-[10px] font-medium text-text-tertiary uppercase tracking-wider">
               Models
             </span>
-            <div className="flex flex-wrap gap-1.5 mt-2">
+            <div className="flex flex-wrap gap-1.5 mt-3">
               {skills.ai.models.map((model) => (
-                <span
-                  key={model}
-                  className="px-2 py-1 text-xs rounded-md bg-mica border border-stroke text-text-secondary"
+                <div
+                  key={model.name}
+                  className="group relative"
                 >
-                  {model}
-                </span>
+                  <span className="px-2.5 py-1.5 text-xs rounded-md bg-mica border border-stroke text-text-secondary inline-flex items-center gap-1.5 hover:border-accent/30 transition-colors cursor-default">
+                    <span className="font-medium text-text-primary">{model.name}</span>
+                    {model.variants && (
+                      <span className="text-[10px] text-text-disabled hidden sm:inline">
+                        {model.variants}
+                      </span>
+                    )}
+                  </span>
+                </div>
               ))}
             </div>
           </div>
 
           {/* Tools */}
-          <div className="p-4 rounded-lg bg-layer-active border border-stroke">
+          <div className="p-4 rounded-lg bg-layer-active border border-stroke overflow-hidden">
             <span className="text-[10px] font-medium text-text-tertiary uppercase tracking-wider">
               Tools
             </span>
-            <div className="flex flex-wrap gap-1.5 mt-2">
+            <div className="flex flex-wrap gap-1.5 mt-3">
               {skills.ai.tools.map((tool) => (
                 <span
-                  key={tool}
-                  className="px-2 py-1 text-xs rounded-md bg-mica border border-stroke text-text-secondary"
+                  key={tool.name}
+                  className="px-2.5 py-1.5 text-xs rounded-md bg-mica border border-stroke text-text-secondary inline-flex items-center gap-1.5 hover:border-accent/30 transition-colors cursor-default"
                 >
-                  {tool}
+                  <span className="font-medium text-text-primary">{tool.name}</span>
+                  {tool.note && (
+                    <span className="text-[10px] text-text-disabled hidden sm:inline">
+                      {tool.note}
+                    </span>
+                  )}
                 </span>
               ))}
             </div>
@@ -374,7 +572,7 @@ export function Skills() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.24, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-6 p-6 rounded-xl bg-layer border border-stroke"
+        className="mt-6 p-6 rounded-xl bg-layer border border-stroke overflow-hidden"
       >
         <div className="flex items-center gap-3 mb-4">
           <div className="w-9 h-9 rounded-lg bg-accent-subtle flex items-center justify-center">
@@ -410,7 +608,7 @@ export function Skills() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
-        className="mt-6 p-6 rounded-xl bg-layer border border-stroke"
+        className="mt-6 p-6 rounded-xl bg-layer border border-stroke overflow-hidden"
       >
         <div className="flex items-center gap-3 mb-5">
           <div className="w-9 h-9 rounded-lg bg-accent-subtle flex items-center justify-center">

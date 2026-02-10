@@ -45,8 +45,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
         if (found) return found;
       }
     }
-    // Default to Lavender - elegant and refined
-    return accentColors[0];
+    // Default to Copper - warm, earthy, and elegant
+    return accentColors.find(c => c.name === "Copper") || accentColors[4];
   });
 
   const [systemDark, setSystemDark] = useState(() => {
