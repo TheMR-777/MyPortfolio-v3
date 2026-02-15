@@ -2,10 +2,10 @@ import { motion } from "framer-motion";
 import { ArrowRight, MapPin, Github, Linkedin, Globe, Mail } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
 import { Tooltip } from "../components/Tooltip";
-import type { TabId } from "../App";
+import type { TabId, NavigationOptions } from "../App";
 
 interface OverviewProps {
-  onNavigate: (tab: TabId) => void;
+  onNavigate: (tabOrOptions: TabId | NavigationOptions) => void;
 }
 
 export function Overview({ onNavigate }: OverviewProps) {
@@ -189,7 +189,7 @@ export function Overview({ onNavigate }: OverviewProps) {
             Core Expertise
           </h2>
           <button 
-            onClick={() => onNavigate("skills")}
+            onClick={() => onNavigate({ tab: "skills", section: "skills-core" })}
             className="flex items-center gap-1 text-xs text-text-tertiary hover:text-accent transition-colors"
           >
             View all <ArrowRight className="w-3 h-3" />
@@ -332,7 +332,7 @@ export function Overview({ onNavigate }: OverviewProps) {
             </span>
           </div>
           <button 
-            onClick={() => onNavigate("projects")}
+            onClick={() => onNavigate({ tab: "projects", section: "personal-craft" })}
             className="flex items-center gap-1 text-xs text-text-tertiary hover:text-accent transition-colors"
           >
             View all <ArrowRight className="w-3 h-3" />

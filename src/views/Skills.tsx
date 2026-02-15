@@ -182,8 +182,8 @@ export function Skills() {
                     <span className="relative text-[10px] text-accent cursor-default px-1.5 py-0.5 rounded bg-accent/5 border border-accent/20 hover:bg-accent/10 transition-colors">
                       +{lang.extraTags.length} more
                       
-                      {/* Tooltip popover — appears on hover */}
-                      <span className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-50 w-max max-w-[200px]">
+                      {/* Tooltip popover — appears on hover with smooth transition */}
+                      <span className="absolute left-0 bottom-full mb-2 z-50 w-max max-w-[200px] opacity-0 scale-98 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-500 delay-300 ease-out">
                         <span className="block p-2.5 rounded-lg bg-mica border border-stroke shadow-lg">
                           <span className="block text-[10px] text-text-tertiary uppercase tracking-wider mb-2">
                             Also includes
@@ -238,7 +238,7 @@ export function Skills() {
                 
                 {/* Tooltip with tags on hover */}
                 {fw.tags && fw.tags.length > 0 && (
-                  <div className="absolute left-0 bottom-full mb-2 hidden group-hover:block z-50 w-max max-w-[180px]">
+                  <div className="absolute left-0 bottom-full mb-2 z-50 w-max max-w-[180px] opacity-0 scale-98 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-500 delay-300 ease-out">
                     <div className="p-2.5 rounded-lg bg-mica border border-stroke shadow-lg">
                       <div className="flex flex-wrap gap-1">
                         {fw.tags.map((tag: string, idx: number) => (
@@ -281,6 +281,7 @@ export function Skills() {
 
         {/* Core Competencies */}
         <motion.section
+          id="skills-core"
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}

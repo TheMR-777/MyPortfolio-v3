@@ -9,6 +9,7 @@ import DetailSheet from "../components/DetailSheet";
 
 const projectIcons: Record<string, typeof Layers> = {
   "Employee Monitoring Suite": Sparkles,
+  "Evolver — Auto-Update Engine": Zap,
   "ERP Platform Core": Layers,
   "ERP Business Modules": Zap,
   "ACE Password Vault": Shield,
@@ -181,16 +182,17 @@ export function Experience() {
                                 <Target className="w-3 h-3" />
                                 Cumulative Impact
                               </p>
-                              <div className="flex flex-wrap gap-2">
+                              <ul className="space-y-2">
                                 {job.impact.map((item, idx) => (
-                                  <span
+                                  <li
                                     key={idx}
-                                    className="px-2.5 py-1 text-[10px] rounded-md bg-accent-subtle text-accent"
+                                    className="flex items-start gap-2.5 text-xs text-text-secondary"
                                   >
+                                    <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
                                     {item}
-                                  </span>
+                                  </li>
                                 ))}
-                              </div>
+                              </ul>
                             </div>
                           </div>
                         </motion.div>
@@ -270,9 +272,9 @@ export function Experience() {
                   <Target className="w-3.5 h-3.5" />
                   Measurable Impact
                 </h4>
-                <ul className="space-y-2">
+                <ul className="space-y-2 pl-5">
                   {selectedExp.impact.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary">
+                    <li key={idx} className="flex items-start gap-2.5 text-sm text-text-secondary">
                       <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
                       {item}
                     </li>
@@ -434,9 +436,9 @@ export function Experience() {
                   <Target className="w-3.5 h-3.5" />
                   Measurable Impact
                 </h4>
-                <ul className="space-y-2">
+                <ul className="space-y-2 pl-5">
                   {selectedAceProject.impact.map((item, idx) => (
-                    <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary">
+                    <li key={idx} className="flex items-start gap-2.5 text-sm text-text-secondary">
                       <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
                       {item}
                     </li>

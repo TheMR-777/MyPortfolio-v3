@@ -136,8 +136,8 @@ export const portfolioData = {
         name: "C++", 
         level: "Expert", 
         years: "6+", 
-        tags: ["Modern C++23/26", "Template Metaprogramming", "STL"],
-        extraTags: ["SFINAE & Concepts", "Lock-free Programming", "Memory Management", "RAII", "Move Semantics"]
+        tags: ["Modern C++23/26", "Template Metaprogramming"],
+        extraTags: ["STL", "SFINAE & Concepts", "Lock-free Programming", "Memory Management", "RAII", "Move Semantics"]
       },
       { 
         name: "C# / .NET", 
@@ -232,7 +232,7 @@ export const portfolioData = {
         "Comprehensive documentation in GitHub (MyUniversity)"
       ]
     },
-    tools: ["Docker", "Git", "Azure DevOps", "PostgreSQL", "Redis", "OpenSSL", "VS Code", "IntelliJ IDEA", "Rider", "DataGrip", "TablePlus", "Postman", "GitHub Actions", "Linux/WSL", "Nginx"]
+    tools: ["Docker", "Git", "Azure DevOps", "PostgreSQL", "Redis", "OpenSSL", "VS Code", "IntelliJ IDEA", "Rider", "DataGrip", "TablePlus", "Postman", "GitHub Actions", "Linux/WSL", "Nginx", "Android/WSA", "Qt Creator"]
   },
 
   experience: [
@@ -250,7 +250,7 @@ export const portfolioData = {
           type: "Flagship • Solo Project",
           period: "1 Year Development",
           summary: "Company-wide monitoring system achieving 200% productivity boost with zero defects at launch.",
-          description: "Single-handedly designed and engineered over the course of one year. Treated as a personal masterpiece, blending architecture, UI/UX, real-time data processing, and security. Widely recognized inside ACE for directly enabling productivity improvements and setting a new benchmark for internal tools.",
+          description: "Single-handedly designed and engineered over the course of one year. Treated as a personal masterpiece, blending architecture, UI/UX, real-time data processing, and security. Widely recognized inside ACE for directly enabling productivity improvements and setting a new benchmark for internal tools. Also includes the Evolver auto-update engine — see its dedicated entry below.",
           architecturalPhilosophy: "This project was a crucible for my understanding of design patterns. I didn't just memorize patterns—I understood them at their core: what problem each pattern solves, how it solves it, why it was even needed, and where it falls short. This depth of understanding enabled me to architect a custom architecture that wasn't constrained by textbook templates.",
           architecturalOutcomes: [
             "Minimal and elegant: No unnecessary abstractions; every component earned its place",
@@ -263,10 +263,34 @@ export const portfolioData = {
             "Zero defects at production launch",
             "200% productivity increase measured company-wide",
             "35% reduction in unauthorized breaks",
-            "Recognized by CTO as a professional masterpiece",
+            "Recognized as a professional masterpiece",
             "Established as company standard for monitoring"
           ],
           tech: [".NET", "Blazor", "GraphQL", "ApexCharts", "Micro-ORM"]
+        },
+        {
+          name: "Evolver — Auto-Update Engine",
+          type: "Infrastructure • EMS Component",
+          period: "1 Month Engineering",
+          summary: "Chromium-inspired cross-platform auto-update engine with error-resilient backup management, engineered as part of EMS.",
+          description: "Spent an entire month engineering a chromium-inspired auto-update mechanism for the Employee Monitoring Suite. This was one of the most highly engineered things I made at ACE — a system handling inter-process communication, error-resilient backup management, and cross-platform reliability. Presented to the CTO and received high praise for engineering depth.",
+          architecturalHighlights: [
+            "Chromium-inspired architecture with staged rollouts",
+            "Cross-platform reliability (Windows + macOS) — a rare achievement few software pull off",
+            "Inter-process communication between EMS and dedicated updater app",
+            "Separate integrated companion app for on-demand updating",
+            "Companion deployment tool for streamlined build distribution",
+            "Error-resilient with automatic backup management and data recovery",
+            "Graceful rollback on update failure",
+            "Presented to CTO and praised for engineering depth"
+          ],
+          impact: [
+            "Zero failed updates since deployment",
+            "Seamless cross-platform update experience",
+            "Reduced deployment friction to near-zero",
+            "Praised by CTO as exemplary engineering"
+          ],
+          tech: [".NET", "C#", "IPC", "File System APIs", "AvaloniaUI"]
         },
         {
           name: "ERP Platform Core",
@@ -402,6 +426,7 @@ export const portfolioData = {
       
       highlights: [
         "Architected Employee Monitoring Suite solo — zero defects at launch",
+        "Engineered Evolver: chromium-inspired cross-platform auto-update engine",
         "Designed 'ACE Password Vault' with multi-layered cryptography",
         "Led ERP Platform Engineering: Rules, Approvals, Rights, Notifications",
         "Built unbreakable Background Jobs Framework — adopted company-wide",

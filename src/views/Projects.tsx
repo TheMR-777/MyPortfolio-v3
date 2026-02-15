@@ -96,6 +96,7 @@ export function Projects() {
 
       {/* ─── Personal Craft ─── */}
       <motion.section
+        id="personal-craft"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
@@ -235,9 +236,9 @@ export function Projects() {
                 <Target className="w-3.5 h-3.5" />
                 Measurable Impact
               </h4>
-              <ul className="space-y-2">
+              <ul className="space-y-2 pl-5">
                 {selectedProject.impact.map((item, idx) => (
-                  <li key={idx} className="flex items-start gap-2 text-sm text-text-secondary">
+                  <li key={idx} className="flex items-start gap-2.5 text-sm text-text-secondary">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
                     {item}
                   </li>
