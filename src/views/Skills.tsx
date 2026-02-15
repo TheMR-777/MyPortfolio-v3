@@ -1,6 +1,7 @@
-import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Code2, Layers, Wrench, Brain, Award, GraduationCap, Sparkles, BookOpen, Shield, Cpu, Zap } from "lucide-react";
+import { SkillTooltip } from "../components/SkillTooltip";
 import { portfolioData } from "../data/portfolio";
 
 // Hook to detect mobile
@@ -13,6 +14,32 @@ const useIsMobile = () => {
     return () => window.removeEventListener('resize', check);
   }, []);
   return isMobile;
+};
+
+// Hook for delayed hover state (for premium tooltip feel)
+const useDelayedHover = (delay: number = 500) => {
+  const [isVisible, setIsVisible] = useState(false);
+  const timeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  
+  const onMouseEnter = () => {
+    timeoutRef.current = setTimeout(() => setIsVisible(true), delay);
+  };
+  
+  const onMouseLeave = () => {
+    if (timeoutRef.current) {
+      clearTimeout(timeoutRef.current);
+      timeoutRef.current = null;
+    }
+    setIsVisible(false);
+  };
+  
+  useEffect(() => {
+    return () => {
+      if (timeoutRef.current) clearTimeout(timeoutRef.current);
+    };
+  }, []);
+  
+  return { isVisible, onMouseEnter, onMouseLeave };
 };
 
 // Skill proficiency bar component
@@ -92,6 +119,7 @@ export function Skills() {
   const { skills, certifications, education } = portfolioData;
   const isMobile = useIsMobile();
   const [showIeltsPopover, setShowIeltsPopover] = useState(false);
+  const ieltsDesktopHover = useDelayedHover(500);
 
   return (
     <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12">
@@ -179,30 +207,34 @@ export function Skills() {
                   
                   {/* "+N more" indicator with tooltip popover */}
                   {lang.extraTags && lang.extraTags.length > 0 && (
-                    <span className="relative text-[10px] text-accent cursor-default px-1.5 py-0.5 rounded bg-accent/5 border border-accent/20 hover:bg-accent/10 transition-colors">
-                      +{lang.extraTags.length} more
-                      
-                      {/* Tooltip popover — appears on hover with smooth transition */}
-                      <span className="absolute left-0 bottom-full mb-2 z-50 w-max max-w-[200px] opacity-0 scale-98 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-500 delay-300 ease-out">
-                        <span className="block p-2.5 rounded-lg bg-mica border border-stroke shadow-lg">
-                          <span className="block text-[10px] text-text-tertiary uppercase tracking-wider mb-2">
-                            Also includes
-                          </span>
-                          <span className="flex flex-wrap gap-1">
-                            {lang.extraTags.map((tag: string, idx: number) => (
-                              <span
-                                key={idx}
-                                className="text-[10px] px-1.5 py-0.5 rounded bg-layer border border-stroke text-text-secondary"
-                              >
-                                {tag}
-                              </span>
-                            ))}
-                          </span>
-                        </span>
-                        {/* Arrow */}
-                        <span className="absolute left-4 -bottom-1 w-2 h-2 bg-mica border-r border-b border-stroke rotate-45" />
+                    <SkillTooltip
+                      delay={500}
+                      content={
+                        <div className="w-max max-w-[200px]">
+                          <div className="p-2.5 rounded-lg bg-mica border border-stroke shadow-lg">
+                            <span className="block text-[10px] text-text-tertiary uppercase tracking-wider mb-2">
+                              Also includes
+                            </span>
+                            <div className="flex flex-wrap gap-1">
+                              {lang.extraTags.map((tag: string, idx: number) => (
+                                <span
+                                  key={idx}
+                                  className="text-[10px] px-1.5 py-0.5 rounded bg-layer border border-stroke text-text-secondary"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                          </div>
+                          {/* Arrow */}
+                          <span className="absolute left-4 -bottom-1 w-2 h-2 bg-mica border-r border-b border-stroke rotate-45" />
+                        </div>
+                      }
+                    >
+                      <span className="text-[10px] text-accent cursor-default px-1.5 py-0.5 rounded bg-accent/5 border border-accent/20 hover:bg-accent/10 transition-colors">
+                        +{lang.extraTags.length} more
                       </span>
-                    </span>
+                    </SkillTooltip>
                   )}
                 </div>
               </div>
@@ -227,34 +259,36 @@ export function Skills() {
           </div>
           <div className="flex flex-wrap gap-2">
             {skills.frameworks.map((fw) => (
-              <div
+              <SkillTooltip
                 key={fw.name}
-                className="group relative px-3 py-2 rounded-lg bg-layer-active border border-stroke hover:border-stroke-hover transition-colors cursor-default"
-              >
-                <span className="text-sm text-text-primary">{fw.name}</span>
-                <span className="text-[10px] text-text-disabled ml-2">
-                  {fw.category}
-                </span>
-                
-                {/* Tooltip with tags on hover */}
-                {fw.tags && fw.tags.length > 0 && (
-                  <div className="absolute left-0 bottom-full mb-2 z-50 w-max max-w-[180px] opacity-0 scale-98 translate-y-2 pointer-events-none group-hover:opacity-100 group-hover:scale-100 group-hover:translate-y-0 group-hover:pointer-events-auto transition-all duration-500 delay-300 ease-out">
-                    <div className="p-2.5 rounded-lg bg-mica border border-stroke shadow-lg">
-                      <div className="flex flex-wrap gap-1">
-                        {fw.tags.map((tag: string, idx: number) => (
-                          <span
-                            key={idx}
-                            className="text-[10px] px-1.5 py-0.5 rounded bg-layer border border-stroke text-text-secondary"
-                          >
-                            {tag}
-                          </span>
-                        ))}
+                delay={500}
+                content={
+                  fw.tags && fw.tags.length > 0 ? (
+                    <div className="w-max max-w-[180px]">
+                      <div className="p-2.5 rounded-lg bg-mica border border-stroke shadow-lg">
+                        <div className="flex flex-wrap gap-1">
+                          {fw.tags.map((tag: string, idx: number) => (
+                            <span
+                              key={idx}
+                              className="text-[10px] px-1.5 py-0.5 rounded bg-layer border border-stroke text-text-secondary"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
                       </div>
+                      <span className="absolute left-4 -bottom-1 w-2 h-2 bg-mica border-r border-b border-stroke rotate-45" />
                     </div>
-                    <span className="absolute left-4 -bottom-1 w-2 h-2 bg-mica border-r border-b border-stroke rotate-45" />
-                  </div>
-                )}
-              </div>
+                  ) : null
+                }
+              >
+                <div className="px-3 py-2 rounded-lg bg-layer-active border border-stroke hover:border-stroke-hover transition-colors cursor-default">
+                  <span className="text-sm text-text-primary">{fw.name}</span>
+                  <span className="text-[10px] text-text-disabled ml-2">
+                    {fw.category}
+                  </span>
+                </div>
+              </SkillTooltip>
             ))}
           </div>
 
@@ -340,16 +374,18 @@ export function Skills() {
             {certifications.map((cert) => {
               const isIELTS = cert.name.includes("IELTS");
               const ieltsScores = isIELTS ? [
-                { label: "Listening", score: 8.5, color: "bg-accent" },
-                { label: "Reading", score: 7.0, color: "bg-text-secondary" },
-                { label: "Writing", score: 7.0, color: "bg-text-secondary" },
-                { label: "Speaking", score: 7.0, color: "bg-text-secondary" }
+                { label: "Listening", score: 8.5, color: "bg-accent", delay: 0.1 },
+                { label: "Reading", score: 7.0, color: "bg-text-secondary", delay: 0.2 },
+                { label: "Writing", score: 7.0, color: "bg-text-secondary", delay: 0.3 },
+                { label: "Speaking", score: 7.0, color: "bg-text-secondary", delay: 0.4 }
               ] : [];
               
               return (
                 <div
                   key={cert.name}
                   className="group relative p-3 rounded-lg bg-layer-active border border-stroke hover:border-accent/30 transition-colors duration-200"
+                  onMouseEnter={isIELTS && !isMobile ? ieltsDesktopHover.onMouseEnter : undefined}
+                  onMouseLeave={isIELTS && !isMobile ? ieltsDesktopHover.onMouseLeave : undefined}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="text-sm font-medium text-text-primary">
@@ -382,49 +418,59 @@ export function Skills() {
                     </p>
                   )}
                   
-                  {/* IELTS Score Breakdown Popover - Desktop (hover) */}
+                  {/* IELTS Score Breakdown Popover - Desktop (hover with delay) */}
                   {isIELTS && !isMobile && (
-                    <div className="absolute left-0 right-0 bottom-full mb-2 hidden group-hover:block z-50">
-                      <div className="p-4 rounded-xl bg-mica border border-stroke shadow-dialog mx-auto max-w-[280px]">
-                        {/* Header */}
-                        <div className="flex items-center justify-between mb-3">
-                          <span className="text-[10px] text-text-tertiary uppercase tracking-wider">
-                            IELTS Band Breakdown
-                          </span>
-                          <span className="text-lg font-semibold text-accent">7.5</span>
-                        </div>
-                        
-                        {/* Score bars */}
-                        <div className="space-y-2.5">
-                          {ieltsScores.map((item) => (
-                            <div key={item.label} className="flex items-center gap-3">
-                              <span className="text-[11px] text-text-secondary w-16">
-                                {item.label}
+                    <AnimatePresence>
+                      {ieltsDesktopHover.isVisible && (
+                        <motion.div 
+                          className="absolute left-0 right-0 bottom-full mb-2 z-50 pointer-events-none"
+                          initial={{ opacity: 0, y: 8, scale: 0.96 }}
+                          animate={{ opacity: 1, y: 0, scale: 1 }}
+                          exit={{ opacity: 0, y: 4, scale: 0.98 }}
+                          transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
+                        >
+                          <div className="p-4 rounded-xl bg-mica border border-stroke shadow-dialog mx-auto max-w-[280px]">
+                            {/* Header */}
+                            <div className="flex items-center justify-between mb-3">
+                              <span className="text-[10px] text-text-tertiary uppercase tracking-wider">
+                                IELTS Band Breakdown
                               </span>
-                              <div className="flex-1 h-2 rounded-full bg-stroke overflow-hidden">
-                                <motion.div
-                                  className={`h-full rounded-full ${item.color}`}
-                                  initial={{ width: 0 }}
-                                  animate={{ width: `${(item.score / 9) * 100}%` }}
-                                  transition={{ duration: 0.5, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-                                />
-                              </div>
-                              <span className={`text-xs font-medium tabular-nums w-6 text-right ${item.score >= 8 ? 'text-accent' : 'text-text-secondary'}`}>
-                                {item.score}
-                              </span>
+                              <span className="text-lg font-semibold text-accent">7.5</span>
                             </div>
-                          ))}
-                        </div>
-                        
-                        {/* Footer note */}
-                        <p className="text-[10px] text-text-disabled mt-3 pt-2 border-t border-stroke">
-                          British Council • Academic
-                        </p>
-                        
-                        {/* Arrow */}
-                        <div className="absolute left-1/2 -translate-x-1/2 -bottom-1 w-2 h-2 bg-mica border-r border-b border-stroke rotate-45" />
-                      </div>
-                    </div>
+                            
+                            {/* Score bars */}
+                            <div className="space-y-2.5">
+                              {ieltsScores.map((item) => (
+                                <div key={item.label} className="flex items-center gap-3">
+                                  <span className="text-[11px] text-text-secondary w-16">
+                                    {item.label}
+                                  </span>
+                                  <div className="flex-1 h-2 rounded-full bg-stroke overflow-hidden">
+                                    <motion.div
+                                      className={`h-full rounded-full ${item.color}`}
+                                      initial={{ width: 0 }}
+                                      animate={{ width: `${(item.score / 9) * 100}%` }}
+                                      transition={{ duration: 0.6, delay: item.delay, ease: [0.16, 1, 0.3, 1] }}
+                                    />
+                                  </div>
+                                  <span className={`text-xs font-medium tabular-nums w-6 text-right ${item.score >= 8 ? 'text-accent' : 'text-text-secondary'}`}>
+                                    {item.score}
+                                  </span>
+                                </div>
+                              ))}
+                            </div>
+                            
+                            {/* Footer note */}
+                            <p className="text-[10px] text-text-disabled mt-3 pt-2 border-t border-stroke">
+                              British Council • Academic
+                            </p>
+                            
+                            {/* Arrow */}
+                            <div className="absolute left-1/2 -translate-x-1/2 -bottom-1 w-2 h-2 bg-mica border-r border-b border-stroke rotate-45" />
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   )}
                   
                   {/* IELTS Score Breakdown - Mobile (fixed position on tap) */}

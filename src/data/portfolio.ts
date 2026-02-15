@@ -173,6 +173,13 @@ export const portfolioData = {
         years: "3+", 
         tags: ["Flutter", "State Management"],
         extraTags: ["Provider", "Riverpod", "Material Design", "Responsive UI"]
+      },
+      { 
+        name: "MATLAB", 
+        level: "Intermediate", 
+        years: "2+", 
+        tags: ["Signal Processing", "Simulation"],
+        extraTags: ["Visualization", "Numerical Methods", "Quantum Simulations"]
       }
     ],
     frameworks: [
@@ -661,7 +668,7 @@ export const portfolioData = {
   nullbyteArticles: [
     {
       title: "Installing Metasploit Framework on Android - Part 1: Termux",
-      reads: "Most read 2018-2020",
+      reads: "2nd most-read article (2018-2020)",
       link: "https://null-byte.wonderhowto.com/forum/to-install-metasploit-framework-android-part-1-termux-0186792/"
     },
     {
@@ -671,6 +678,34 @@ export const portfolioData = {
     {
       title: "Hack Android Device with Termux - Part 1: Over Internet",
       link: "https://null-byte.wonderhowto.com/forum/to-hack-android-device-with-termux-android-part-1-over-internet-ultimate-guide-0187005/"
+    },
+    {
+      title: "Installing Metasploit Framework - Part 2: GNURoot Debian",
+      link: "https://null-byte.wonderhowto.com/forum/to-install-metasploit-framework-android-part-2-gnuroot-debian-0186874/"
+    },
+    {
+      title: "Sign APK File with Embedded Payload",
+      link: "https://null-byte.wonderhowto.com/forum/to-sign-apk-file-with-embedded-payload-the-ultimate-guide-0186656/"
+    },
+    {
+      title: "Multi-threaded Password Cracking with John the Ripper",
+      link: "https://null-byte.wonderhowto.com/forum/to-use-multiple-threads-cpus-while-cracking-passwords-with-john-ripper-free-version-0187017/"
+    },
+    {
+      title: "Installing Metasploit Framework - Part 3: UserLAnd",
+      link: "https://null-byte.wonderhowto.com/forum/to-install-metasploit-framework-android-part-3-userland-0187162/"
+    },
+    {
+      title: "Write to NTFS Partition in Kali Linux",
+      link: "https://null-byte.wonderhowto.com/forum/to-see-write-ntfs-partition-hdd-sdd-kali-linux-the-ultimate-guide-0186670/"
+    },
+    {
+      title: "Embed MSF Payload in APK - Part 1: Using TheFatRat",
+      link: "https://null-byte.wonderhowto.com/forum/to-embed-msf-payload-original-apk-files-part-1-using-thefatrat-0188918/"
+    },
+    {
+      title: "Embed MSF Payload in APK - Part 2: Using Linder",
+      link: "https://null-byte.wonderhowto.com/forum/to-embed-msf-payload-original-apk-files-part-2-using-linder-0208842/"
     }
   ],
 
@@ -715,7 +750,122 @@ export const portfolioData = {
       "First team to complete FYP and research simultaneously",
       "Collaborated with visiting PhD professor on quantum computing"
     ]
-  }
+  },
+
+  preUniversityEducation: [
+    {
+      level: "Intermediate (Pre-Engineering)",
+      institution: "F.G. Intermediate College, Jhelum Cantt",
+      year: "2019",
+      result: "67.5%"
+    },
+    {
+      level: "Matriculation",
+      institution: "F.G. Public School, Jhelum Cantt",
+      year: "2017",
+      result: "80.5%"
+    }
+  ],
+
+  cyberMACS: {
+    title: "CyberMACS Erasmus Mundus Joint Master",
+    year: "2024",
+    status: "Reserved Seat → Full Tuition Waiver Offered → Declined",
+    summary: "Selected through a highly competitive process for the Erasmus Mundus Joint Master Program in Cybersecurity. The interview, intended for 15 minutes, extended to over an hour as the panel explored my technical expertise in depth.",
+    details: "Despite being placed on the reserved list initially, I was later offered a full tuition fee waiver and insurance coverage. I made the most difficult decision of my academic life by declining, due to relocation and living costs exceeding feasibility at the time.",
+    significance: "This milestone remains a powerful symbol of international recognition and reflects my principle-driven approach of pursuing opportunities sustainably."
+  },
+
+  community: {
+    cybersecurityCommunity: {
+      title: "International Cybersecurity Community",
+      role: "Founder & Leader",
+      duration: "2018 — 2022 (4 years)",
+      scale: "13 mentors across 6 countries",
+      countries: ["Iran", "Pakistan", "India", "Australia", "Finland", "Bangladesh"],
+      achievements: [
+        "Grew from 2 to 13 dedicated members organically",
+        "Fostered knowledge sharing and collaborative learning across time zones",
+        "Recruited local students, creating university-wide interest in security",
+        "Developed innovative security testing methodologies as a group",
+        "Mentored members from beginner to intermediate security skill levels"
+      ]
+    },
+    mentorship: {
+      sessions: "50+",
+      studentsMentored: "20+",
+      topics: ["C++", "System Design", "Data Structures", "Security Fundamentals"],
+      description: "Conducted 50+ peer programming sessions and mentored 20+ students in C++ and system design. Created educational content reaching thousands globally through Null Byte articles and community forums."
+    },
+    openSource: [
+      {
+        project: "mr_crypt",
+        role: "Creator & Principal Engineer",
+        description: "Revolutionary C++23 cryptography library with range-like syntax and 10x reduction in implementation boilerplate.",
+        link: "https://github.com/TheMR-777"
+      },
+      {
+        project: "AvaloniaUI",
+        role: "Contributor",
+        description: "Performance optimizations and bug fixes for the cross-platform .NET UI framework.",
+        link: "https://github.com/AvaloniaUI/Avalonia"
+      },
+      {
+        project: "Flutter",
+        role: "Contributor",
+        description: "Architecture improvements and documentation enhancements.",
+        link: "https://github.com/flutter/flutter"
+      },
+      {
+        project: "fluent_ui",
+        role: "Contributor",
+        description: "UI enhancements and component development for the Fluent Design System in Flutter.",
+        link: "https://github.com/bdlukaa/fluent_ui"
+      },
+      {
+        project: "MyUniversity (GitHub)",
+        role: "Creator",
+        description: "Comprehensive repository documenting entire university journey — every data structure, algorithm, project, and learning artifact in modern C++.",
+        link: "https://github.com/TheMR-777"
+      }
+    ]
+  },
+
+  quantumResearch: {
+    title: "Quantum Computing & Photonics Simulation",
+    collaborator: "Visiting PhD Professor",
+    institution: "University of the Punjab",
+    duration: "2023 — 2024",
+    description: "Collaborated with a visiting PhD professor on quantum computing and photonics simulations. Developed specialized simulation tools modeling quantum phenomena and photon behavior.",
+    contributions: [
+      "Developed simulation tools in Python and MATLAB",
+      "Modeled quantum phenomena and photon behavior",
+      "Created visualization for mirror arrays, emitters, and detectors",
+      "Supported research initiatives extending to Malaysia",
+      "Advanced understanding of quantum optics through hands-on implementation"
+    ]
+  },
+
+  vulnerabilityDiscoveries: [
+    {
+      target: "ACE HRMS (Laravel-based)",
+      severity: "Critical",
+      description: "Identified a vulnerability that allowed unauthorized access to any employee profile, including executives. Responsibly disclosed and promptly patched.",
+      type: "Broken Access Control"
+    },
+    {
+      target: "ACE Internal Ticketing System",
+      severity: "High",
+      description: "Discovered a flaw in file attachment handling allowing unauthorized download of sensitive documents including financial reports and complaints. Reported to CTO and patched immediately.",
+      type: "Insecure Direct Object Reference"
+    },
+    {
+      target: "CyberMACS Subscription Portal",
+      severity: "Medium",
+      description: "While applying, identified PHP error messages exposing server paths and database details. Wrote a detailed ethical disclosure email to the CyberMACS team, demonstrating proactive security mindset even as an applicant.",
+      type: "Information Exposure"
+    }
+  ]
 };
 
 export type Project = typeof portfolioData.projects[0];

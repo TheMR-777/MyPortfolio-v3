@@ -3,13 +3,15 @@ import { motion, AnimatePresence } from "framer-motion";
 import { 
   MapPin, Calendar, Languages, GraduationCap, 
   Phone, Mail, ExternalLink, Sparkles,
-  Telescope, Atom, Brain, X
+  Telescope, Atom, Brain, X, Globe, Users,
+  GitBranch, Shield, Award, BookOpen, ChevronDown
 } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
 
 export function About() {
-  const { personal, journey, publications, nullbyteArticles } = portfolioData;
+  const { personal, journey, publications, nullbyteArticles, cyberMACS, community, quantumResearch, vulnerabilityDiscoveries, preUniversityEducation } = portfolioData;
   const [showProfilePreview, setShowProfilePreview] = useState(false);
+  const [showAllArticles, setShowAllArticles] = useState(false);
 
   const interestIcons = {
     Astronomy: Telescope,
@@ -254,16 +256,235 @@ export function About() {
                   <ExternalLink className="w-3 h-3" />
                 </a>
               )}
+              {pub.link && (
+                <a
+                  href={pub.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 mt-3 text-xs text-accent hover:text-accent-light transition-colors"
+                >
+                  View Publication
+                  <ExternalLink className="w-3 h-3" />
+                </a>
+              )}
             </div>
           ))}
         </div>
       </motion.section>
 
-      {/* Security Research */}
+      {/* CyberMACS Erasmus Mundus */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-10"
+      >
+        <div className="flex items-center gap-2 mb-5">
+          <Award className="w-4 h-4 text-accent" strokeWidth={1.5} />
+          <h2 className="text-lg font-semibold text-text-primary">
+            International Recognition
+          </h2>
+        </div>
+
+        <div className="p-6 rounded-xl bg-layer border border-stroke">
+          <div className="flex items-start justify-between gap-4 mb-3">
+            <h3 className="text-sm font-medium text-text-primary">{cyberMACS.title}</h3>
+            <span className="text-[10px] text-text-tertiary whitespace-nowrap">{cyberMACS.year}</span>
+          </div>
+          <div className="flex flex-wrap gap-2 mb-4">
+            {cyberMACS.status.split(' → ').map((step) => (
+              <span key={step} className="text-[10px] px-2 py-1 rounded-md bg-accent-subtle text-accent font-medium">
+                {step}
+              </span>
+            ))}
+          </div>
+          <p className="text-xs text-text-secondary leading-relaxed mb-3">
+            {cyberMACS.summary}
+          </p>
+          <p className="text-xs text-text-tertiary leading-relaxed mb-3">
+            {cyberMACS.details}
+          </p>
+          <p className="text-xs text-text-tertiary leading-relaxed italic">
+            {cyberMACS.significance}
+          </p>
+        </div>
+      </motion.section>
+
+      {/* Community Leadership */}
       <motion.section
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-10"
+      >
+        <div className="flex items-center gap-2 mb-5">
+          <Users className="w-4 h-4 text-accent" strokeWidth={1.5} />
+          <h2 className="text-lg font-semibold text-text-primary">
+            Community & Leadership
+          </h2>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-4">
+          {/* Cybersecurity Community */}
+          <div className="p-5 rounded-xl bg-layer border border-stroke">
+            <div className="flex items-center gap-2 mb-3">
+              <Globe className="w-4 h-4 text-accent" strokeWidth={1.5} />
+              <h3 className="text-sm font-medium text-text-primary">{community.cybersecurityCommunity.title}</h3>
+            </div>
+            <div className="flex items-center gap-3 mb-3">
+              <span className="text-[10px] text-text-tertiary">{community.cybersecurityCommunity.role}</span>
+              <span className="text-text-disabled">·</span>
+              <span className="text-[10px] text-text-tertiary">{community.cybersecurityCommunity.duration}</span>
+            </div>
+            <p className="text-xs text-accent font-medium mb-3">{community.cybersecurityCommunity.scale}</p>
+            <div className="flex flex-wrap gap-1.5 mb-3">
+              {community.cybersecurityCommunity.countries.map((c) => (
+                <span key={c} className="text-[10px] px-2 py-0.5 rounded bg-layer-active border border-stroke text-text-tertiary">{c}</span>
+              ))}
+            </div>
+            <ul className="space-y-1.5">
+              {community.cybersecurityCommunity.achievements.map((a) => (
+                <li key={a} className="text-xs text-text-secondary leading-relaxed flex items-start gap-2">
+                  <span className="text-accent mt-1 text-[6px]">●</span>
+                  {a}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Mentorship */}
+          <div className="p-5 rounded-xl bg-layer border border-stroke">
+            <div className="flex items-center gap-2 mb-3">
+              <BookOpen className="w-4 h-4 text-accent" strokeWidth={1.5} />
+              <h3 className="text-sm font-medium text-text-primary">Mentorship & Teaching</h3>
+            </div>
+            <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="p-3 rounded-lg bg-layer-active border border-stroke text-center">
+                <p className="text-lg font-semibold text-accent">{community.mentorship.sessions}</p>
+                <p className="text-[10px] text-text-tertiary">Peer Sessions</p>
+              </div>
+              <div className="p-3 rounded-lg bg-layer-active border border-stroke text-center">
+                <p className="text-lg font-semibold text-accent">{community.mentorship.studentsMentored}</p>
+                <p className="text-[10px] text-text-tertiary">Students Mentored</p>
+              </div>
+            </div>
+            <p className="text-xs text-text-secondary leading-relaxed mb-3">{community.mentorship.description}</p>
+            <div className="flex flex-wrap gap-1.5">
+              {community.mentorship.topics.map((t) => (
+                <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-layer-active border border-stroke text-text-tertiary">{t}</span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </motion.section>
+
+      {/* Open Source Contributions */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-10"
+      >
+        <div className="flex items-center gap-2 mb-5">
+          <GitBranch className="w-4 h-4 text-accent" strokeWidth={1.5} />
+          <h2 className="text-lg font-semibold text-text-primary">
+            Open Source Contributions
+          </h2>
+        </div>
+
+        <div className="space-y-3">
+          {community.openSource.map((os) => (
+            <a
+              key={os.project}
+              href={os.link}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-start justify-between gap-4 p-4 rounded-xl bg-layer border border-stroke hover:border-stroke-hover transition-colors group"
+            >
+              <div className="min-w-0">
+                <div className="flex items-center gap-2 mb-1">
+                  <h3 className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors">{os.project}</h3>
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-layer-active border border-stroke text-text-tertiary">{os.role}</span>
+                </div>
+                <p className="text-xs text-text-secondary">{os.description}</p>
+              </div>
+              <ExternalLink className="w-3.5 h-3.5 text-text-disabled flex-shrink-0 mt-1" />
+            </a>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* Quantum Research */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-10"
+      >
+        <h2 className="text-lg font-semibold text-text-primary mb-5">
+          Research Collaborations
+        </h2>
+
+        <div className="p-5 rounded-xl bg-layer border border-stroke">
+          <div className="flex items-start justify-between gap-4 mb-2">
+            <h3 className="text-sm font-medium text-text-primary">{quantumResearch.title}</h3>
+            <span className="text-[10px] text-text-tertiary whitespace-nowrap">{quantumResearch.duration}</span>
+          </div>
+          <p className="text-xs text-text-tertiary mb-3">
+            {quantumResearch.collaborator} • {quantumResearch.institution}
+          </p>
+          <p className="text-xs text-text-secondary leading-relaxed mb-4">{quantumResearch.description}</p>
+          <ul className="space-y-1.5">
+            {quantumResearch.contributions.map((c) => (
+              <li key={c} className="text-xs text-text-secondary leading-relaxed flex items-start gap-2">
+                <span className="text-accent mt-1 text-[6px]">●</span>
+                {c}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </motion.section>
+
+      {/* Vulnerability Discoveries */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.45, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-10"
+      >
+        <div className="flex items-center gap-2 mb-5">
+          <Shield className="w-4 h-4 text-accent" strokeWidth={1.5} />
+          <h2 className="text-lg font-semibold text-text-primary">
+            Vulnerability Discoveries
+          </h2>
+        </div>
+
+        <div className="space-y-3">
+          {vulnerabilityDiscoveries.map((vuln) => (
+            <div key={vuln.target} className="p-4 rounded-xl bg-layer border border-stroke">
+              <div className="flex items-start justify-between gap-4 mb-2">
+                <h3 className="text-sm font-medium text-text-primary">{vuln.target}</h3>
+                <span className={`text-[10px] px-2 py-0.5 rounded font-medium ${
+                  vuln.severity === 'Critical' ? 'bg-red-500/10 text-red-400' :
+                  vuln.severity === 'High' ? 'bg-orange-500/10 text-orange-400' :
+                  'bg-yellow-500/10 text-yellow-400'
+                }`}>
+                  {vuln.severity}
+                </span>
+              </div>
+              <span className="text-[10px] text-accent font-medium">{vuln.type}</span>
+              <p className="text-xs text-text-secondary leading-relaxed mt-2">{vuln.description}</p>
+            </div>
+          ))}
+        </div>
+      </motion.section>
+
+      {/* Security Research — Null Byte Articles */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        className="mb-10"
       >
         <h2 className="text-lg font-semibold text-text-primary mb-5">
           Security Research (Null Byte)
@@ -271,11 +492,11 @@ export function About() {
 
         <div className="p-5 rounded-xl bg-layer border border-stroke">
           <p className="text-xs text-text-secondary mb-4">
-            Published security research articles as <span className="text-accent font-medium">H4ck3R_777</span> on Null Byte, 
-            with the second most-read article on the platform during 2018-2020.
+            Published 10 security research articles as <span className="text-accent font-medium">H4ck3R_777</span> on Null Byte, 
+            pioneering mobile-to-mobile penetration testing. The first article became the 2nd most-read on the platform (2018-2020).
           </p>
           <div className="space-y-2">
-            {nullbyteArticles.slice(0, 3).map((article) => (
+            {(showAllArticles ? nullbyteArticles : nullbyteArticles.slice(0, 4)).map((article) => (
               <a
                 key={article.title}
                 href={article.link}
@@ -283,22 +504,60 @@ export function About() {
                 rel="noopener noreferrer"
                 className="flex items-start justify-between gap-3 p-3 rounded-lg bg-layer-active border border-stroke hover:border-stroke-hover transition-colors group"
               >
-                <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors">
-                  {article.title}
-                </span>
+                <div className="flex items-start gap-2 min-w-0">
+                  <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors">
+                    {article.title}
+                  </span>
+                  {'reads' in article && article.reads && (
+                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-accent-subtle text-accent whitespace-nowrap flex-shrink-0">{article.reads}</span>
+                  )}
+                </div>
                 <ExternalLink className="w-3 h-3 text-text-disabled flex-shrink-0 mt-0.5" />
               </a>
             ))}
           </div>
-          <a
-            href={personal.social.nullbyte}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 mt-4 text-xs text-accent hover:text-accent-light transition-colors"
-          >
-            View all articles on Null Byte
-            <ExternalLink className="w-3 h-3" />
-          </a>
+          {!showAllArticles && nullbyteArticles.length > 4 && (
+            <button
+              onClick={() => setShowAllArticles(true)}
+              className="flex items-center gap-1 mt-3 text-xs text-accent hover:text-accent-light transition-colors focus:outline-none"
+            >
+              <ChevronDown className="w-3 h-3" />
+              Show all {nullbyteArticles.length} articles
+            </button>
+          )}
+          {showAllArticles && (
+            <button
+              onClick={() => setShowAllArticles(false)}
+              className="flex items-center gap-1 mt-3 text-xs text-text-tertiary hover:text-text-secondary transition-colors focus:outline-none"
+            >
+              <ChevronDown className="w-3 h-3 rotate-180" />
+              Show less
+            </button>
+          )}
+        </div>
+      </motion.section>
+
+      {/* Pre-University Education */}
+      <motion.section
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
+      >
+        <h2 className="text-lg font-semibold text-text-primary mb-5">
+          Pre-University Education
+        </h2>
+
+        <div className="grid sm:grid-cols-2 gap-3">
+          {preUniversityEducation.map((edu) => (
+            <div key={edu.level} className="p-4 rounded-xl bg-layer border border-stroke">
+              <h3 className="text-sm font-medium text-text-primary mb-1">{edu.level}</h3>
+              <p className="text-xs text-text-tertiary mb-2">{edu.institution}</p>
+              <div className="flex items-center gap-3">
+                <span className="text-xs text-accent font-medium">{edu.result}</span>
+                <span className="text-[10px] text-text-disabled">{edu.year}</span>
+              </div>
+            </div>
+          ))}
         </div>
       </motion.section>
 
