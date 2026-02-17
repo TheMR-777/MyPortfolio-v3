@@ -9,7 +9,7 @@ import {
 import { portfolioData } from "../data/portfolio";
 
 export function About() {
-  const { personal, journey, publications, nullbyteArticles, cyberMACS, community, quantumResearch, vulnerabilityDiscoveries, preUniversityEducation } = portfolioData;
+  const { personal, journey, publications, nullbyteArticles, cyberMACS, community, quantumResearch, vulnerabilityDiscoveries } = portfolioData;
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   const [showAllArticles, setShowAllArticles] = useState(false);
 
@@ -109,8 +109,8 @@ export function About() {
           </div>
         </div>
 
-        {/* Contact */}
-        <div className="mt-6 pt-5 border-t border-stroke flex flex-wrap gap-3">
+        {/* Contact & Digital Presence */}
+        <div className="mt-6 pt-5 border-t border-stroke flex flex-wrap gap-2">
           <a
             href={`mailto:${personal.email}`}
             className="flex items-center gap-2 px-3 py-2 rounded-lg bg-layer-active border border-stroke text-sm text-text-secondary hover:text-accent hover:border-stroke-hover transition-colors"
@@ -124,6 +124,33 @@ export function About() {
           >
             <Phone className="w-3.5 h-3.5" strokeWidth={1.5} />
             {personal.phone}
+          </a>
+          <a
+            href={personal.social.whatsapp}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-layer-active border border-stroke text-sm text-text-secondary hover:text-accent hover:border-stroke-hover transition-colors"
+          >
+            <Globe className="w-3.5 h-3.5" strokeWidth={1.5} />
+            WhatsApp
+          </a>
+          <a
+            href={personal.social.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-layer-active border border-stroke text-sm text-text-secondary hover:text-accent hover:border-stroke-hover transition-colors"
+          >
+            <Shield className="w-3.5 h-3.5" strokeWidth={1.5} />
+            GitHub
+          </a>
+          <a
+            href={personal.social.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2 px-3 py-2 rounded-lg bg-layer-active border border-stroke text-sm text-text-secondary hover:text-accent hover:border-stroke-hover transition-colors"
+          >
+            <Shield className="w-3.5 h-3.5" strokeWidth={1.5} />
+            LinkedIn
           </a>
         </div>
       </motion.section>
@@ -484,7 +511,6 @@ export function About() {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-10"
       >
         <h2 className="text-lg font-semibold text-text-primary mb-5">
           Security Research (Null Byte)
@@ -495,69 +521,70 @@ export function About() {
             Published 10 security research articles as <span className="text-accent font-medium">H4ck3R_777</span> on Null Byte, 
             pioneering mobile-to-mobile penetration testing. The first article became the 2nd most-read on the platform (2018-2020).
           </p>
-          <div className="space-y-2">
-            {(showAllArticles ? nullbyteArticles : nullbyteArticles.slice(0, 4)).map((article) => (
-              <a
-                key={article.title}
-                href={article.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start justify-between gap-3 p-3 rounded-lg bg-layer-active border border-stroke hover:border-stroke-hover transition-colors group"
-              >
-                <div className="flex items-start gap-2 min-w-0">
-                  <span className="text-xs text-text-secondary group-hover:text-text-primary transition-colors">
-                    {article.title}
-                  </span>
-                  {'reads' in article && article.reads && (
-                    <span className="text-[9px] px-1.5 py-0.5 rounded bg-accent-subtle text-accent whitespace-nowrap flex-shrink-0">{article.reads}</span>
-                  )}
-                </div>
-                <ExternalLink className="w-3 h-3 text-text-disabled flex-shrink-0 mt-0.5" />
-              </a>
-            ))}
-          </div>
-          {!showAllArticles && nullbyteArticles.length > 4 && (
-            <button
-              onClick={() => setShowAllArticles(true)}
-              className="flex items-center gap-1 mt-3 text-xs text-accent hover:text-accent-light transition-colors focus:outline-none"
+          
+          {/* Articles Grid — 2 columns on desktop */}
+          <motion.div 
+            className="grid md:grid-cols-2 gap-2"
+            initial={false}
+            animate={{ height: 'auto' }}
+            transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+          >
+            <AnimatePresence mode="popLayout">
+              {(showAllArticles ? nullbyteArticles : nullbyteArticles.slice(0, 4)).map((article, idx) => (
+                <motion.a
+                  key={article.title}
+                  href={article.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-start justify-between gap-3 p-3 rounded-lg bg-layer-active border border-stroke hover:border-accent/30 transition-colors group"
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ 
+                    opacity: 1, 
+                    y: 0,
+                    transition: { 
+                      duration: 0.3, 
+                      delay: idx * 0.05, 
+                      ease: [0.16, 1, 0.3, 1] 
+                    }
+                  }}
+                  exit={{ 
+                    opacity: 0, 
+                    y: -4, 
+                    scale: 0.98,
+                    transition: { duration: 0.2 }
+                  }}
+                  layout
+                >
+                  <div className="flex items-start gap-2 min-w-0 flex-1">
+                    <span className="text-[11px] text-text-secondary group-hover:text-text-primary transition-colors leading-relaxed">
+                      {article.title}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-1.5 flex-shrink-0">
+                    {'reads' in article && article.reads && (
+                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-accent-subtle text-accent whitespace-nowrap">{article.reads}</span>
+                    )}
+                    <ExternalLink className="w-3 h-3 text-text-disabled group-hover:text-accent transition-colors" />
+                  </div>
+                </motion.a>
+              ))}
+            </AnimatePresence>
+          </motion.div>
+          
+          {/* Expand/Collapse Button */}
+          <motion.button
+            onClick={() => setShowAllArticles(!showAllArticles)}
+            className="flex items-center gap-1.5 mt-4 text-xs text-accent hover:text-accent-light transition-colors focus:outline-none"
+            whileTap={{ scale: 0.98 }}
+          >
+            <motion.div
+              animate={{ rotate: showAllArticles ? 180 : 0 }}
+              transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
             >
-              <ChevronDown className="w-3 h-3" />
-              Show all {nullbyteArticles.length} articles
-            </button>
-          )}
-          {showAllArticles && (
-            <button
-              onClick={() => setShowAllArticles(false)}
-              className="flex items-center gap-1 mt-3 text-xs text-text-tertiary hover:text-text-secondary transition-colors focus:outline-none"
-            >
-              <ChevronDown className="w-3 h-3 rotate-180" />
-              Show less
-            </button>
-          )}
-        </div>
-      </motion.section>
-
-      {/* Pre-University Education */}
-      <motion.section
-        initial={{ opacity: 0, y: 12 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.4, delay: 0.55, ease: [0.16, 1, 0.3, 1] }}
-      >
-        <h2 className="text-lg font-semibold text-text-primary mb-5">
-          Pre-University Education
-        </h2>
-
-        <div className="grid sm:grid-cols-2 gap-3">
-          {preUniversityEducation.map((edu) => (
-            <div key={edu.level} className="p-4 rounded-xl bg-layer border border-stroke">
-              <h3 className="text-sm font-medium text-text-primary mb-1">{edu.level}</h3>
-              <p className="text-xs text-text-tertiary mb-2">{edu.institution}</p>
-              <div className="flex items-center gap-3">
-                <span className="text-xs text-accent font-medium">{edu.result}</span>
-                <span className="text-[10px] text-text-disabled">{edu.year}</span>
-              </div>
-            </div>
-          ))}
+              <ChevronDown className="w-3.5 h-3.5" />
+            </motion.div>
+            <span>{showAllArticles ? 'Show less' : `Show all ${nullbyteArticles.length} articles`}</span>
+          </motion.button>
         </div>
       </motion.section>
 

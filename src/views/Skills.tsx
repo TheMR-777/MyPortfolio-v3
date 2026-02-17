@@ -4,6 +4,8 @@ import { Code2, Layers, Wrench, Brain, Award, GraduationCap, Sparkles, BookOpen,
 import { SkillTooltip } from "../components/SkillTooltip";
 import { portfolioData } from "../data/portfolio";
 
+const { preUniversityEducation } = portfolioData;
+
 // Hook to detect mobile
 const useIsMobile = () => {
   const [isMobile, setIsMobile] = useState(false);
@@ -386,6 +388,11 @@ export function Skills() {
                   className="group relative p-3 rounded-lg bg-layer-active border border-stroke hover:border-accent/30 transition-colors duration-200"
                   onMouseEnter={isIELTS && !isMobile ? ieltsDesktopHover.onMouseEnter : undefined}
                   onMouseLeave={isIELTS && !isMobile ? ieltsDesktopHover.onMouseLeave : undefined}
+                  onClick={() => {
+                    if (isIELTS && isMobile) {
+                      setShowIeltsPopover(!showIeltsPopover);
+                    }
+                  }}
                 >
                   <div className="flex items-start justify-between gap-2">
                     <h3 className="text-sm font-medium text-text-primary">
@@ -414,7 +421,7 @@ export function Skills() {
                       onClick={() => isMobile && setShowIeltsPopover(!showIeltsPopover)}
                     >
                       <span className="inline-block w-1 h-1 rounded-full bg-accent animate-pulse" />
-                      {isMobile ? 'Tap to see score breakdown' : 'Hover to see score breakdown'}
+                      {isMobile ? 'Tap the card to see score breakdown' : 'Hover to see score breakdown'}
                     </p>
                   )}
                   
@@ -652,6 +659,7 @@ export function Skills() {
 
       {/* Education */}
       <motion.section
+        id="skills-education"
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
@@ -723,6 +731,27 @@ export function Skills() {
               </li>
             ))}
           </ul>
+        </div>
+
+        {/* Pre-University Education */}
+        <div className="mt-5 pt-5 border-t border-stroke">
+          <span className="text-xs font-medium text-text-tertiary uppercase tracking-wider">
+            Pre-University
+          </span>
+          <div className="mt-3 grid sm:grid-cols-2 gap-3">
+            {preUniversityEducation.map((edu) => (
+              <div key={edu.level} className="p-3 rounded-lg bg-layer-active border border-stroke">
+                <div className="flex items-start justify-between gap-2">
+                  <div className="min-w-0">
+                    <h4 className="text-sm font-medium text-text-primary truncate">{edu.level}</h4>
+                    <p className="text-[11px] text-text-tertiary mt-0.5 truncate">{edu.institution}</p>
+                  </div>
+                  <span className="text-[10px] text-text-disabled whitespace-nowrap">{edu.year}</span>
+                </div>
+                <span className="text-xs text-accent font-medium mt-2 inline-block">{edu.result}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </motion.section>
     </div>

@@ -14,7 +14,7 @@ export const portfolioData = {
       "C++ Expert & Cryptography Specialist",
       "AI-Powered Innovation Engineer"
     ],
-    about: "A lifelong journey of innovation and engineering excellence, from age 3 to industry leader. I blend low-level mastery (C++, Cryptography) with high-level architecture (.NET, AI) to solve problems others consider impossible.",
+    about: "A lifelong journey of innovation and engineering excellence, from age 3 to industry architect. I blend low-level mastery (C++, Cryptography) with high-level architecture (.NET, AI) to engineer solutions that haven't been built before — from enterprise platforms to open-source tools that transform how developers work.",
     social: {
       github: "https://github.com/TheMR-777",
       linkedin: "https://www.linkedin.com/in/777-ammar",
@@ -23,7 +23,7 @@ export const portfolioData = {
       nullbyte: "https://creator.wonderhowto.com/h4ck3r_777/"
     },
     stats: {
-      experience: "5+ Years",
+      experience: "6+ Years",
       projects: "20+",
       productivity: "200%",
       cgpa: "3.73"
@@ -126,7 +126,7 @@ export const portfolioData = {
     professional: {
       title: "Professional Evolution",
       period: "2023-Present",
-      description: "My industry transition was strategic. Selected immediately by ACE's CTO, I now serve as .NET Developer & Architecture Consultant, transforming enterprise systems. The defining achievement: devoting an entire year to the Employee Monitoring Suite—a system I consider a professional masterpiece."
+      description: "My industry transition was strategic and calculated. After a TeqHolic internship in Flutter, I was offered an AI team position at Rev9 Solutions — which I leveraged to secure my role at ACE Money Transfer, where the CTO selected me immediately. Now serving as .NET Developer & Architecture Consultant, I've transformed enterprise systems and engineered flagship products. The defining achievement: devoting an entire year to the Employee Monitoring Suite — a system I consider a professional masterpiece."
     }
   },
 
@@ -239,7 +239,7 @@ export const portfolioData = {
         "Comprehensive documentation in GitHub (MyUniversity)"
       ]
     },
-    tools: ["Docker", "Git", "Azure DevOps", "PostgreSQL", "Redis", "OpenSSL", "VS Code", "IntelliJ IDEA", "Rider", "DataGrip", "TablePlus", "Postman", "GitHub Actions", "Linux/WSL", "Nginx", "Android/WSA", "Qt Creator"]
+    tools: ["Docker", "Git", "Azure DevOps", "PostgreSQL", "Redis", "MongoDB", "OpenSSL", "VS Code", "IntelliJ IDEA", "Rider", "DataGrip", "TablePlus", "Postman", "GitHub Actions", "Linux/WSL", "Nginx", "Android/WSA", "Qt Creator", "Google Colab", "Jira"]
   },
 
   experience: [
@@ -580,13 +580,13 @@ export const portfolioData = {
         "Recognition in C++ community",
         "Active open source maintenance"
       ],
-      link: "https://github.com/TheMR-777"
+      link: "https://github.com/TheMR-777/mr_crypt"
     },
     {
-      title: "Costaz",
-      category: "Academic • Education",
-      tech: ["Flutter", "Google Sheets API", "Firebase"],
-      summary: "Decentralized academic management system reducing manual data entry by 50%.",
+      title: "Costaz Desktop",
+      category: "Academic • FYP",
+      tech: ["Flutter", "Google Sheets API", "Firebase", "Excel Export"],
+      summary: "Decentralized academic management system reducing manual data entry by 50%, built as a final year project.",
       description: "Built for University of the Punjab after surveying 10+ professors. Solved record management pain points with offline-first design and Google integration.",
       challenge: "Professors struggled with fragmented record-keeping. Unreliable connectivity made cloud-only solutions impractical.",
       approach: "Designed offline-first architecture using Google accounts for decentralized auth. Integrated Google Sheets for familiar data handling. Excel export for report generation.",
@@ -770,9 +770,9 @@ export const portfolioData = {
   cyberMACS: {
     title: "CyberMACS Erasmus Mundus Joint Master",
     year: "2024",
-    status: "Reserved Seat → Full Tuition Waiver Offered → Declined",
+    status: "Reserved Seat (Full Scholarship Category) → Full Tuition Waiver Offered → Declined",
     summary: "Selected through a highly competitive process for the Erasmus Mundus Joint Master Program in Cybersecurity. The interview, intended for 15 minutes, extended to over an hour as the panel explored my technical expertise in depth.",
-    details: "Despite being placed on the reserved list initially, I was later offered a full tuition fee waiver and insurance coverage. I made the most difficult decision of my academic life by declining, due to relocation and living costs exceeding feasibility at the time.",
+    details: "Despite being placed on the reserved list initially for the Full Scholarship category, I was later offered a full tuition fee waiver and insurance coverage. I made the most difficult decision of my academic life by declining, due to relocation and living costs exceeding feasibility at the time.",
     significance: "This milestone remains a powerful symbol of international recognition and reflects my principle-driven approach of pursuing opportunities sustainably."
   },
 
@@ -802,7 +802,7 @@ export const portfolioData = {
         project: "mr_crypt",
         role: "Creator & Principal Engineer",
         description: "Revolutionary C++23 cryptography library with range-like syntax and 10x reduction in implementation boilerplate.",
-        link: "https://github.com/TheMR-777"
+        link: "https://github.com/TheMR-777/mr_crypt"
       },
       {
         project: "AvaloniaUI",
@@ -823,10 +823,10 @@ export const portfolioData = {
         link: "https://github.com/bdlukaa/fluent_ui"
       },
       {
-        project: "MyUniversity (GitHub)",
+        project: "MyUniversity",
         role: "Creator",
         description: "Comprehensive repository documenting entire university journey — every data structure, algorithm, project, and learning artifact in modern C++.",
-        link: "https://github.com/TheMR-777"
+        link: "https://github.com/TheMR-777/MyUniversity"
       }
     ]
   },

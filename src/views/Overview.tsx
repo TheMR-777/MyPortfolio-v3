@@ -93,13 +93,13 @@ export function Overview({ onNavigate }: OverviewProps) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <Tooltip
             content={{
-              title: "5+ Years Experience",
-              description: "From teenage cybersecurity research to professional software architecture, spanning mobile, web, and enterprise systems.",
-              meta: "Since 2019"
+              title: "6+ Years Experience",
+              description: "From teenage cybersecurity research and community leadership to professional software architecture, spanning mobile, web, and enterprise systems.",
+              meta: "Since 2018"
             }}
             action={{
               label: "View experience",
-              onClick: () => onNavigate("experience")
+              onClick: () => onNavigate({ tab: "experience", section: "experience-root" })
             }}
           >
             <div className="p-4 rounded-xl bg-layer border border-stroke hover:border-stroke-hover transition-colors cursor-default">
@@ -120,7 +120,7 @@ export function Overview({ onNavigate }: OverviewProps) {
             }}
             action={{
               label: "Explore projects",
-              onClick: () => onNavigate("projects")
+              onClick: () => onNavigate({ tab: "projects", section: "projects-root" })
             }}
           >
             <div className="p-4 rounded-xl bg-layer border border-stroke hover:border-stroke-hover transition-colors cursor-default">
@@ -141,7 +141,7 @@ export function Overview({ onNavigate }: OverviewProps) {
             }}
             action={{
               label: "See how",
-              onClick: () => onNavigate("projects")
+              onClick: () => onNavigate({ tab: "projects", section: "projects-root" })
             }}
           >
             <div className="p-4 rounded-xl bg-layer border border-stroke hover:border-stroke-hover transition-colors cursor-default">
@@ -162,7 +162,7 @@ export function Overview({ onNavigate }: OverviewProps) {
             }}
             action={{
               label: "View credentials",
-              onClick: () => onNavigate("skills")
+              onClick: () => onNavigate({ tab: "skills", section: "skills-education" })
             }}
           >
             <div className="p-4 rounded-xl bg-layer border border-stroke hover:border-stroke-hover transition-colors cursor-default">
@@ -374,8 +374,8 @@ export function Overview({ onNavigate }: OverviewProps) {
       >
         <div className="w-8 h-px bg-stroke mb-6" />
         <p className="text-sm text-text-tertiary leading-relaxed">
-          "Creating what hasn't been built before,{' '}
-          <em className="text-accent italic">one innovation at a time.</em>"
+          "Creating what hasn't been built before,{" "}
+          <span className="discovery-text italic font-medium">one innovation at a time.</span>"
         </p>
         <button 
           onClick={() => onNavigate("philosophy")}
