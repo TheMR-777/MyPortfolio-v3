@@ -343,6 +343,7 @@ export function About() {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
         className="mb-10"
+        id="about-community"
       >
         <div className="flex items-center gap-2 mb-5">
           <Users className="w-4 h-4 text-accent" strokeWidth={1.5} />

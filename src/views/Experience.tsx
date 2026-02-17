@@ -2,10 +2,20 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Building2, Calendar, MapPin, ChevronRight, ChevronDown,
-  Sparkles, Target, Layers, Shield, Zap, Globe, Radio, Cog, FileText
+  Sparkles, Target, Layers, Shield, Zap, Globe, Radio, Cog, FileText,
+  TrendingUp, Award, Users, Rocket
 } from "lucide-react";
 import { portfolioData, type Experience, type AceProject } from "../data/portfolio";
 import DetailSheet from "../components/DetailSheet";
+import { Tooltip } from "../components/Tooltip";
+import type { NavigationOptions, TabId } from "../App";
+
+// Navigation function type
+type NavigateFn = (tab: TabId | NavigationOptions) => void;
+
+interface ExperienceProps {
+  onNavigate?: NavigateFn;
+}
 
 const projectIcons: Record<string, typeof Layers> = {
   "Employee Monitoring Suite": Sparkles,
@@ -19,14 +29,62 @@ const projectIcons: Record<string, typeof Layers> = {
   "Logging Framework": FileText
 };
 
-export function Experience() {
+export function Experience({ onNavigate }: ExperienceProps) {
   const { experience } = portfolioData;
   const [selectedExp, setSelectedExp] = useState<Experience | null>(null);
   const [selectedAceProject, setSelectedAceProject] = useState<AceProject | null>(null);
   const [expandedCompany, setExpandedCompany] = useState<string | null>("ACE Money Transfer");
 
+  // Key impact stats across all experiences
+  const impactStats = [
+    { 
+      icon: TrendingUp, 
+      value: "200%", 
+      label: "Productivity Boost", 
+      detail: "via Employee Monitoring Suite",
+      tooltip: {
+        title: "200% Productivity Increase",
+        description: "The Employee Monitoring Suite — engineered solo over one year — enabled a measurable 200% productivity boost across teams.",
+        action: { label: "View project", section: "flagship-projects" }
+      }
+    },
+    { 
+      icon: Award, 
+      value: "Zero", 
+      label: "Defects at Launch", 
+      detail: "flagship monitoring system",
+      tooltip: {
+        title: "Zero-Defect Launch",
+        description: "Deployed the Employee Monitoring Suite to production with no bugs reported — a testament to rigorous testing and disciplined engineering.",
+        action: { label: "See approach", section: "flagship-projects" }
+      }
+    },
+    { 
+      icon: Users, 
+      value: "6", 
+      label: "Countries Reached", 
+      detail: "via cybersecurity community",
+      tooltip: {
+        title: "Global Cybersecurity Community",
+        description: "Founded and led an international community spanning Pakistan, Iran, India, Australia, Finland, and Bangladesh — mentoring aspiring security researchers.",
+        action: { label: "View community", section: "about-community" }
+      }
+    },
+    { 
+      icon: Rocket, 
+      value: "9+", 
+      label: "Enterprise Systems", 
+      detail: "engineered at ACE",
+      tooltip: {
+        title: "9+ Enterprise Systems",
+        description: "From the Employee Monitoring Suite and ERP platform to Background Jobs, Logging, and Password Vault — a comprehensive engineering footprint.",
+        action: { label: "Explore all", section: "experience-timeline" }
+      }
+    }
+  ];
+
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12">
+    <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12" id="experience-timeline">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -37,15 +95,53 @@ export function Experience() {
         <h1 className="text-2xl font-semibold text-text-primary tracking-tight mb-2">
           Experience
         </h1>
-        <p className="text-sm text-text-secondary">
-          Professional journey from internship to architecture consultant
+        <p className="text-sm text-text-secondary mb-8">
+          Professional journey from internship to architecture consultant — building systems that transform enterprises
         </p>
+
+        {/* Impact Stats */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+          {impactStats.map((stat, idx) => (
+            <Tooltip
+              key={stat.label}
+              content={{
+                title: stat.tooltip.title,
+                description: stat.tooltip.description
+              }}
+              action={onNavigate ? {
+                label: stat.tooltip.action.label,
+                onClick: () => {
+                  const section = stat.tooltip.action.section;
+                  if (section === "flagship-projects") {
+                    onNavigate({ tab: "projects", section: "flagship-projects" });
+                  } else if (section === "about-community") {
+                    onNavigate({ tab: "about", section: "about-community" });
+                  } else {
+                    onNavigate("experience");
+                  }
+                }
+              } : undefined}
+            >
+              <motion.div
+                initial={{ opacity: 0, y: 8 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1 + idx * 0.05, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                className="p-4 rounded-xl bg-layer border border-stroke hover:border-accent/30 transition-colors group cursor-default"
+              >
+                <stat.icon className="w-4 h-4 text-accent mb-2 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
+                <div className="text-xl font-semibold text-text-primary">{stat.value}</div>
+                <div className="text-xs font-medium text-text-secondary">{stat.label}</div>
+                <div className="text-[10px] text-text-tertiary mt-0.5">{stat.detail}</div>
+              </motion.div>
+            </Tooltip>
+          ))}
+        </div>
       </motion.div>
 
       {/* Timeline */}
       <div className="relative">
         {/* Timeline line - hidden on mobile */}
-        <div className="absolute left-[19px] top-8 bottom-8 w-px bg-stroke hidden sm:block" />
+        <div className="absolute left-[19px] top-8 bottom-8 w-px bg-gradient-to-b from-accent/40 via-stroke to-transparent hidden sm:block" />
 
         <div className="space-y-4 sm:space-y-6">
           {experience.map((job, index) => {
@@ -61,10 +157,12 @@ export function Experience() {
                 className="relative pl-0 sm:pl-12"
               >
                 {/* Timeline dot - hidden on mobile */}
-                <div className="absolute left-[15px] top-6 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content hidden sm:block" />
+                <div className="absolute left-[12px] top-6 w-4 h-4 rounded-full bg-content border-2 border-accent hidden sm:flex items-center justify-center">
+                  <div className="w-1.5 h-1.5 rounded-full bg-accent" />
+                </div>
 
                 {/* Card */}
-                <div className="rounded-xl bg-layer border border-stroke overflow-hidden">
+                <div className="rounded-xl bg-layer border border-stroke overflow-hidden hover:border-stroke-hover transition-colors">
                   {/* Header - Always visible */}
                   <div
                     onClick={() => {
@@ -79,7 +177,7 @@ export function Experience() {
                     {/* Header */}
                     <div className="flex items-start justify-between gap-4 mb-4">
                       <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-subtle flex items-center justify-center">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-subtle flex items-center justify-center group-hover:scale-105 transition-transform">
                           <Building2 className="w-5 h-5 text-accent" strokeWidth={1.5} />
                         </div>
                         <div>
@@ -118,6 +216,25 @@ export function Experience() {
                     <p className="text-xs text-text-secondary leading-relaxed">
                       {job.summary}
                     </p>
+
+                    {/* Highlights - quick pills */}
+                    {job.highlights && job.highlights.length > 0 && !isACE && (
+                      <div className="mt-4 flex flex-wrap gap-1.5">
+                        {job.highlights.slice(0, 3).map((highlight, idx) => (
+                          <span
+                            key={idx}
+                            className="px-2 py-1 text-[10px] rounded-md bg-layer-active text-text-tertiary border border-stroke/50"
+                          >
+                            {highlight}
+                          </span>
+                        ))}
+                        {job.highlights.length > 3 && (
+                          <span className="px-2 py-1 text-[10px] rounded-md text-text-disabled">
+                            +{job.highlights.length - 3} more
+                          </span>
+                        )}
+                      </div>
+                    )}
                   </div>
 
                   {/* ACE Projects Expandable Section */}
@@ -131,24 +248,28 @@ export function Experience() {
                           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="px-5 pb-5 pt-2 border-t border-stroke">
-                            <p className="text-[10px] uppercase tracking-wider text-text-tertiary font-medium mb-4">
+                          <div className="px-5 pb-5 pt-2 border-t border-stroke bg-layer-active/30">
+                            <p className="text-[10px] uppercase tracking-wider text-text-tertiary font-medium mb-4 flex items-center gap-2">
+                              <Layers className="w-3 h-3" />
                               Projects & Systems Engineered
                             </p>
                             <div className="grid gap-3">
-                              {job.aceProjects.map((project) => {
+                              {job.aceProjects.map((project, pIdx) => {
                                 const Icon = projectIcons[project.name] || Layers;
                                 return (
-                                  <div
+                                  <motion.div
                                     key={project.name}
+                                    initial={{ opacity: 0, x: -8 }}
+                                    animate={{ opacity: 1, x: 0 }}
+                                    transition={{ delay: pIdx * 0.03, duration: 0.3 }}
                                     onClick={(e) => {
                                       e.stopPropagation();
                                       setSelectedAceProject(project);
                                     }}
-                                    className="group/project p-4 rounded-lg bg-layer-active border border-stroke hover:bg-layer-hover hover:border-stroke-hover cursor-pointer transition-colors"
+                                    className="group/project p-4 rounded-lg bg-layer border border-stroke hover:bg-layer-hover hover:border-accent/30 cursor-pointer transition-all"
                                   >
                                     <div className="flex items-start gap-3">
-                                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center">
+                                      <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center group-hover/project:bg-accent/20 transition-colors">
                                         <Icon className="w-4 h-4 text-accent" strokeWidth={1.5} />
                                       </div>
                                       <div className="flex-1 min-w-0">
@@ -157,12 +278,17 @@ export function Experience() {
                                             <h4 className="text-sm font-medium text-text-primary group-hover/project:text-accent transition-colors">
                                               {project.name}
                                             </h4>
-                                            <p className="text-[10px] text-text-tertiary mt-0.5">
-                                              {project.type} • {project.period}
-                                            </p>
+                                            <div className="flex items-center gap-2 mt-0.5">
+                                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent-subtle text-accent">
+                                                {project.type.split(' • ')[0]}
+                                              </span>
+                                              <p className="text-[10px] text-text-tertiary">
+                                                {project.period}
+                                              </p>
+                                            </div>
                                           </div>
                                           <ChevronRight 
-                                            className="w-3.5 h-3.5 text-text-disabled group-hover/project:text-text-tertiary group-hover/project:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" 
+                                            className="w-3.5 h-3.5 text-text-disabled group-hover/project:text-accent group-hover/project:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" 
                                             strokeWidth={1.5} 
                                           />
                                         </div>
@@ -171,29 +297,43 @@ export function Experience() {
                                         </p>
                                       </div>
                                     </div>
-                                  </div>
+                                  </motion.div>
                                 );
                               })}
                             </div>
 
                             {/* Overall Impact */}
-                            <div className="mt-4 pt-4 border-t border-stroke">
+                            <div className="mt-5 pt-4 border-t border-stroke">
                               <p className="text-[10px] uppercase tracking-wider text-text-tertiary font-medium mb-3 flex items-center gap-1.5">
                                 <Target className="w-3 h-3" />
-                                Cumulative Impact
+                                Cumulative Impact at ACE
                               </p>
-                              <ul className="space-y-2">
+                              <div className="grid sm:grid-cols-2 gap-2">
                                 {job.impact.map((item, idx) => (
-                                  <li
+                                  <div
                                     key={idx}
-                                    className="flex items-start gap-2.5 text-xs text-text-secondary"
+                                    className="flex items-start gap-2.5 text-xs text-text-secondary p-2.5 rounded-lg bg-layer border border-stroke/50"
                                   >
                                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
-                                    {item}
-                                  </li>
+                                    <span>{item}</span>
+                                  </div>
                                 ))}
-                              </ul>
+                              </div>
                             </div>
+
+                            {/* Link to Projects */}
+                            {onNavigate && (
+                              <button
+                                onClick={(e) => {
+                                  e.stopPropagation();
+                                  onNavigate({ tab: "projects", section: "flagship-projects" });
+                                }}
+                                className="mt-4 w-full py-2.5 text-xs text-text-tertiary hover:text-accent border border-stroke hover:border-accent/30 rounded-lg transition-colors flex items-center justify-center gap-2 group"
+                              >
+                                <span>View these projects in detail</span>
+                                <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" strokeWidth={1.5} />
+                              </button>
+                            )}
                           </div>
                         </motion.div>
                       )}
@@ -236,6 +376,24 @@ export function Experience() {
                 {selectedExp.description}
               </p>
             </div>
+
+            {/* Highlights */}
+            {selectedExp.highlights && selectedExp.highlights.length > 0 && (
+              <div>
+                <h4 className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-3 flex items-center gap-2">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  Key Highlights
+                </h4>
+                <div className="space-y-2">
+                  {selectedExp.highlights.map((highlight, idx) => (
+                    <div key={idx} className="flex items-start gap-2.5 text-sm text-text-secondary">
+                      <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                      {highlight}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
 
             {/* Modules */}
             {selectedExp.modules && selectedExp.modules.length > 0 && (

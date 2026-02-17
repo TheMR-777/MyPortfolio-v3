@@ -84,7 +84,7 @@ export function App() {
       case "philosophy":
         return <Philosophy />;
       case "experience":
-        return <Experience />;
+        return <Experience onNavigate={handleNavigate} />;
       case "projects":
         return <Projects />;
       case "skills":
