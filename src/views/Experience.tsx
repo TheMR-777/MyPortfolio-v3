@@ -90,17 +90,17 @@ export function Experience({ onNavigate }: ExperienceProps) {
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-        className="mb-10"
+        className="mb-12"
       >
         <h1 className="text-2xl font-semibold text-text-primary tracking-tight mb-2">
           Experience
         </h1>
-        <p className="text-sm text-text-secondary mb-8">
-          Professional journey from internship to architecture consultant — building systems that transform enterprises
+        <p className="text-sm text-text-secondary">
+          From internship to architecture consultant — building systems that transform enterprises and establish new standards
         </p>
 
-        {/* Impact Stats */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        {/* Impact Stats - with refined cards */}
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 mt-8">
           {impactStats.map((stat, idx) => (
             <Tooltip
               key={stat.label}
@@ -125,13 +125,16 @@ export function Experience({ onNavigate }: ExperienceProps) {
               <motion.div
                 initial={{ opacity: 0, y: 8 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 + idx * 0.05, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                className="p-4 rounded-xl bg-layer border border-stroke hover:border-accent/30 transition-colors group cursor-default"
+                transition={{ delay: 0.1 + idx * 0.06, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+                className="relative p-4 rounded-xl bg-layer border border-stroke hover:border-accent/40 hover:bg-layer-hover transition-all duration-300 group cursor-default overflow-hidden"
               >
-                <stat.icon className="w-4 h-4 text-accent mb-2 group-hover:scale-110 transition-transform" strokeWidth={1.5} />
-                <div className="text-xl font-semibold text-text-primary">{stat.value}</div>
-                <div className="text-xs font-medium text-text-secondary">{stat.label}</div>
-                <div className="text-[10px] text-text-tertiary mt-0.5">{stat.detail}</div>
+                {/* Subtle top accent line on hover */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-accent/0 to-transparent group-hover:via-accent/50 transition-all duration-500" />
+                
+                <stat.icon className="w-4 h-4 text-accent mb-2.5 group-hover:scale-110 transition-transform duration-300" strokeWidth={1.5} />
+                <div className="text-2xl font-semibold text-text-primary tracking-tight">{stat.value}</div>
+                <div className="text-xs font-medium text-text-secondary mt-0.5">{stat.label}</div>
+                <div className="text-[10px] text-text-tertiary mt-1">{stat.detail}</div>
               </motion.div>
             </Tooltip>
           ))}
@@ -141,7 +144,7 @@ export function Experience({ onNavigate }: ExperienceProps) {
       {/* Timeline */}
       <div className="relative">
         {/* Timeline line - hidden on mobile */}
-        <div className="absolute left-[19px] top-8 bottom-8 w-px bg-gradient-to-b from-accent/40 via-stroke to-transparent hidden sm:block" />
+        <div className="absolute left-[19px] top-8 bottom-8 w-px bg-stroke hidden sm:block" />
 
         <div className="space-y-4 sm:space-y-6">
           {experience.map((job, index) => {
@@ -156,13 +159,11 @@ export function Experience({ onNavigate }: ExperienceProps) {
                 transition={{ duration: 0.4, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
                 className="relative pl-0 sm:pl-12"
               >
-                {/* Timeline dot - hidden on mobile */}
-                <div className="absolute left-[12px] top-6 w-4 h-4 rounded-full bg-content border-2 border-accent hidden sm:flex items-center justify-center">
-                  <div className="w-1.5 h-1.5 rounded-full bg-accent" />
-                </div>
+                {/* Timeline dot - hidden on mobile, simple design matching About's Journey */}
+                <div className="absolute left-[15px] top-2 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content hidden sm:block" />
 
-                {/* Card */}
-                <div className="rounded-xl bg-layer border border-stroke overflow-hidden hover:border-stroke-hover transition-colors">
+                {/* Card - clean design matching other pages */}
+                <div className="rounded-xl bg-layer border border-stroke overflow-hidden">
                   {/* Header - Always visible */}
                   <div
                     onClick={() => {
@@ -177,7 +178,7 @@ export function Experience({ onNavigate }: ExperienceProps) {
                     {/* Header */}
                     <div className="flex items-start justify-between gap-4 mb-4">
                       <div className="flex items-start gap-3">
-                        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-subtle flex items-center justify-center group-hover:scale-105 transition-transform">
+                        <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-accent-subtle flex items-center justify-center">
                           <Building2 className="w-5 h-5 text-accent" strokeWidth={1.5} />
                         </div>
                         <div>
@@ -217,22 +218,25 @@ export function Experience({ onNavigate }: ExperienceProps) {
                       {job.summary}
                     </p>
 
-                    {/* Highlights - quick pills */}
+                    {/* Highlights - clean bullet list */}
                     {job.highlights && job.highlights.length > 0 && !isACE && (
-                      <div className="mt-4 flex flex-wrap gap-1.5">
-                        {job.highlights.slice(0, 3).map((highlight, idx) => (
-                          <span
-                            key={idx}
-                            className="px-2 py-1 text-[10px] rounded-md bg-layer-active text-text-tertiary border border-stroke/50"
-                          >
-                            {highlight}
-                          </span>
-                        ))}
-                        {job.highlights.length > 3 && (
-                          <span className="px-2 py-1 text-[10px] rounded-md text-text-disabled">
-                            +{job.highlights.length - 3} more
-                          </span>
-                        )}
+                      <div className="mt-4 pt-3 border-t border-stroke/50">
+                        <ul className="space-y-1.5">
+                          {job.highlights.slice(0, 3).map((highlight, idx) => (
+                            <li
+                              key={idx}
+                              className="flex items-start gap-2 text-xs text-text-secondary"
+                            >
+                              <span className="w-1 h-1 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                              <span className="leading-relaxed">{highlight}</span>
+                            </li>
+                          ))}
+                          {job.highlights.length > 3 && (
+                            <li className="text-[10px] text-text-disabled pl-3">
+                              +{job.highlights.length - 3} more highlights
+                            </li>
+                          )}
+                        </ul>
                       </div>
                     )}
                   </div>
@@ -248,50 +252,49 @@ export function Experience({ onNavigate }: ExperienceProps) {
                           transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
                           className="overflow-hidden"
                         >
-                          <div className="px-5 pb-5 pt-2 border-t border-stroke bg-layer-active/30">
-                            <p className="text-[10px] uppercase tracking-wider text-text-tertiary font-medium mb-4 flex items-center gap-2">
-                              <Layers className="w-3 h-3" />
-                              Projects & Systems Engineered
-                            </p>
+                          <div className="px-5 pb-5 pt-4 border-t border-stroke bg-gradient-to-b from-layer-active/50 to-transparent">
+                            <div className="flex items-center gap-2 mb-4">
+                              <div className="w-6 h-6 rounded-md bg-accent-subtle flex items-center justify-center">
+                                <Layers className="w-3 h-3 text-accent" />
+                              </div>
+                              <p className="text-[11px] uppercase tracking-wider text-text-secondary font-medium">
+                                Projects & Systems Engineered
+                              </p>
+                            </div>
                             <div className="grid gap-3">
                               {job.aceProjects.map((project, pIdx) => {
                                 const Icon = projectIcons[project.name] || Layers;
                                 return (
                                   <motion.div
                                     key={project.name}
-                                    initial={{ opacity: 0, x: -8 }}
+                                    initial={{ opacity: 0, x: -12 }}
                                     animate={{ opacity: 1, x: 0 }}
-                                    transition={{ delay: pIdx * 0.03, duration: 0.3 }}
+                                    transition={{ delay: pIdx * 0.04, duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
                                     onClick={(e) => {
                                       e.stopPropagation();
                                       setSelectedAceProject(project);
                                     }}
-                                    className="group/project p-4 rounded-lg bg-layer border border-stroke hover:bg-layer-hover hover:border-accent/30 cursor-pointer transition-all"
+                                    className="group/project relative p-4 rounded-lg bg-layer border border-stroke hover:bg-layer-hover hover:border-stroke-hover cursor-pointer transition-all duration-300"
                                   >
                                     <div className="flex items-start gap-3">
                                       <div className="flex-shrink-0 w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center group-hover/project:bg-accent/20 transition-colors">
                                         <Icon className="w-4 h-4 text-accent" strokeWidth={1.5} />
                                       </div>
                                       <div className="flex-1 min-w-0">
-                                        <div className="flex items-start justify-between gap-2">
-                                          <div>
-                                            <h4 className="text-sm font-medium text-text-primary group-hover/project:text-accent transition-colors">
-                                              {project.name}
-                                            </h4>
-                                            <div className="flex items-center gap-2 mt-0.5">
-                                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-accent-subtle text-accent">
-                                                {project.type.split(' • ')[0]}
-                                              </span>
-                                              <p className="text-[10px] text-text-tertiary">
-                                                {project.period}
-                                              </p>
-                                            </div>
-                                          </div>
-                                          <ChevronRight 
-                                            className="w-3.5 h-3.5 text-text-disabled group-hover/project:text-accent group-hover/project:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" 
-                                            strokeWidth={1.5} 
-                                          />
-                                        </div>
+                                                                            <div className="flex items-start justify-between gap-2">
+                                      <div>
+                                        <h4 className="text-sm font-medium text-text-primary group-hover/project:text-accent transition-colors">
+                                          {project.name}
+                                        </h4>
+                                        <p className="text-[10px] text-text-tertiary mt-0.5">
+                                          {project.type} • {project.period}
+                                        </p>
+                                      </div>
+                                      <ChevronRight 
+                                        className="w-3.5 h-3.5 text-text-disabled group-hover/project:text-accent group-hover/project:translate-x-0.5 transition-all flex-shrink-0 mt-0.5" 
+                                        strokeWidth={1.5} 
+                                      />
+                                    </div>
                                         <p className="text-xs text-text-secondary mt-2 line-clamp-2">
                                           {project.summary}
                                         </p>
@@ -303,36 +306,46 @@ export function Experience({ onNavigate }: ExperienceProps) {
                             </div>
 
                             {/* Overall Impact */}
-                            <div className="mt-5 pt-4 border-t border-stroke">
-                              <p className="text-[10px] uppercase tracking-wider text-text-tertiary font-medium mb-3 flex items-center gap-1.5">
-                                <Target className="w-3 h-3" />
-                                Cumulative Impact at ACE
-                              </p>
-                              <div className="grid sm:grid-cols-2 gap-2">
+                            <div className="mt-6 pt-5 border-t border-stroke/50">
+                              <div className="flex items-center gap-2 mb-4">
+                                <div className="w-6 h-6 rounded-md bg-accent-subtle flex items-center justify-center">
+                                  <Target className="w-3 h-3 text-accent" />
+                                </div>
+                                <p className="text-[11px] uppercase tracking-wider text-text-secondary font-medium">
+                                  Cumulative Impact
+                                </p>
+                              </div>
+                              <div className="grid sm:grid-cols-2 gap-2.5">
                                 {job.impact.map((item, idx) => (
-                                  <div
+                                  <motion.div
                                     key={idx}
-                                    className="flex items-start gap-2.5 text-xs text-text-secondary p-2.5 rounded-lg bg-layer border border-stroke/50"
+                                    initial={{ opacity: 0, y: 4 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.2 + idx * 0.03, duration: 0.3 }}
+                                    className="flex items-start gap-2.5 text-xs text-text-secondary p-3 rounded-lg bg-mica border border-stroke/30 hover:border-stroke transition-colors"
                                   >
                                     <span className="w-1.5 h-1.5 rounded-full bg-accent mt-1.5 flex-shrink-0" />
-                                    <span>{item}</span>
-                                  </div>
+                                    <span className="leading-relaxed">{item}</span>
+                                  </motion.div>
                                 ))}
                               </div>
                             </div>
 
                             {/* Link to Projects */}
                             {onNavigate && (
-                              <button
+                              <motion.button
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.3 }}
                                 onClick={(e) => {
                                   e.stopPropagation();
                                   onNavigate({ tab: "projects", section: "flagship-projects" });
                                 }}
-                                className="mt-4 w-full py-2.5 text-xs text-text-tertiary hover:text-accent border border-stroke hover:border-accent/30 rounded-lg transition-colors flex items-center justify-center gap-2 group"
+                                className="mt-5 w-full py-3 text-xs text-text-secondary hover:text-accent bg-mica hover:bg-layer border border-stroke hover:border-accent/40 rounded-lg transition-all duration-300 flex items-center justify-center gap-2 group"
                               >
-                                <span>View these projects in detail</span>
-                                <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" strokeWidth={1.5} />
-                              </button>
+                                <span className="font-medium">View these projects in detail</span>
+                                <ChevronRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300" strokeWidth={1.5} />
+                              </motion.button>
                             )}
                           </div>
                         </motion.div>
