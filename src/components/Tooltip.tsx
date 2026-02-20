@@ -31,7 +31,7 @@ export const Tooltip: React.FC<TooltipProps> = ({
   children, 
   content, 
   action,
-  delay = 400 
+  delay = 500 
 }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [position, setPosition] = useState<'top' | 'bottom'>('top');

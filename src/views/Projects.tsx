@@ -220,6 +220,20 @@ export function Projects() {
               </div>
             )}
 
+            {/* Architectural Philosophy - if exists */}
+            {'architecturalPhilosophy' in selectedProject && selectedProject.architecturalPhilosophy && (
+              <div>
+                <h4 className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-2">
+                  Architectural Philosophy
+                </h4>
+                <div className="p-4 rounded-lg bg-accent-subtle border border-accent/20">
+                  <p className="text-sm text-text-primary leading-relaxed italic">
+                    {String(selectedProject.architecturalPhilosophy)}
+                  </p>
+                </div>
+              </div>
+            )}
+
             {selectedProject.approach && (
               <div>
                 <h4 className="text-xs font-medium text-text-tertiary uppercase tracking-wider mb-3 flex items-center gap-2">

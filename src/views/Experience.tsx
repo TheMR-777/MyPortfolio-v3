@@ -144,7 +144,7 @@ export function Experience({ onNavigate }: ExperienceProps) {
       {/* Timeline */}
       <div className="relative">
         {/* Timeline line - hidden on mobile */}
-        <div className="absolute left-[19px] top-8 bottom-8 w-px bg-stroke hidden sm:block" />
+        <div className="absolute left-[19px] top-6 bottom-6 w-px bg-stroke hidden sm:block" />
 
         <div className="space-y-4 sm:space-y-6">
           {experience.map((job, index) => {
@@ -160,7 +160,7 @@ export function Experience({ onNavigate }: ExperienceProps) {
                 className="relative pl-0 sm:pl-12"
               >
                 {/* Timeline dot - hidden on mobile, simple design matching About's Journey */}
-                <div className="absolute left-[15px] top-2 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content hidden sm:block" />
+                <div className="absolute left-[15px] top-6 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content hidden sm:block" />
 
                 {/* Card - clean design matching other pages */}
                 <div className="rounded-xl bg-layer border border-stroke overflow-hidden">

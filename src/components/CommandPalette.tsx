@@ -22,6 +22,7 @@ import {
 import { cn } from "../utils/cn";
 import { useTheme, accentColors, type AccentColor } from "../contexts/ThemeContext";
 import type { TabId } from "../App";
+import { portfolioData } from "../data/portfolio";
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -154,7 +155,7 @@ export function CommandPalette({ isOpen, onClose, onNavigate }: CommandPalettePr
         description: "View GitHub profile",
         icon: Github,
         category: "links",
-        action: () => { window.open("https://github.com/TheMR-777", "_blank"); onClose(); },
+        action: () => { window.open(portfolioData.personal.social.github, "_blank"); onClose(); },
         keywords: ["github", "code", "repository", "source"],
       },
       {
@@ -163,16 +164,16 @@ export function CommandPalette({ isOpen, onClose, onNavigate }: CommandPalettePr
         description: "Connect on LinkedIn",
         icon: Linkedin,
         category: "links",
-        action: () => { window.open("https://www.linkedin.com/in/777-ammar", "_blank"); onClose(); },
+        action: () => { window.open(portfolioData.personal.social.linkedin, "_blank"); onClose(); },
         keywords: ["linkedin", "professional", "network", "connect"],
       },
       {
         id: "link-email",
         label: "Send Email",
-        description: "m.shahzad.ms72@gmail.com",
+        description: portfolioData.personal.email,
         icon: Mail,
         category: "links",
-        action: () => { window.open("mailto:m.shahzad.ms72@gmail.com", "_blank"); onClose(); },
+        action: () => { window.open(`mailto:${portfolioData.personal.email}`, "_blank"); onClose(); },
         keywords: ["email", "mail", "contact", "message"],
       },
       {

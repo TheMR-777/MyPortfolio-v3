@@ -30,10 +30,12 @@ const extraNavItems: { id: TabId; label: string; icon: typeof Sparkles }[] = [
   { id: "skills", label: "Skills & Credentials", icon: Wrench },
 ];
 
+import { portfolioData } from "../data/portfolio";
+
 const socialLinks = [
-  { href: "https://github.com/TheMR-777", icon: Github, label: "GitHub" },
-  { href: "https://www.linkedin.com/in/777-ammar", icon: Linkedin, label: "LinkedIn" },
-  { href: "mailto:m.shahzad.ms72@gmail.com", icon: Mail, label: "Email" },
+  { href: portfolioData.personal.social.github, icon: Github, label: "GitHub" },
+  { href: portfolioData.personal.social.linkedin, icon: Linkedin, label: "LinkedIn" },
+  { href: `mailto:${portfolioData.personal.email}`, icon: Mail, label: "Email" },
 ];
 
 export function MobileMenu({ 

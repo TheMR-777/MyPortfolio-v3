@@ -416,10 +416,7 @@ export function Skills() {
                   
                   {/* IELTS tap/hover indicator */}
                   {isIELTS && (
-                    <p 
-                      className="text-[10px] text-accent mt-1.5 flex items-center gap-1 cursor-pointer sm:cursor-default"
-                      onClick={() => isMobile && setShowIeltsPopover(!showIeltsPopover)}
-                    >
+                    <p className="text-[10px] text-accent mt-1.5 flex items-center gap-1 cursor-default">
                       <span className="inline-block w-1 h-1 rounded-full bg-accent animate-pulse" />
                       {isMobile ? 'Tap the card to see score breakdown' : 'Hover to see score breakdown'}
                     </p>

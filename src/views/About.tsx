@@ -4,7 +4,7 @@ import {
   MapPin, Calendar, Languages, GraduationCap, 
   Phone, Mail, ExternalLink, Sparkles,
   Telescope, Atom, Brain, X, Globe, Users,
-  GitBranch, Shield, Award, BookOpen, ChevronDown
+  GitBranch, Shield, Award, BookOpen, ChevronDown, MessageCircle
 } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
 
@@ -131,7 +131,7 @@ export function About() {
             rel="noopener noreferrer"
             className="flex items-center gap-2 px-3 py-2 rounded-lg bg-layer-active border border-stroke text-sm text-text-secondary hover:text-accent hover:border-stroke-hover transition-colors"
           >
-            <Globe className="w-3.5 h-3.5" strokeWidth={1.5} />
+            <MessageCircle className="w-3.5 h-3.5" strokeWidth={1.5} />
             WhatsApp
           </a>
           <a
@@ -186,7 +186,7 @@ export function About() {
             {Object.values(journey).map((phase) => (
               <div key={phase.title} className="relative pl-0 sm:pl-12">
                 {/* Timeline dot - hidden on mobile */}
-                <div className="absolute left-[15px] top-2 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content hidden sm:block" />
+                <div className="absolute left-[15px] top-6 w-2.5 h-2.5 rounded-full bg-accent border-2 border-content hidden sm:block" />
 
                 <div className="p-5 rounded-xl bg-layer border border-stroke">
                   <div className="flex items-start justify-between gap-4 mb-2">
