@@ -45,6 +45,10 @@ const Philosophy = () => {
       title: 'The Beauty in Fundamentals',
       content: 'I vividly remember iterating on fundamental algorithms for far longer than anyone would consider "reasonable"—not because I had to, but because each iteration revealed something new. A zero-branch Fibonacci by seeding with −1 and 1. A sieve optimization that shaved microseconds.',
       highlight: 'These aren\'t just technical wins; they\'re discoveries.',
+      discovery: {
+        title: "Rediscovering Horner's Method",
+        story: "During university, frustrated with the heavy calculations of binary-to-decimal conversion (even with shortcuts), I experimented and found my own technique: start from the leftmost 1, move right — multiply the result by 2, add the next digit. Repeat until the end. Years later, I learned I had independently discovered Horner's Method of base conversion — a moment that validated my trust in mathematical intuition."
+      }
     },
     {
       title: 'Succeeding Within the Failures',
@@ -170,6 +174,28 @@ const Philosophy = () => {
                         "{step.highlight}"
                       </p>
                     </div>
+
+                    {/* Discovery Story — appears for "The Beauty in Fundamentals" */}
+                    {step.discovery && (
+                      <motion.div 
+                        initial={{ opacity: 0, y: 8 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                        className="ml-10 mt-6 p-5 rounded-xl bg-mica border border-stroke"
+                      >
+                        <div className="flex items-start gap-3 mb-3">
+                          <div className="w-7 h-7 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0">
+                            <Lightbulb className="w-3.5 h-3.5 text-accent" />
+                          </div>
+                          <h4 className="text-sm font-semibold text-text-primary pt-1">
+                            {step.discovery.title}
+                          </h4>
+                        </div>
+                        <p className="text-sm text-text-secondary leading-relaxed pl-10">
+                          {step.discovery.story}
+                        </p>
+                      </motion.div>
+                    )}
                   </div>
                 </motion.div>
               ))}

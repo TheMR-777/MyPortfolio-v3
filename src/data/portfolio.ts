@@ -59,7 +59,11 @@ export const portfolioData = {
       },
       {
         title: "The Beauty in Fundamentals",
-        content: "I vividly remember iterating on fundamental algorithms for far longer than anyone would consider 'reasonable'—not because I had to, but because each iteration revealed something new. A zero-branch Fibonacci by seeding with −1 and 1. A sieve optimization that shaved microseconds. These aren't just technical wins; they're discoveries, and each one felt as profound as solving a major architectural problem."
+        content: "I vividly remember iterating on fundamental algorithms for far longer than anyone would consider 'reasonable'—not because I had to, but because each iteration revealed something new. A zero-branch Fibonacci by seeding with −1 and 1. A sieve optimization that shaved microseconds. These aren't just technical wins; they're discoveries, and each one felt as profound as solving a major architectural problem.",
+        discovery: {
+          title: "Rediscovering Horner's Method",
+          story: "During university, frustrated with the heavy calculations of binary-to-decimal conversion (even with shortcuts), I experimented and found my own technique: start from the leftmost 1, move right — multiply the result by 2, add the next digit. Repeat until the end. Years later, I learned I had independently discovered Horner's Method of base conversion — a moment that validated my trust in mathematical intuition."
+        }
       },
       {
         title: "Succeeding Within the Failures",
