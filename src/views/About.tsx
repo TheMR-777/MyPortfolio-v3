@@ -1,22 +1,47 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { 
-  MapPin, Calendar, Languages, GraduationCap, 
-  Phone, Mail, ExternalLink, Sparkles,
-  Telescope, Atom, Brain, X, Globe, Users,
-  GitBranch, Shield, Award, BookOpen, ChevronDown, MessageCircle
+import {
+  MapPin,
+  Calendar,
+  Languages,
+  GraduationCap,
+  Phone,
+  Mail,
+  ExternalLink,
+  Sparkles,
+  Telescope,
+  Atom,
+  Brain,
+  X,
+  Globe,
+  Users,
+  GitBranch,
+  Shield,
+  Award,
+  BookOpen,
+  ChevronDown,
+  MessageCircle,
 } from "lucide-react";
 import { portfolioData } from "../data/portfolio";
 
 export function About() {
-  const { personal, journey, publications, nullbyteArticles, cyberMACS, community, quantumResearch, vulnerabilityDiscoveries } = portfolioData;
+  const {
+    personal,
+    journey,
+    publications,
+    nullbyteArticles,
+    cyberMACS,
+    community,
+    quantumResearch,
+    vulnerabilityDiscoveries,
+  } = portfolioData;
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   const [showAllArticles, setShowAllArticles] = useState(false);
 
   const interestIcons = {
     Astronomy: Telescope,
     Physics: Atom,
-    Psychology: Brain
+    Psychology: Brain,
   };
 
   return (
@@ -50,9 +75,12 @@ export function About() {
               <button
                 onClick={() => setShowProfilePreview(true)}
                 className="w-32 h-32 rounded-xl overflow-hidden border-2 border-stroke group-hover:border-accent/40 transition-all duration-300 cursor-pointer focus:outline-none"
-                style={{ boxShadow: 'none' }}
-                onMouseEnter={(e) => e.currentTarget.style.boxShadow = '0 8px 24px var(--accent-subtle)'}
-                onMouseLeave={(e) => e.currentTarget.style.boxShadow = 'none'}
+                style={{ boxShadow: "none" }}
+                onMouseEnter={(e) =>
+                  (e.currentTarget.style.boxShadow =
+                    "0 8px 24px var(--accent-subtle)")
+                }
+                onMouseLeave={(e) => (e.currentTarget.style.boxShadow = "none")}
               >
                 <img
                   src={personal.profileImage}
@@ -70,27 +98,39 @@ export function About() {
                 <MapPin className="w-3.5 h-3.5 text-accent" strokeWidth={1.5} />
               </div>
               <div>
-                <p className="text-[10px] text-text-tertiary uppercase tracking-wider">Location</p>
+                <p className="text-[10px] text-text-tertiary uppercase tracking-wider">
+                  Location
+                </p>
                 <p className="text-sm text-text-primary">{personal.location}</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0">
-                <Calendar className="w-3.5 h-3.5 text-accent" strokeWidth={1.5} />
+                <Calendar
+                  className="w-3.5 h-3.5 text-accent"
+                  strokeWidth={1.5}
+                />
               </div>
               <div>
-                <p className="text-[10px] text-text-tertiary uppercase tracking-wider">Born</p>
+                <p className="text-[10px] text-text-tertiary uppercase tracking-wider">
+                  Born
+                </p>
                 <p className="text-sm text-text-primary">{personal.dob}</p>
               </div>
             </div>
 
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0">
-                <Languages className="w-3.5 h-3.5 text-accent" strokeWidth={1.5} />
+                <Languages
+                  className="w-3.5 h-3.5 text-accent"
+                  strokeWidth={1.5}
+                />
               </div>
               <div>
-                <p className="text-[10px] text-text-tertiary uppercase tracking-wider">Languages</p>
+                <p className="text-[10px] text-text-tertiary uppercase tracking-wider">
+                  Languages
+                </p>
                 <p className="text-sm text-text-primary">English (IELTS 7.5)</p>
                 <p className="text-xs text-text-tertiary">Urdu (Native)</p>
               </div>
@@ -98,10 +138,15 @@ export function About() {
 
             <div className="flex items-start gap-3">
               <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0">
-                <GraduationCap className="w-3.5 h-3.5 text-accent" strokeWidth={1.5} />
+                <GraduationCap
+                  className="w-3.5 h-3.5 text-accent"
+                  strokeWidth={1.5}
+                />
               </div>
               <div>
-                <p className="text-[10px] text-text-tertiary uppercase tracking-wider">Education</p>
+                <p className="text-[10px] text-text-tertiary uppercase tracking-wider">
+                  Education
+                </p>
                 <p className="text-sm text-text-primary">BS Computer Science</p>
                 <p className="text-xs text-text-tertiary">CGPA: 3.73/4.0</p>
               </div>
@@ -223,7 +268,9 @@ export function About() {
 
         <div className="grid md:grid-cols-3 gap-4">
           {personal.interests.map((interest) => {
-            const Icon = interestIcons[interest.name as keyof typeof interestIcons] || Sparkles;
+            const Icon =
+              interestIcons[interest.name as keyof typeof interestIcons] ||
+              Sparkles;
             return (
               <div
                 key={interest.name}
@@ -264,9 +311,7 @@ export function About() {
               <h3 className="text-sm font-medium text-text-primary mb-1">
                 {pub.title}
               </h3>
-              <p className="text-xs text-text-tertiary mb-2">
-                {pub.authors}
-              </p>
+              <p className="text-xs text-text-tertiary mb-2">{pub.authors}</p>
               <div className="flex items-center gap-3 text-xs">
                 <span className="text-accent">{pub.journal}</span>
                 <span className="text-text-disabled">{pub.volume}</span>
@@ -315,12 +360,19 @@ export function About() {
 
         <div className="p-6 rounded-xl bg-layer border border-stroke">
           <div className="flex items-start justify-between gap-4 mb-3">
-            <h3 className="text-sm font-medium text-text-primary">{cyberMACS.title}</h3>
-            <span className="text-[10px] text-text-tertiary whitespace-nowrap">{cyberMACS.year}</span>
+            <h3 className="text-sm font-medium text-text-primary">
+              {cyberMACS.title}
+            </h3>
+            <span className="text-[10px] text-text-tertiary whitespace-nowrap">
+              {cyberMACS.year}
+            </span>
           </div>
           <div className="flex flex-wrap gap-2 mb-4">
-            {cyberMACS.status.split(' → ').map((step) => (
-              <span key={step} className="text-[10px] px-2 py-1 rounded-md bg-accent-subtle text-accent font-medium">
+            {cyberMACS.status.split(" → ").map((step) => (
+              <span
+                key={step}
+                className="text-[10px] px-2 py-1 rounded-md bg-accent-subtle text-accent font-medium"
+              >
                 {step}
               </span>
             ))}
@@ -357,22 +409,38 @@ export function About() {
           <div className="p-5 rounded-xl bg-layer border border-stroke">
             <div className="flex items-center gap-2 mb-3">
               <Globe className="w-4 h-4 text-accent" strokeWidth={1.5} />
-              <h3 className="text-sm font-medium text-text-primary">{community.cybersecurityCommunity.title}</h3>
+              <h3 className="text-sm font-medium text-text-primary">
+                {community.cybersecurityCommunity.title}
+              </h3>
             </div>
             <div className="flex items-center gap-3 mb-3">
-              <span className="text-[10px] text-text-tertiary">{community.cybersecurityCommunity.role}</span>
+              <span className="text-[10px] text-text-tertiary">
+                {community.cybersecurityCommunity.role}
+              </span>
               <span className="text-text-disabled">·</span>
-              <span className="text-[10px] text-text-tertiary">{community.cybersecurityCommunity.duration}</span>
+              <span className="text-[10px] text-text-tertiary">
+                {community.cybersecurityCommunity.duration}
+              </span>
             </div>
-            <p className="text-xs text-accent font-medium mb-3">{community.cybersecurityCommunity.scale}</p>
+            <p className="text-xs text-accent font-medium mb-3">
+              {community.cybersecurityCommunity.scale}
+            </p>
             <div className="flex flex-wrap gap-1.5 mb-3">
               {community.cybersecurityCommunity.countries.map((c) => (
-                <span key={c} className="text-[10px] px-2 py-0.5 rounded bg-layer-active border border-stroke text-text-tertiary">{c}</span>
+                <span
+                  key={c}
+                  className="text-[10px] px-2 py-0.5 rounded bg-layer-active border border-stroke text-text-tertiary"
+                >
+                  {c}
+                </span>
               ))}
             </div>
             <ul className="space-y-1.5">
               {community.cybersecurityCommunity.achievements.map((a) => (
-                <li key={a} className="text-xs text-text-secondary leading-relaxed flex items-start gap-2">
+                <li
+                  key={a}
+                  className="text-xs text-text-secondary leading-relaxed flex items-start gap-2"
+                >
                   <span className="text-accent mt-1 text-[6px]">●</span>
                   {a}
                 </li>
@@ -384,22 +452,37 @@ export function About() {
           <div className="p-5 rounded-xl bg-layer border border-stroke">
             <div className="flex items-center gap-2 mb-3">
               <BookOpen className="w-4 h-4 text-accent" strokeWidth={1.5} />
-              <h3 className="text-sm font-medium text-text-primary">Mentorship & Teaching</h3>
+              <h3 className="text-sm font-medium text-text-primary">
+                Mentorship & Teaching
+              </h3>
             </div>
             <div className="grid grid-cols-2 gap-3 mb-4">
               <div className="p-3 rounded-lg bg-layer-active border border-stroke text-center">
-                <p className="text-lg font-semibold text-accent">{community.mentorship.sessions}</p>
+                <p className="text-lg font-semibold text-accent">
+                  {community.mentorship.sessions}
+                </p>
                 <p className="text-[10px] text-text-tertiary">Peer Sessions</p>
               </div>
               <div className="p-3 rounded-lg bg-layer-active border border-stroke text-center">
-                <p className="text-lg font-semibold text-accent">{community.mentorship.studentsMentored}</p>
-                <p className="text-[10px] text-text-tertiary">Students Mentored</p>
+                <p className="text-lg font-semibold text-accent">
+                  {community.mentorship.studentsMentored}
+                </p>
+                <p className="text-[10px] text-text-tertiary">
+                  Students Mentored
+                </p>
               </div>
             </div>
-            <p className="text-xs text-text-secondary leading-relaxed mb-3">{community.mentorship.description}</p>
+            <p className="text-xs text-text-secondary leading-relaxed mb-3">
+              {community.mentorship.description}
+            </p>
             <div className="flex flex-wrap gap-1.5">
               {community.mentorship.topics.map((t) => (
-                <span key={t} className="text-[10px] px-2 py-0.5 rounded bg-layer-active border border-stroke text-text-tertiary">{t}</span>
+                <span
+                  key={t}
+                  className="text-[10px] px-2 py-0.5 rounded bg-layer-active border border-stroke text-text-tertiary"
+                >
+                  {t}
+                </span>
               ))}
             </div>
           </div>
@@ -431,8 +514,12 @@ export function About() {
             >
               <div className="min-w-0">
                 <div className="flex items-center gap-2 mb-1">
-                  <h3 className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors">{os.project}</h3>
-                  <span className="text-[10px] px-2 py-0.5 rounded bg-layer-active border border-stroke text-text-tertiary">{os.role}</span>
+                  <h3 className="text-sm font-medium text-text-primary group-hover:text-accent transition-colors">
+                    {os.project}
+                  </h3>
+                  <span className="text-[10px] px-2 py-0.5 rounded bg-layer-active border border-stroke text-text-tertiary">
+                    {os.role}
+                  </span>
                 </div>
                 <p className="text-xs text-text-secondary">{os.description}</p>
               </div>
@@ -455,16 +542,25 @@ export function About() {
 
         <div className="p-5 rounded-xl bg-layer border border-stroke">
           <div className="flex items-start justify-between gap-4 mb-2">
-            <h3 className="text-sm font-medium text-text-primary">{quantumResearch.title}</h3>
-            <span className="text-[10px] text-text-tertiary whitespace-nowrap">{quantumResearch.duration}</span>
+            <h3 className="text-sm font-medium text-text-primary">
+              {quantumResearch.title}
+            </h3>
+            <span className="text-[10px] text-text-tertiary whitespace-nowrap">
+              {quantumResearch.duration}
+            </span>
           </div>
           <p className="text-xs text-text-tertiary mb-3">
             {quantumResearch.collaborator} • {quantumResearch.institution}
           </p>
-          <p className="text-xs text-text-secondary leading-relaxed mb-4">{quantumResearch.description}</p>
+          <p className="text-xs text-text-secondary leading-relaxed mb-4">
+            {quantumResearch.description}
+          </p>
           <ul className="space-y-1.5">
             {quantumResearch.contributions.map((c) => (
-              <li key={c} className="text-xs text-text-secondary leading-relaxed flex items-start gap-2">
+              <li
+                key={c}
+                className="text-xs text-text-secondary leading-relaxed flex items-start gap-2"
+              >
                 <span className="text-accent mt-1 text-[6px]">●</span>
                 {c}
               </li>
@@ -489,19 +585,32 @@ export function About() {
 
         <div className="space-y-3">
           {vulnerabilityDiscoveries.map((vuln) => (
-            <div key={vuln.target} className="p-4 rounded-xl bg-layer border border-stroke">
+            <div
+              key={vuln.target}
+              className="p-4 rounded-xl bg-layer border border-stroke"
+            >
               <div className="flex items-start justify-between gap-4 mb-2">
-                <h3 className="text-sm font-medium text-text-primary">{vuln.target}</h3>
-                <span className={`text-[10px] px-2 py-0.5 rounded font-medium ${
-                  vuln.severity === 'Critical' ? 'bg-red-500/10 text-red-400' :
-                  vuln.severity === 'High' ? 'bg-orange-500/10 text-orange-400' :
-                  'bg-yellow-500/10 text-yellow-400'
-                }`}>
+                <h3 className="text-sm font-medium text-text-primary">
+                  {vuln.target}
+                </h3>
+                <span
+                  className={`text-[10px] px-2 py-0.5 rounded font-medium ${
+                    vuln.severity === "Critical"
+                      ? "bg-red-500/10 text-red-400"
+                      : vuln.severity === "High"
+                        ? "bg-orange-500/10 text-orange-400"
+                        : "bg-yellow-500/10 text-yellow-400"
+                  }`}
+                >
                   {vuln.severity}
                 </span>
               </div>
-              <span className="text-[10px] text-accent font-medium">{vuln.type}</span>
-              <p className="text-xs text-text-secondary leading-relaxed mt-2">{vuln.description}</p>
+              <span className="text-[10px] text-accent font-medium">
+                {vuln.type}
+              </span>
+              <p className="text-xs text-text-secondary leading-relaxed mt-2">
+                {vuln.description}
+              </p>
             </div>
           ))}
         </div>
@@ -520,58 +629,103 @@ export function About() {
         <div className="p-5 rounded-xl bg-layer border border-stroke">
           <p className="text-xs text-text-secondary mb-4">
             Published 10 security research articles as <span className="text-accent font-medium">H4ck3R_777</span> on Null Byte, 
-            pioneering mobile-to-mobile penetration testing. The first article became the 2nd most-read on the platform (2018-2020).
+            pioneering mobile-to-mobile penetration testing. These included the 2nd and 8th most-read articles on the platform (2018-2020).
           </p>
-          
+
           {/* Articles Grid — 2 columns on desktop */}
-          <motion.div 
+          <motion.div
             className="grid md:grid-cols-2 gap-2"
             initial={false}
-            animate={{ height: 'auto' }}
+            animate={{ height: "auto" }}
             transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
           >
             <AnimatePresence mode="popLayout">
-              {(showAllArticles ? nullbyteArticles : nullbyteArticles.slice(0, 4)).map((article, idx) => (
-                <motion.a
-                  key={article.title}
-                  href={article.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start justify-between gap-3 p-3 rounded-lg bg-layer-active border border-stroke hover:border-accent/30 transition-colors group"
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ 
-                    opacity: 1, 
-                    y: 0,
-                    transition: { 
-                      duration: 0.3, 
-                      delay: idx * 0.05, 
-                      ease: [0.16, 1, 0.3, 1] 
+              {(showAllArticles
+                ? nullbyteArticles
+                : nullbyteArticles.slice(0, 4)
+              ).map((article, idx) => {
+                const isHighlighted =
+                  "reads" in article && Boolean(article.reads);
+
+                return (
+                  <motion.a
+                    key={article.title}
+                    href={article.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={`relative flex items-center justify-between gap-3 p-3 rounded-lg overflow-hidden transition-all duration-300 group ${
+                      isHighlighted
+                        ? "bg-layer border border-accent/30 hover:border-accent/50"
+                        : "bg-layer-active border border-stroke hover:border-accent/30"
+                    }`}
+                    style={
+                      isHighlighted
+                        ? { boxShadow: "0 4px 20px -8px var(--accent-subtle)" }
+                        : {}
                     }
-                  }}
-                  exit={{ 
-                    opacity: 0, 
-                    y: -4, 
-                    scale: 0.98,
-                    transition: { duration: 0.2 }
-                  }}
-                  layout
-                >
-                  <div className="flex items-start gap-2 min-w-0 flex-1">
-                    <span className="text-[11px] text-text-secondary group-hover:text-text-primary transition-colors leading-relaxed">
-                      {article.title}
-                    </span>
-                  </div>
-                  <div className="flex items-center gap-1.5 flex-shrink-0">
-                    {'reads' in article && article.reads && (
-                      <span className="text-[9px] px-1.5 py-0.5 rounded bg-accent-subtle text-accent whitespace-nowrap">{article.reads}</span>
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{
+                      opacity: 1,
+                      y: 0,
+                      transition: {
+                        duration: 0.3,
+                        delay: idx * 0.05,
+                        ease: [0.16, 1, 0.3, 1],
+                      },
+                    }}
+                    exit={{
+                      opacity: 0,
+                      y: -4,
+                      scale: 0.98,
+                      transition: { duration: 0.2 },
+                    }}
+                    layout
+                  >
+                    {isHighlighted && (
+                      <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-lg">
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-accent/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2" />
+                      </div>
                     )}
-                    <ExternalLink className="w-3 h-3 text-text-disabled group-hover:text-accent transition-colors" />
-                  </div>
-                </motion.a>
-              ))}
+
+                    <div className="flex flex-col items-start min-w-0 flex-1 relative z-10">
+                      <span
+                        className={`text-[11px] transition-colors leading-relaxed ${
+                          isHighlighted
+                            ? "text-text-primary font-medium"
+                            : "text-text-secondary group-hover:text-text-primary"
+                        }`}
+                      >
+                        {article.title}
+                      </span>
+
+                      {isHighlighted && (
+                        <div className="flex items-center gap-1.5 mt-1.5">
+                          <Award
+                            className="w-3.5 h-3.5 text-accent"
+                            strokeWidth={2}
+                          />
+                          <span className="text-[9px] font-medium text-accent tracking-wide">
+                            {article.reads}
+                          </span>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="flex items-center flex-shrink-0 relative z-10">
+                      <ExternalLink
+                        className={`w-3.5 h-3.5 transition-colors ${
+                          isHighlighted
+                            ? "text-accent/60 group-hover:text-accent"
+                            : "text-text-disabled group-hover:text-accent"
+                        }`}
+                      />
+                    </div>
+                  </motion.a>
+                );
+              })}
             </AnimatePresence>
           </motion.div>
-          
+
           {/* Expand/Collapse Button */}
           <motion.button
             onClick={() => setShowAllArticles(!showAllArticles)}
@@ -584,7 +738,11 @@ export function About() {
             >
               <ChevronDown className="w-3.5 h-3.5" />
             </motion.div>
-            <span>{showAllArticles ? 'Show less' : `Show all ${nullbyteArticles.length} articles`}</span>
+            <span>
+              {showAllArticles
+                ? "Show less"
+                : `Show all ${nullbyteArticles.length} articles`}
+            </span>
           </motion.button>
         </div>
       </motion.section>
@@ -602,15 +760,15 @@ export function About() {
           >
             {/* Dimmed backdrop */}
             <div className="absolute inset-0 bg-black/70" />
-            
+
             {/* Subtle accent vignette */}
-            <div 
+            <div
               className="absolute inset-0 pointer-events-none"
               style={{
                 background: `radial-gradient(ellipse 70% 50% at 50% 50%, hsl(var(--accent-hsl) / 0.08) 0%, transparent 70%)`,
               }}
             />
-            
+
             {/* Image Container */}
             <motion.div
               initial={{ scale: 0.92, opacity: 0, y: 12 }}
@@ -627,11 +785,11 @@ export function About() {
               >
                 <X className="w-4 h-4" strokeWidth={1.5} />
               </button>
-              
+
               {/* Fluent Image Card */}
               <div className="rounded-2xl overflow-hidden bg-layer border border-stroke shadow-dialog">
                 {/* Mica background for PNG transparency */}
-                <div 
+                <div
                   className="relative"
                   style={{
                     background: `
@@ -642,14 +800,14 @@ export function About() {
                 >
                   {/* Subtle noise texture */}
                   <div className="absolute inset-0 mica-surface opacity-40" />
-                  
+
                   <img
                     src={personal.profileImage}
                     alt={personal.name}
                     className="w-full h-auto relative z-10"
                   />
                 </div>
-                
+
                 {/* Caption inside card - Fluent style footer */}
                 <div className="px-5 py-4 border-t border-stroke bg-mica">
                   <p className="text-center text-sm text-text-primary font-medium">

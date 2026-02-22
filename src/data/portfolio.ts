@@ -671,17 +671,18 @@ export const portfolioData = {
 
   nullbyteArticles: [
     {
-      title: "Installing Metasploit Framework on Android - Part 1: Termux",
+      title: "Hack Android Device with Termux - Part 1: Over Internet",
       reads: "2nd most-read article (2018-2020)",
+      link: "https://null-byte.wonderhowto.com/forum/to-hack-android-device-with-termux-android-part-1-over-internet-ultimate-guide-0187005/"
+    },
+    {
+      title: "Installing Metasploit Framework on Android - Part 1: Termux",
+      reads: "8th most-read article (2018-2020)",
       link: "https://null-byte.wonderhowto.com/forum/to-install-metasploit-framework-android-part-1-termux-0186792/"
     },
     {
       title: "Hack Android Device with Termux - Part 2: Over WLAN Hotspot",
       link: "https://null-byte.wonderhowto.com/forum/to-hack-android-device-with-termux-android-part-2-over-wlan-hotspot-ultimate-guide-0187637/"
-    },
-    {
-      title: "Hack Android Device with Termux - Part 1: Over Internet",
-      link: "https://null-byte.wonderhowto.com/forum/to-hack-android-device-with-termux-android-part-1-over-internet-ultimate-guide-0187005/"
     },
     {
       title: "Installing Metasploit Framework - Part 2: GNURoot Debian",
