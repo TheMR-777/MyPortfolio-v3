@@ -22,6 +22,7 @@ import {
   BookOpen,
   ChevronDown,
   MessageCircle,
+  Trophy,
 } from "lucide-react";
 import { portfolioData } from "../lib/portfolioDAL";
 import { useGitHubStats, GITHUB_USERNAME_EXPORT } from "../hooks/useGitHubStats";
@@ -38,7 +39,7 @@ export function About({ onNavigate }: { onNavigate: NavigateFn }) {
     journey,
     publications,
     nullbyteArticles,
-    cyberMACS,
+    internationalRecognition,
     community,
     quantumResearch,
     vulnerabilityDiscoveries,
@@ -358,49 +359,90 @@ export function About({ onNavigate }: { onNavigate: NavigateFn }) {
         </div>
       </motion.section>
 
-      {/* CyberMACS Erasmus Mundus */}
+      {/* International Recognition */}
       <motion.section
         initial={{ opacity: 0, y: 12 }}
         whileInView={{ opacity: 1, y: 0 }} viewport={SCROLL_ANIMATION_VP}
         transition={{ duration: 0.4, delay: 0.25, ease: [0.16, 1, 0.3, 1] }}
         className="mb-10"
       >
-        <div className="flex items-center gap-2 mb-5">
-          <Award className="w-4 h-4 text-accent" strokeWidth={1.5} />
+        <div className="flex items-center gap-2 mb-2">
+          <Trophy className="w-4 h-4 text-accent" strokeWidth={1.5} />
           <h2 className="text-lg font-semibold text-text-primary">
-            International Recognition
+            {internationalRecognition.headline}
           </h2>
         </div>
+        <p className="text-xs text-text-tertiary mb-5 ml-6">
+          {internationalRecognition.subtitle}
+        </p>
 
-        <div className="p-6 rounded-xl bg-layer border border-stroke">
-          <div className="flex items-start justify-between gap-4 mb-3">
-            <h3 className="text-sm font-medium text-text-primary">
-              {cyberMACS.title}
-            </h3>
-            <span className="text-[10px] text-text-tertiary whitespace-nowrap">
-              {cyberMACS.year}
-            </span>
-          </div>
-          <div className="flex flex-wrap gap-2 mb-4">
-            {cyberMACS.status.split(" → ").map((step) => (
-              <span
-                key={step}
-                className="text-[10px] px-2 py-1 rounded-md bg-accent-subtle text-accent font-medium"
-              >
-                {step}
-              </span>
-            ))}
-          </div>
+        <div className="grid md:grid-cols-2 gap-3">
+          {internationalRecognition.milestones.map((m, idx) => (
+            <motion.div
+              key={m.institution}
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={SCROLL_ANIMATION_VP}
+              transition={{ duration: 0.35, delay: 0.05 * idx, ease: [0.16, 1, 0.3, 1] }}
+              className={`relative p-5 rounded-xl bg-layer border overflow-hidden transition-all ${
+                m.highlight
+                  ? "border-accent/30 hover:border-accent/50"
+                  : "border-stroke hover:border-stroke-hover"
+              }`}
+              style={
+                m.highlight
+                  ? { boxShadow: "0 4px 20px -8px var(--accent-subtle)" }
+                  : {}
+              }
+            >
+              {/* Subtle glow for highlighted cards */}
+              {m.highlight && (
+                <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl">
+                  <div className="absolute top-0 right-0 w-28 h-28 bg-accent/8 blur-3xl rounded-full translate-x-1/3 -translate-y-1/3" />
+                </div>
+              )}
+
+              <div className="relative z-10">
+                {/* Header */}
+                <div className="flex items-start justify-between gap-3 mb-2">
+                  <h3 className="text-sm font-medium text-text-primary">
+                    {m.institution}
+                  </h3>
+                  <span className="text-[10px] text-text-tertiary whitespace-nowrap flex items-center gap-1">
+                    <Globe className="w-2.5 h-2.5" strokeWidth={1.5} />
+                    {m.country}
+                  </span>
+                </div>
+
+                {/* Program */}
+                <p className="text-[11px] text-text-tertiary mb-3">
+                  {m.program}
+                </p>
+
+                {/* Outcome badge */}
+                <span
+                  className={`inline-block text-[10px] px-2.5 py-1 rounded-md font-medium mb-3 ${
+                    m.highlight
+                      ? "bg-accent-subtle text-accent"
+                      : "bg-layer-active text-text-secondary border border-stroke"
+                  }`}
+                >
+                  {m.outcome}
+                </span>
+
+                {/* Note */}
+                <p className="text-[11px] text-text-secondary leading-relaxed">
+                  {m.note}
+                </p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Closing statement */}
+        <div className="mt-4 p-4 rounded-xl bg-layer border border-stroke">
           <StyledText
-            text={cyberMACS.summary}
-            className="text-xs text-text-secondary leading-relaxed mb-3"
-            as="p"
-          />
-          <p className="text-xs text-text-tertiary leading-relaxed mb-3">
-            {cyberMACS.details}
-          </p>
-          <StyledText
-            text={cyberMACS.significance}
+            text={internationalRecognition.closing}
             className="text-xs text-text-tertiary leading-relaxed italic"
             as="p"
           />

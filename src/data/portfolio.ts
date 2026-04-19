@@ -971,13 +971,48 @@ export const preUniversityEducation = [
   }
 ];
 
-export const cyberMACS = {
-  title: "CyberMACS Erasmus Mundus Joint Master",
-  year: "2024",
-  status: "Reserved Seat (Full Scholarship Category) → Full Tuition Waiver Offered → Declined",
-  summary: "Selected through a highly competitive process for the Erasmus Mundus Joint Master Program in Cybersecurity. The interview, intended for [dim]15 minutes[/dim], extended to [ac]over an hour[/ac] as the panel explored my technical expertise in depth.",
-  details: "Despite being placed on the reserved list initially for the Full Scholarship category, I was later offered a full tuition fee waiver and insurance coverage. I made the most difficult decision of my academic life by declining, due to relocation and living costs exceeding feasibility at the time.",
-  significance: "This milestone remains a powerful symbol of international recognition and reflects my [hi]principle-driven approach[/hi] of pursuing opportunities sustainably."
+export const internationalRecognition = {
+  headline: "International Recognition",
+  subtitle: "Offers, nominations, and selections from world-class institutions — proof that the work speaks at a global level.",
+  milestones: [
+    {
+      institution: "Imperial College London",
+      country: "United Kingdom",
+      program: "MSc (via Chevening Scholarship 2025/26)",
+      year: "2025",
+      outcome: "Offer Letter Received",
+      highlight: true,
+      note: "One of the world's top 10 universities. Receiving an unconditional offer validates technical depth at the highest level.",
+    },
+    {
+      institution: "University of York",
+      country: "United Kingdom",
+      program: "MSc (via Chevening Scholarship 2025/26)",
+      year: "2025",
+      outcome: "Offer Letter + 80% Scholarship",
+      highlight: true,
+      note: "York independently awarded an 80% tuition scholarship based on academic and professional merit — a recognition separate from Chevening.",
+    },
+    {
+      institution: "ESIEE Paris",
+      country: "France",
+      program: "MSc (with Eiffel Scholarship Nomination)",
+      year: "2025",
+      outcome: "Admission + Eiffel Nomination",
+      highlight: false,
+      note: "Admitted and nominated by the university for the France Excellence Eiffel Scholarship — prestigious opportunity for the top international candidates.",
+    },
+    {
+      institution: "CyberMACS Erasmus Mundus",
+      country: "EU (Joint Program)",
+      program: "Erasmus Mundus Joint Master in Cybersecurity",
+      year: "2025",
+      outcome: "Tuition Waiver + Insurance Offered",
+      highlight: false,
+      note: "Selected through a rigorous process — the panel interview extended from 15 minutes to over an hour exploring my technical expertise.",
+    },
+  ],
+  closing: "Each application resulted in an institutional offer — a consistent pattern of recognition from universities that accept only the most competitive candidates globally. The decisions to decline were always [hi]principle-driven[/hi]: pursuing opportunities sustainably, never recklessly.",
 };
 
 export const community = {
