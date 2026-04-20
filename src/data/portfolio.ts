@@ -578,7 +578,7 @@ export const personal = {
   },
   languages: {
     urdu: "Native",
-    english: "IELTS 7.5 (L:8.5, R:7.0, W:7.0, S:7.0)"
+    english: "IELTS 7.5"
   },
   interests: [
     {

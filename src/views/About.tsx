@@ -43,6 +43,7 @@ export function About({ onNavigate }: { onNavigate: NavigateFn }) {
     community,
     quantumResearch,
     vulnerabilityDiscoveries,
+    education,
   } = portfolioData;
   const [showProfilePreview, setShowProfilePreview] = useState(false);
   const [showAllArticles, setShowAllArticles] = useState(false);
@@ -140,8 +141,8 @@ export function About({ onNavigate }: { onNavigate: NavigateFn }) {
                 <p className="text-[10px] text-text-tertiary uppercase tracking-wider">
                   Languages
                 </p>
-                <p className="text-sm text-text-primary">English (IELTS 7.5)</p>
-                <p className="text-xs text-text-tertiary">Urdu (Native)</p>
+                <p className="text-sm text-text-primary">English ({personal.languages.english})</p>
+                <p className="text-xs text-text-tertiary">Urdu ({personal.languages.urdu})</p>
               </div>
             </div>
 
@@ -156,8 +157,8 @@ export function About({ onNavigate }: { onNavigate: NavigateFn }) {
                 <p className="text-[10px] text-text-tertiary uppercase tracking-wider">
                   Education
                 </p>
-                <p className="text-sm text-text-primary">BS Computer Science</p>
-                <p className="text-xs text-text-tertiary">CGPA: 3.73/4.0</p>
+                <p className="text-sm text-text-primary">{education.degree}</p>
+                <p className="text-xs text-text-tertiary">CGPA: {education.cgpa}</p>
               </div>
             </div>
           </div>
