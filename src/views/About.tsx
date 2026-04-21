@@ -432,9 +432,11 @@ export function About({ onNavigate }: { onNavigate: NavigateFn }) {
                 </span>
 
                 {/* Note */}
-                <p className="text-[11px] text-text-secondary leading-relaxed">
-                  {m.note}
-                </p>
+                <StyledText
+                  text={m.note}
+                  className="text-[11px] text-text-secondary leading-relaxed"
+                  as="p"
+                />
               </div>
             </motion.div>
           ))}
