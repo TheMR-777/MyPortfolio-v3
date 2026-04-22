@@ -23,6 +23,11 @@ import {
   ChevronDown,
   MessageCircle,
   Trophy,
+  FolderGit2,
+  FileCode2,
+  History,
+  Code2,
+  GitFork,
 } from "lucide-react";
 import { portfolioData } from "../lib/portfolioDAL";
 import { useGitHubStats, GITHUB_USERNAME_EXPORT } from "../hooks/useGitHubStats";
@@ -30,6 +35,7 @@ import { useTheme } from "../contexts/ThemeContext";
 import { SCROLL_ANIMATION_VP } from "../constants/animations";
 import { StyledText } from "../lib/styledText";
 import { PageFooter } from "../components/PageFooter";
+import { Tooltip } from "../components/Tooltip";
 import type { NavigateFn } from "../types/navigation";
 
 
@@ -958,11 +964,201 @@ function GitHubActivitySection() {
   // Extract hex without '#' for the ghchart URL
   const chartHex = accent.value.replace("#", "");
 
-  const metricCards = [
-    { value: gh.publicRepos, label: "Repositories", icon: "📦" },
-    { value: gh.publicGists, label: "Gists", icon: "📝" },
-    { value: `${gh.accountYears}+`, label: "Years Active", icon: "📅" },
-    { value: gh.languages.length, label: "Languages", icon: "🔤" },
+  const forkedRepos = gh.publicRepos - gh.originalRepos;
+  const originalPct = gh.publicRepos > 0 ? Math.round((gh.originalRepos / gh.publicRepos) * 100) : 0;
+  const activeSince = new Date().getFullYear() - gh.accountYears;
+
+  const metricCards: {
+    value: string | number;
+    label: string;
+    icon: string;
+    align: 'left' | 'center' | 'right';
+    tooltip: React.ReactNode;
+  }[] = [
+    {
+      value: gh.publicRepos,
+      label: "Repositories",
+      icon: "📦",
+      align: 'left',
+      tooltip: (
+        <div className="w-64 p-4">
+          {/* Header */}
+          <div className="flex items-center gap-2.5 mb-3.5">
+            <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center">
+              <FolderGit2 className="w-4 h-4 text-accent" strokeWidth={1.5} />
+            </div>
+            <div>
+              <h4 className="text-[13px] font-medium text-text-primary">Repository Landscape</h4>
+              <p className="text-[10px] text-text-tertiary">Public repositories on GitHub</p>
+            </div>
+          </div>
+          {/* Breakdown */}
+          <div className="space-y-2.5">
+            <div className="flex items-center justify-between text-[11px]">
+              <span className="text-text-secondary flex items-center gap-1.5">
+                <FolderGit2 className="w-3 h-3 text-accent" strokeWidth={1.5} />
+                Original
+              </span>
+              <span className="font-medium text-accent tabular-nums">{gh.originalRepos}</span>
+            </div>
+            <div className="h-1.5 rounded-full overflow-hidden" style={{ backgroundColor: 'var(--bg-layer-active)' }}>
+              <motion.div
+                className="h-full rounded-full bg-accent"
+                initial={{ width: 0 }}
+                animate={{ width: `${originalPct}%` }}
+                transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </div>
+            <div className="flex items-center justify-between text-[11px]">
+              <span className="text-text-secondary flex items-center gap-1.5">
+                <GitFork className="w-3 h-3 text-text-tertiary" strokeWidth={1.5} />
+                Forked
+              </span>
+              <span className="text-text-tertiary tabular-nums">{forkedRepos}</span>
+            </div>
+          </div>
+          {/* Footer insight */}
+          <div className="mt-3.5 pt-3 border-t border-stroke">
+            <p className="text-[10px] text-text-tertiary leading-relaxed">
+              <span className="text-accent font-medium">{originalPct}%</span> original code — actively maintained across multiple ecosystems
+            </p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      value: gh.publicGists,
+      label: "Gists",
+      icon: "📝",
+      align: 'center',
+      tooltip: (
+        <div className="w-60 p-4">
+          {/* Header */}
+          <div className="flex items-center gap-2.5 mb-3">
+            <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center">
+              <FileCode2 className="w-4 h-4 text-accent" strokeWidth={1.5} />
+            </div>
+            <div>
+              <h4 className="text-[13px] font-medium text-text-primary">Code Snippets</h4>
+              <p className="text-[10px] text-text-tertiary">Shared via GitHub Gists</p>
+            </div>
+          </div>
+          {/* Code-block styled description */}
+          <div
+            className="rounded-lg p-3 border border-stroke/60"
+            style={{ backgroundColor: isDark ? 'rgba(0,0,0,0.2)' : 'rgba(0,0,0,0.03)' }}
+          >
+            <p className="text-[11px] text-text-secondary leading-relaxed font-mono">
+              <span className="text-accent">{'// '}</span>Reusable utilities, algorithms,{"\n"}
+              <span className="text-accent">{'// '}</span>and code experiments shared{"\n"}
+              <span className="text-accent">{'// '}</span>with the developer community.
+            </p>
+          </div>
+          <div className="mt-3 flex items-center gap-1.5">
+            <div className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+            <p className="text-[10px] text-text-tertiary">
+              <span className="text-text-secondary font-medium">{gh.publicGists}</span> snippets publicly available
+            </p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      value: `${gh.accountYears}+`,
+      label: "Years Active",
+      icon: "📅",
+      align: 'center',
+      tooltip: (
+        <div className="w-60 p-4">
+          {/* Header */}
+          <div className="flex items-center gap-2.5 mb-3.5">
+            <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center">
+              <History className="w-4 h-4 text-accent" strokeWidth={1.5} />
+            </div>
+            <div>
+              <h4 className="text-[13px] font-medium text-text-primary">GitHub Journey</h4>
+              <p className="text-[10px] text-text-tertiary">Active since {activeSince}</p>
+            </div>
+          </div>
+          {/* Timeline */}
+          <div className="flex items-center gap-2 py-2">
+            <div className="flex flex-col items-center gap-0.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-accent/40 border-2 border-accent" />
+              <span className="text-[9px] text-text-tertiary tabular-nums mt-0.5">{activeSince}</span>
+            </div>
+            <div className="flex-1 relative h-[2px]">
+              <div className="absolute inset-0 bg-stroke/40 rounded-full" />
+              <motion.div
+                className="absolute inset-y-0 left-0 bg-accent rounded-full"
+                initial={{ width: 0 }}
+                animate={{ width: '100%' }}
+                transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              />
+            </div>
+            <div className="flex flex-col items-center gap-0.5">
+              <div className="w-2.5 h-2.5 rounded-full bg-accent shadow-[0_0_8px_var(--accent-subtle)] animate-pulse" />
+              <span className="text-[9px] text-accent font-medium tabular-nums mt-0.5">Now</span>
+            </div>
+          </div>
+          {/* Footer */}
+          <div className="mt-2 pt-2.5 border-t border-stroke">
+            <p className="text-[10px] text-text-tertiary text-center">
+              <span className="text-accent font-medium">{gh.accountYears}+ years</span> of continuous open-source presence
+            </p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      value: gh.languages.length,
+      label: "Languages",
+      icon: "🔤",
+      align: 'right',
+      tooltip: (
+        <div className="w-64 p-4">
+          {/* Header */}
+          <div className="flex items-center gap-2.5 mb-3.5">
+            <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center">
+              <Code2 className="w-4 h-4 text-accent" strokeWidth={1.5} />
+            </div>
+            <div>
+              <h4 className="text-[13px] font-medium text-text-primary">Language Arsenal</h4>
+              <p className="text-[10px] text-text-tertiary">Across public repositories</p>
+            </div>
+          </div>
+          {/* Language bars */}
+          <div className="space-y-2">
+            {gh.languages.slice(0, 5).map((lang, i) => (
+              <div key={lang.name} className="flex items-center gap-2">
+                <span
+                  className="w-[7px] h-[7px] rounded-full flex-shrink-0 ring-1 ring-inset ring-white/10"
+                  style={{ backgroundColor: lang.color }}
+                />
+                <span className="text-[11px] text-text-secondary flex-1 min-w-0 truncate">{lang.name}</span>
+                <div className="w-14 h-1.5 rounded-full overflow-hidden flex-shrink-0" style={{ backgroundColor: 'var(--bg-layer-active)' }}>
+                  <motion.div
+                    className="h-full rounded-full"
+                    style={{ backgroundColor: lang.color }}
+                    initial={{ width: 0 }}
+                    animate={{ width: `${lang.percentage}%` }}
+                    transition={{ duration: 0.5, delay: 0.1 + i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+                  />
+                </div>
+                <span className="text-[10px] text-text-tertiary tabular-nums w-7 text-right flex-shrink-0">{lang.percentage}%</span>
+              </div>
+            ))}
+          </div>
+          {/* Footer */}
+          {gh.languages.length > 5 && (
+            <div className="mt-2.5 pt-2.5 border-t border-stroke">
+              <p className="text-[10px] text-text-tertiary">
+                +{gh.languages.length - 5} more across {gh.publicRepos} repositories
+              </p>
+            </div>
+          )}
+        </div>
+      ),
+    },
   ];
 
   return (
@@ -991,7 +1187,7 @@ function GitHubActivitySection() {
         </a>
       </div>
 
-      <div className="rounded-xl bg-layer border border-stroke overflow-hidden">
+      <div className="rounded-xl bg-layer border border-stroke">
         {/* ─── Contribution Chart ─── */}
         <div className="p-4 sm:p-5 pb-3 sm:pb-4">
           <div
@@ -1026,39 +1222,47 @@ function GitHubActivitySection() {
         <div className="px-4 sm:px-5 pb-3 sm:pb-4">
           <div className="grid grid-cols-4 gap-2 sm:gap-3">
             {metricCards.map((metric, idx) => (
-              <motion.div
+              <Tooltip
                 key={metric.label}
-                initial={{ opacity: 0, scale: 0.95 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={SCROLL_ANIMATION_VP}
-                transition={{
-                  delay: 0.08 + idx * 0.05,
-                  duration: 0.35,
-                  ease: [0.16, 1, 0.3, 1],
-                }}
-                className="group p-2.5 sm:p-3 rounded-xl border border-stroke/40 text-center transition-all hover:bg-layer hover:border-stroke hover:shadow-sm"
-                style={{
-                  backgroundColor: isDark
-                    ? "rgba(0, 0, 0, 0.12)" // Soft dark background
-                    : "rgba(255, 255, 255, 0.5)",
-                }}
+                richContent={gh.isLoading ? undefined : metric.tooltip}
+                align={metric.align}
+                wrapperClassName="relative"
+                delay={300}
+                hideDelay={150}
               >
-                {gh.isLoading ? (
-                  <>
-                    <SkeletonPulse className="h-5 w-8 mx-auto mb-1.5" />
-                    <SkeletonPulse className="h-2.5 w-12 mx-auto" />
-                  </>
-                ) : (
-                  <>
-                    <div className="text-base sm:text-lg font-semibold text-text-primary tabular-nums group-hover:text-accent transition-colors">
-                      {metric.value}
-                    </div>
-                    <div className="text-[9px] sm:text-[10px] text-text-tertiary mt-0.5 leading-tight">
-                      {metric.label}
-                    </div>
-                  </>
-                )}
-              </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={SCROLL_ANIMATION_VP}
+                  transition={{
+                    delay: 0.08 + idx * 0.05,
+                    duration: 0.35,
+                    ease: [0.16, 1, 0.3, 1],
+                  }}
+                  className={`group p-2.5 sm:p-3 rounded-xl border border-stroke/40 text-center transition-all hover:bg-layer hover:border-stroke hover:shadow-sm ${!gh.isLoading ? 'cursor-help' : ''}`}
+                  style={{
+                    backgroundColor: isDark
+                      ? "rgba(0, 0, 0, 0.12)"
+                      : "rgba(255, 255, 255, 0.5)",
+                  }}
+                >
+                  {gh.isLoading ? (
+                    <>
+                      <SkeletonPulse className="h-5 w-8 mx-auto mb-1.5" />
+                      <SkeletonPulse className="h-2.5 w-12 mx-auto" />
+                    </>
+                  ) : (
+                    <>
+                      <div className="text-base sm:text-lg font-semibold text-text-primary tabular-nums group-hover:text-accent transition-colors">
+                        {metric.value}
+                      </div>
+                      <div className="text-[9px] sm:text-[10px] text-text-tertiary mt-0.5 leading-tight">
+                        {metric.label}
+                      </div>
+                    </>
+                  )}
+                </motion.div>
+              </Tooltip>
             ))}
           </div>
         </div>
@@ -1148,7 +1352,7 @@ function GitHubActivitySection() {
           href={`https://github.com/${GITHUB_USERNAME_EXPORT}`}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-center gap-2 px-5 py-3 border-t border-stroke text-xs text-text-tertiary hover:text-accent hover:bg-layer-hover transition-all group"
+          className="flex items-center justify-center gap-2 px-5 py-3 border-t border-stroke text-xs text-text-tertiary hover:text-accent hover:bg-layer-hover transition-all group rounded-b-xl"
         >
           <Github className="w-3.5 h-3.5" strokeWidth={1.5} />
           <span>View full profile on GitHub</span>
