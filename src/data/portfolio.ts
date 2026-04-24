@@ -179,7 +179,7 @@ export const projectsDb: Record<string, ProjectEntity> = {
     id: 'background-jobs-framework',
     title: 'Background Jobs Framework',
     tech: ['.NET 10', 'Background Services', 'Channels', 'PostgreSQL'],
-    summary: 'Unbreakable background jobs management system adopted across multiple projects to solve a long-standing infrastructure gap.',
+    summary: 'Unbreakable jobs management system adopted across multiple projects to solve a long-standing infrastructure gap.',
     description: 'First introduced in EMS as a personal engineering necessity, this framework proved so robust and reliable at launch that other teams — facing persistent job management issues — ported my module to handle their background processing. I unknowingly solved a long-standing problem that ACE\'s infrastructure badly needed.',
     isAceProject: true,
     typeAce: 'Infrastructure • Core',
