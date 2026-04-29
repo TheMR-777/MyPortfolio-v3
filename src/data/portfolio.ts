@@ -472,7 +472,7 @@ export const experiencesDb: Record<string, ExperienceEntity> = {
     location: 'Remote/Hybrid',
     featured: true,
     summary: 'Channeling every skill (including polyglot architecture) into transforming enterprise systems. Engineered flagship products including the Employee Monitoring Suite achieving [ac]200% productivity boost[/ac] with [hi]zero defects[/hi] at launch, and a comprehensive ERP platform.',
-    description: 'Progressed from UI/UX to leading core platform modules and multi-tenant migration decisions. My focus: building [hi]reusable primitives[/hi] that power every business module. The same philosophy that drives my personal projects (tools that [ac]transform[/ac]) shaped how I approached enterprise infrastructure.',
+    description: 'Progressed from UI/UX to leading core platform modules and multi-tenant migration decisions. My focus: building [hi]reusable primitives[/hi] that power every business module. I also championed the adoption of [ac]AI agentic workflows[/ac] (Cursor), successfully pitching it to the C-suite and accelerating my deployment speed by [hi]100x[/hi] while focusing strictly on core architecture.',
     highlights: [
       'Architected Employee Monitoring Suite solo — zero defects at launch',
       'Engineered Evolver: chromium-inspired cross-platform auto-update engine',
@@ -561,7 +561,8 @@ export const personal = {
     "Creating What Hasn't Been Built Before",
     "Software Architect & Security Engineer",
     "C++ Expert & Cryptography Specialist",
-    "AI-Powered Innovation Engineer"
+    "AI-Powered Innovation Engineer",
+    "Agentic Engineer & AI Orchestrator"
   ],
   about: "A lifelong journey of innovation and engineering excellence, from age 3 to industry architect. I blend low-level mastery (C++, Cryptography) with high-level architecture (.NET, AI) to engineer solutions that haven't been built before — from enterprise platforms to open-source tools that transform how developers work.",
   social: {
@@ -804,32 +805,38 @@ export const skills = {
     { name: "Cryptography", description: "AES-256, RSA-4096, ECC, Key Management, Zero-Knowledge" },
     { name: "Performance Engineering", description: "Optimization, Profiling, Low-latency, Memory-aware" },
     { name: "Polyglot Software Engineering", description: "Cross-language Design, C#/.NET + Python, C++ Interop" },
-    { name: "AI Integration", description: "Prompt Engineering, LLM Integration, AI-accelerated workflows" },
+    { name: "Agentic Engineering & Orchestration", description: "Multi-agent workflows, 100x acceleration, Strict AI quality control" },
   ],
   ai: {
-    title: "AI as Force Multiplier",
-    description: "I leverage AI not as a crutch, but as an [ac]accelerator[/ac] — treating it as a thinking partner that [hi]amplifies engineering velocity[/hi] while maintaining quality and originality.",
+    title: "Agentic Engineering & Orchestration",
+    description: "For the past 1.5 years, since the boom of agentic development, I have mastered [hi]AI-driven workflows[/hi] and multi-agent orchestration. Instead of writing boilerplate, I command multiple agents (via Cursor, Gemini CLI and OpenCode) to handle implementations while I focus entirely on [ac]core software engineering[/ac], security, architecture, and UI/UX. I am notoriously strict about my values — iteratively reviewing and refining the AI's output until it perfectly matches my standards. At ACE Money Transfer, after successfully convincing the PMs, CTO, and CEO, I deployed Cursor into my workflow, accelerating my deployment speed up to [ac]100x[/ac] without ever compromising on quality.",
     models: [
-      { name: "Claude 4.6", variants: "Opus / Sonnet / Haiku" },
-      { name: "GPTs", variants: "GPT-5.3, Codex-series" },
-      { name: "Gemini 3", variants: "Pro, Flash" },
-      { name: "Grok 4", variants: "Thinking, Fast" },
-      { name: "GLM 4.7", variants: "Air" },
-      { name: "Kimi K2.5", variants: "" },
-      { name: "Qwen 3", variants: "Coder, Max" }
+      { name: "Claude 4.7", variants: "Opus / Sonnet / Haiku" },
+      { name: "GPTs", variants: "GPT-5.5, Codex-series" },
+      { name: "Gemini 3.1", variants: "Pro, Flash" },
+      { name: "Grok 4.3", variants: "Thinking, Fast" },
+      { name: "GLM 5.1", variants: "Air" },
+      { name: "Kimi K2.7", variants: "" },
+      { name: "Qwen 3.6", variants: "Coder, Max" },
+      { name: "Deepseek V4", variants: "Pro, Flash" },
+      { name: "Gemma 4", variants: "Local" }
     ],
     tools: [
-      { name: "GitHub Copilot", link: "" },
       { name: "Cursor", link: "" },
+      { name: "Gemini CLI", note: "by Google" },
       { name: "Antigravity", note: "by Google" },
+      { name: "GitHub Copilot", link: "" },
+      { name: "Google AI Studio", link: "" },
+      { name: "OpenCode", link: "" },
       { name: "Kiro", note: "by Amazon" },
       { name: "Qoder", note: "by Alibaba" },
-      { name: "Gemini CLI", link: "" },
       { name: "OpenClaw", note: "ClawdBot" },
       { name: "LMArena", link: "https://arena.ai" },
       { name: "Design Arena", link: "https://designarena.ai" }
     ],
     skills: [
+      "Multi-agent orchestration for end-to-end feature implementation",
+      "Strict iterative refinement and quality control of AI outputs",
       "Advanced prompt engineering for complex code generation",
       "AI-assisted architecture design and review",
       "LLM integration into production systems",
