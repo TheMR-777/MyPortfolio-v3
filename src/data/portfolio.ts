@@ -482,6 +482,7 @@ export const experiencesDb: Record<string, ExperienceEntity> = {
       'Engineered pluggable Logging Framework for in-depth observability',
       'Built Unified Reporting Engine in Python — became ACE\'s reporting standard',
       'Integrated Mastercard, HBL, and PNB payment services',
+      'Pioneered AI agentic workflows (Cursor), successfully pitching to C-suite and achieving 100x deployment acceleration',
       'Received direct commendation from CTO for architectural innovations'
     ],
     impact: [
@@ -658,6 +659,15 @@ export const philosophy = {
       metaSkill: {
         title: "The Ultimate Mindset",
         story: "That is where I am heading — toward a mindset that strives for perfection and accuracy. Every realm I explore — Astronomy, Physics, Psychology — is not random curiosity. Each one builds pathways that make me sharper in every other."
+      }
+    },
+    {
+      title: "Orchestrating the Machine",
+      content: "The Industrial Revolution automated muscle; the AI revolution automates [ac]cognitive boilerplate[/ac]. An engineer's true value no longer lies in manual implementation, but in orchestration. By commanding agents to handle the mechanics, I am freed to obsess over what truly matters — [hi]core architecture[/hi], strict security, and precise UI/UX.",
+      highlight: "When machines automate the routine, the engineer is elevated to the orchestrator.",
+      discovery: {
+        title: "The 100x Acceleration Pivot",
+        story: "At ACE Money Transfer, after a strategic campaign to convince the PMs, CTO, and CEO, I successfully deployed Cursor into my enterprise workflow. The result was a 100x acceleration in deployment speed. But speed means nothing without standards. I maintain an iron grip on my engineering values, iteratively correcting the AI until its output perfectly mirrors my intent. It is a new paradigm of engineering: not just writing code, but directing intelligence."
       }
     }
   ],
