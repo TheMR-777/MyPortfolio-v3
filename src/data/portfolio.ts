@@ -606,68 +606,115 @@ export const philosophy = {
   sections: [
     {
       title: "The Journey Over the Goal",
-      content: "Whether architecting a comprehensive system or spending hours refining a Fibonacci sequence, the experience is the same: an insatiable curiosity that drives me to discover one more micro-optimization, one more elegant simplification.",
-      highlight: "The destination is just a waypoint—the real reward is the infinite richness of the journey itself."
+      content: "We are conditioned to optimize for the finish line, but the most profound discoveries happen in the margins. It is the obsessive iteration, the refusal to settle for 'good enough', and the relentless extraction of insights that defines true engineering.",
+      highlight: "The destination is just a waypoint — the real reward is the infinite richness of the journey itself."
     },
     {
       title: "The Beauty in Fundamentals",
-      content: "I vividly remember iterating on fundamental algorithms for far longer than anyone would consider \"reasonable\"—not because I had to, but because each iteration revealed something new. A zero-branch Fibonacci by seeding with −1 and 1. A sieve optimization that shaved microseconds.",
-      highlight: "These aren't just technical wins; they're discoveries.",
-      discovery: {
-        title: "Rediscovering Horner's Method",
-        story: "During university, frustrated with the heavy calculations of binary-to-decimal conversion (even with shortcuts), I experimented and found my own technique: start from the leftmost 1, move right — multiply the result by 2, add the next digit. Repeat until the end. Years later, I learned I had independently discovered Horner's Method of base conversion — a moment that validated my trust in mathematical intuition."
+      content: "Refining basic algorithms far longer than 'reasonable' — not just to save microseconds, but to uncover the profound elegance hidden beneath simple logic. Each pass strips away the unnecessary, revealing insights that transform routine code into mathematical art.",
+      highlight: "These aren't just technical wins — they're discoveries.",
+      expansion: {
+        label: "Read Discoveries",
+        icon: "lightbulb",
+        data: [
+          {
+            name: "The Zero-Branch Fibonacci",
+            description: "Bothered by the standard conditional checks for 0 and 1 that run on every single Fibonacci iteration, I spent hours analyzing the sequence's core logic on paper. By projecting the sequence backward into negative space—starting the generation from unseen negative indices—I was able to completely eliminate the conditional branching. It was a profound realization of how shifting a mathematical perspective can render inherent complexity entirely obsolete."
+          },
+          {
+            name: "Rediscovering Horner's Method",
+            description: "During university, frustrated with the heavy calculations of binary-to-decimal conversion (even with shortcuts), I experimented and found my own technique: start from the leftmost 1, move right — multiply the result by 2, add the next digit. Repeat until the end. Years later, I learned I had independently discovered Horner's Method of base conversion — a moment that deeply validated my trust in mathematical intuition."
+          }
+        ]
       }
     },
     {
       title: "Succeeding Within the Failures",
-      content: "Sometimes the original goal remains out of reach—but along the way, I stumble upon something profound. A technique. An insight. A connection I hadn't anticipated.",
-      highlight: "Failure isn't an endpoint—it's a checkpoint where unexpected treasures reveal themselves.",
-      phasedDiscovery: {
-        title: "The Granite 2000000 Incident",
-        period: "July 2022 · Summer Holidays",
-        phases: [
-          {
-            label: "The Blackout",
-            content: "After three years away from gaming, I was deep into Far Cry 6 and genuinely enjoying it again. Then, mid-autosave, electricity went out. On reboot, the game showed \"Error: Granite 2000000.\" Months of progress looked gone, and no real fix existed online."
-          },
-          {
-            label: "The Discovery",
-            content: "Using my data recovery instincts, I inspected the save files. One autosave had the right size but only null bytes. Then I noticed each file had a numbered counterpart (_01 / _02). The counterpart had real data. I replaced the corrupted file with it and loaded the game from the exact interrupted moment."
-          },
-          {
-            label: "The Ripple",
-            content: "I validated the method repeatedly, then compressed the fix into a 40-second YouTube tutorial. It spread quickly across forums and helped players in Far Cry 5, New Dawn, and Far Cry 4 too. I still receive appreciation comments today."
-          }
-        ],
-        link: "https://www.youtube.com/watch?v=cPH_SZKI_Cg"
+      content: "Sometimes the original goal remains out of reach — but the journey yields such profound techniques, insights, and connections that I never anticipated.",
+      highlight: "Failure isn't an endpoint — it's a checkpoint where unexpected treasures reveal themselves.",
+      expansion: {
+        label: "View Incident",
+        icon: "play",
+        data: {
+          title: "The Granite 2000000 Incident",
+          subtitle: "July 2022 · Summer Holidays",
+          phases: [
+            {
+              label: "The Blackout",
+              content: "After three years away from gaming, I was deep into Far Cry 6 and genuinely enjoying it again. Then, mid-autosave, electricity went out. On reboot, the game showed \"Error: Granite 2000000.\" Months of progress looked gone, and no real fix existed online."
+            },
+            {
+              label: "The Discovery",
+              content: "Using my data recovery instincts, I inspected the save files. One autosave had the right size but only null bytes. Then I noticed each file had a numbered counterpart (_01 / _02). The counterpart had real data. I replaced the corrupted file with it and loaded the game from the exact interrupted moment."
+            },
+            {
+              label: "The Ripple",
+              content: "I validated the method repeatedly, then compressed the fix into a 40-second YouTube tutorial. It spread quickly across forums and helped players in Far Cry 5, New Dawn, and Far Cry 4 too. I still receive appreciation comments today."
+            }
+          ],
+          link: { url: "https://www.youtube.com/watch?v=cPH_SZKI_Cg", label: "Watch the 40-second fix" }
+        }
       }
     },
     {
       title: "Beyond Computer Science",
-      content: "This philosophy extends far beyond computing. It applies to Mathematics, where a proof's elegance can be refined endlessly. It applies to Physics, where understanding one concept unlocks intuition for a dozen others. It applies to every domain where depth is possible—and depth is always possible.",
-      highlight: "Computer Science is only one language of discovery; every domain is a fractal, where curiosity reveals that there is no bottom—only deeper truth and beauty."
+      content: "Mathematics, Physics, Psychology — every domain is a fractal where depth is always possible, and curiosity always rewarded.",
+      highlight: "Computer Science is only one language of discovery — every domain reveals that there is no bottom, only deeper truth.",
+      expansion: {
+        label: "Explore Passions",
+        icon: "sparkles",
+        reference: "personal.interests"
+      }
     },
     {
       title: "The Discipline of Restraint",
-      content: "Design and formatting should be like seasoning — [hi]precise application[/hi] enhances, but over-application ruins. Silence is as important as sound. Quiet zones give the eye a resting point, allowing the accents to speak. I believe in highlighting the [ac]core essence[/ac] and letting the surrounding structure remain elegantly plain. This portfolio itself is a living testament — every accent, every highlight, every silent plain-text zone was a [em]deliberate design choice[/em].",
-      highlight: "If everything is accented, nothing is. True sophistication lies in what you choose not to highlight."
+      content: "True sophistication is found in what we have the courage to leave out. Whether in code, architecture, or discourse, restraint creates the necessary space for clarity to resonate. It is the silence that gives the statement its gravity.",
+      highlight: "If everything is an accent, nothing is. Mastery lies in the deliberate choice of what to leave unsaid.",
+      expansion: {
+        label: "Explore the Principle",
+        icon: "sparkles",
+        data: [
+          {
+            name: "Minimalism in Engineering",
+            description: "Every unnecessary branch, abstraction, or dependency is a hidden liability. When I ruthlessly remove what shouldn't exist, the system doesn't just get cleaner — it gets [ac]faster[/ac]. The Zero-Branch Fibonacci is a perfect example: eliminating redundant conditionals didn't just simplify the code, it unlocked a [hi]performance gain that no amount of optimization on the bloated version could have achieved[/hi]. Less logic is not a compromise. It is a force multiplier."
+          },
+          {
+            name: "Restraint as a Design Language",
+            description: "An element can only command attention if there is silence around it. This portfolio is a living proof of this thesis — every accent color, every animated detail exists within deliberate quiet zones that amplify its impact. The same principle governs code architecture: a well-named function in a sea of clean, minimal logic carries far more communicative weight than the same function buried in noise. [em]What you remove defines what you say.[/em]"
+          }
+        ]
+      }
     },
     {
       title: "Learning How to Learn",
-      content: "Along the way of my life, I learned something most people never do — how to actually learn. Not to remember, not to follow footsteps, but to build connections. To relate a new concept to something I already know, and integrate it so deeply into my intuition that it becomes part of how I think. That is the real skill — and it compounds across every domain I touch.",
+      content: "Not remembering facts — building connections. Relating the new to the known until it becomes [ac]intuition[/ac]. The skill that compounds across everything.",
       highlight: "Not learning to remember — learning to learn.",
-      metaSkill: {
-        title: "The Ultimate Mindset",
-        story: "That is where I am heading — toward a mindset that strives for perfection and accuracy. Every realm I explore — Astronomy, Physics, Psychology — is not random curiosity. Each one builds pathways that make me sharper in every other."
+      expansion: {
+        label: "Explore the Mindset",
+        icon: "brain",
+        data: [
+          {
+            name: "The Holmesian Attic",
+            description: "Sherlock Holmes famously compared the brain to an empty attic — a space a fool clutters with random facts, while a master curates only what is essential and structurally sound. Rote memorization is just hoarding scattered lumber. True understanding is building a [ac]network of connections[/ac], where every new concept is anchored to something already known. When you construct this mental architecture, forgetting becomes nearly impossible because there is no single point of failure. Pull on one thread, and the entire web reinforces it."
+          },
+          {
+            name: "The Compounding Meta-Skill",
+            description: "Most skills improve linearly with practice. Learning [em]how[/em] to learn is different — it improves every other skill simultaneously and permanently. When I internalize a new mental model, it doesn't stay contained. It cross-pollinates. A breakthrough in understanding CPU cache behavior sharpened my intuition for UI rendering performance. A study of cognitive bias from Psychology improved how I architect APIs for human operators. The meta-skill doesn't add — it [ac]multiplies[/ac]."
+          }
+        ]
       }
     },
     {
       title: "Orchestrating the Machine",
-      content: "The Industrial Revolution automated muscle; the AI revolution automates [ac]cognitive boilerplate[/ac]. An engineer's true value no longer lies in manual implementation, but in orchestration. By commanding agents to handle the mechanics, I am freed to obsess over what truly matters — [hi]core architecture[/hi], strict security, and precise UI/UX.",
+      content: "The AI revolution automates [ac]cognitive boilerplate[/ac], just like the industrial revolution automated manual labor. An engineer's value shifts from implementation to orchestration — freeing it to obsess over true engineering — [hi]architecture[/hi], security, and UI/UX.",
       highlight: "When machines automate the routine, the engineer is elevated to the orchestrator.",
-      discovery: {
-        title: "The 100x Acceleration Pivot",
-        story: "At ACE Money Transfer, after a strategic campaign to convince the PMs, CTO, and CEO, I successfully deployed Cursor into my enterprise workflow. The result was a 100x acceleration in deployment speed. But speed means nothing without standards. I maintain an iron grip on my engineering values, iteratively correcting the AI until its output perfectly mirrors my intent. It is a new paradigm of engineering: not just writing code, but directing intelligence."
+      expansion: {
+        label: "Read Story",
+        icon: "lightbulb",
+        data: {
+          title: "The 100x Acceleration Pivot",
+          content: "At ACE Money Transfer, after a strategic campaign to convince the PMs, CTO, and CEO, I successfully deployed Cursor into my enterprise workflow. The result was a 100x acceleration in deployment speed. But speed means nothing without standards. I maintain an iron grip on my engineering values, iteratively correcting the AI until its output perfectly mirrors my intent. It is a new paradigm of engineering: not just writing code, but directing intelligence."
+        }
       }
     }
   ],

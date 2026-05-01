@@ -1,8 +1,17 @@
-import { motion } from 'framer-motion';
-import { Lightbulb, Compass, Target, Layers, Sparkles, Infinity, BookOpen, ExternalLink, Play, Brain, type LucideIcon } from 'lucide-react';
+import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Lightbulb, Compass, Target, Layers, Sparkles, Infinity, 
+  BookOpen, ExternalLink, Play, Brain, ChevronDown, 
+  type LucideIcon 
+} from 'lucide-react';
 import { SCROLL_ANIMATION_VP } from '../constants/animations';
 import { portfolioData } from '../lib/portfolioDAL';
 import { StyledText } from '../lib/styledText';
+
+/** Resolves a dot-path reference against portfolioData. e.g. "personal.interests" → portfolioData.personal.interests */
+const resolveRef = (path: string): any =>
+  path.split('.').reduce((obj: any, key) => obj?.[key], portfolioData);
 
 const { philosophy } = portfolioData;
 
@@ -21,34 +30,13 @@ const principles = philosophy.principles.map((p) => ({
   icon: iconMap[p.icon] || Lightbulb,
 }));
 
-const journeySteps = philosophy.sections.map((section) => {
-  const step: {
-    title: string;
-    content: string;
-    highlight: string;
-    discovery?: { title: string; story: string };
-    phasedDiscovery?: { title: string; period: string; phases: { label: string; content: string }[]; link: string };
-    metaSkill?: { title: string; story: string };
-  } = {
-    title: section.title,
-    content: (section as any).content,
-    highlight: (section as any).highlight,
-  };
-  if ((section as any).discovery) {
-    step.discovery = (section as any).discovery;
-  }
-  if ((section as any).phasedDiscovery) {
-    step.phasedDiscovery = (section as any).phasedDiscovery;
-  }
-  if ((section as any).metaSkill) {
-    step.metaSkill = (section as any).metaSkill;
-  }
-  return step;
-});
+const journeySteps = philosophy.sections;
 
 const { toolsPhilosophy } = philosophy;
 
 const Philosophy = () => {
+  const [expandedStory, setExpandedStory] = useState<string | null>(null);
+
   return (
     <div className="philosophy-hero min-h-full">
       <div className="max-w-4xl mx-auto px-4 sm:px-8 lg:px-12 pt-8 sm:pt-16 pb-24 sm:pb-24 relative">
@@ -116,170 +104,188 @@ const Philosophy = () => {
           </motion.div>
         </section>
 
-        {/* ─── Journey Steps ─── */}
-        <section className="py-10 sm:py-12 pl-0 lg:pl-12 border-l-0 lg:border-l border-stroke/50">
+        {/* ─── The Driving Force — Immersive Sequence ─── */}
+        <section className="py-16 sm:py-20 pl-0 lg:pl-12">
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             whileInView={{ opacity: 1, y: 0 }} viewport={SCROLL_ANIMATION_VP}
             transition={{ duration: 0.5, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="flex items-center gap-3 mb-8 sm:mb-10">
+            <div className="flex items-center gap-3 mb-16 sm:mb-20">
                <div className="w-3 h-3 rounded-full bg-accent ring-4 ring-content hidden lg:block lg:-ml-[25px]" />
-               <h2 className="text-sm font-medium text-text-tertiary uppercase tracking-wide">
+               <h2 className="text-sm font-medium text-text-tertiary uppercase tracking-widest">
                 The Driving Force
               </h2>
             </div>
 
-            <div className="space-y-12">
+            <div className="space-y-24 sm:space-y-32 max-w-3xl">
               {journeySteps.map((step, index) => (
                 <motion.div
                   key={step.title}
-                  initial={{ opacity: 0, y: 16 }}
-                  whileInView={{ opacity: 1, y: 0 }} viewport={SCROLL_ANIMATION_VP}
-                  transition={{ duration: 0.4, delay: 0.2 + index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                  className="group relative"
+                  initial={{ opacity: 0, y: 24 }}
+                  whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }}
+                  transition={{ duration: 0.7, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+                  className="relative group"
                 >
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-4">
-                      <span className="text-accent/60 text-sm font-mono">0{index + 1}</span>
-                      <h3 className="text-lg font-semibold text-text-primary">
-                         {step.title}
-                      </h3>
-                    </div>
-                    <StyledText text={step.content} className="text-text-secondary leading-relaxed pl-10" as="p" />
-                    <div className="ml-10 mt-4 pl-4 border-l-2 border-accent/30 py-1">
-                      <StyledText text={`"${step.highlight}"`} className="text-accent text-sm font-medium leading-relaxed italic" as="p" />
-                    </div>
+                  {/* Elegant Number Watermark */}
+                  <div className="absolute -top-10 -left-4 sm:-left-12 text-[80px] sm:text-[100px] font-light text-text-primary/[0.03] select-none pointer-events-none leading-none tracking-tighter transition-colors duration-500 group-hover:text-accent/[0.05]">
+                    0{index + 1}
+                  </div>
 
-                    {/* Discovery Story — simple format (Horner's Method) */}
-                    {step.discovery && (
-                      <motion.div 
-                        initial={{ opacity: 0, y: 8 }}
-                        whileInView={{ opacity: 1, y: 0 }} viewport={SCROLL_ANIMATION_VP}
-                        transition={{ duration: 0.4, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="ml-10 mt-6 p-5 rounded-xl discovery-artifact bg-mica border border-stroke"
-                      >
-                        <div className="flex items-start gap-3 mb-3">
-                          <div className="w-7 h-7 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0">
-                            <Lightbulb className="w-3.5 h-3.5 text-accent" />
-                          </div>
-                          <h4 className="text-sm font-semibold text-text-primary pt-1">
-                            {step.discovery.title}
-                          </h4>
-                        </div>
-                        <StyledText
-                          text={step.discovery.story}
-                          className="text-sm text-text-secondary leading-relaxed pl-10"
-                          as="p"
-                        />
-                      </motion.div>
-                    )}
-
-                    {/* Granite story — concise, premium narrative card */}
-                    {step.phasedDiscovery && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        whileInView={{ opacity: 1, y: 0 }} viewport={SCROLL_ANIMATION_VP}
-                        transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="ml-10 mt-6 rounded-xl discovery-artifact bg-mica border border-stroke overflow-hidden"
-                      >
-                        {/* ── Card Header: clear ownership of the narrative ── */}
-                        <div className="px-5 pt-5 pb-4">
-                          <div className="flex items-start gap-3.5">
-                            <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0 mt-0.5">
-                              <Lightbulb className="w-4 h-4 text-accent" />
-                            </div>
-                            <div>
-                              <h4 className="text-base font-semibold text-text-primary tracking-tight leading-snug">
-                                {step.phasedDiscovery.title}
-                              </h4>
-                              <span className="text-[11px] text-text-tertiary mt-1 block">
-                                {step.phasedDiscovery.period}
-                              </span>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* ── Subtle separator between header and phases ── */}
-                        <div className="mx-5 h-px bg-gradient-to-r from-stroke/60 via-stroke/30 to-transparent" />
-
-                        {/* ── Phases: understated waypoints, not competing headlines ── */}
-                        <div className="px-5 pt-4 pb-2">
-                          {step.phasedDiscovery.phases.map((phase, phaseIndex) => (
-                            <motion.div
-                              key={phase.label}
-                              initial={{ opacity: 0, x: -6 }}
-                              whileInView={{ opacity: 1, x: 0 }} viewport={SCROLL_ANIMATION_VP}
-                              transition={{ duration: 0.35, delay: 0.5 + phaseIndex * 0.1, ease: [0.16, 1, 0.3, 1] }}
-                              className="relative pl-6 pb-5 last:pb-3"
-                            >
-                              {/* Timeline connector line */}
-                              {phaseIndex < step.phasedDiscovery!.phases.length - 1 && (
-                                <div className="absolute left-[4.5px] top-[12px] bottom-0 w-px bg-gradient-to-b from-accent/25 to-accent/5" />
-                              )}
-                              {/* Timeline dot — small, refined */}
-                              <div className="absolute left-0 top-[5px] w-[10px] h-[10px] rounded-full border-[1.5px] border-accent/40 bg-mica" />
-
-                              {/* Phase label: quiet, elegant — acts as a whispered signpost */}
-                              <span className="text-[11px] font-medium text-accent/70 tracking-wide">
-                                {phase.label}
-                              </span>
-                              <StyledText
-                                text={phase.content}
-                                className="text-[13px] text-text-secondary leading-relaxed mt-1"
-                                as="p"
-                              />
-                            </motion.div>
-                          ))}
-                        </div>
-
-                        {/* ── Footer CTA ── */}
-                        <div className="border-t border-stroke/40 px-5 py-3 bg-layer-active/30">
-                          <a
-                            href={step.phasedDiscovery.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2.5 text-xs font-medium text-accent hover:text-accent-light transition-colors group/link"
-                          >
-                            <span className="w-5 h-5 rounded-full bg-accent/10 flex items-center justify-center group-hover/link:bg-accent/20 transition-colors">
-                              <Play className="w-2.5 h-2.5 text-accent ml-[1px]" fill="currentColor" />
-                            </span>
-                            <span>Watch the 40-second fix</span>
-                            <ExternalLink className="w-3 h-3 opacity-50 group-hover/link:opacity-100 transition-opacity" />
-                          </a>
-                        </div>
-                      </motion.div>
-                    )}
-
-                    {/* Meta-Skill story — The Ultimate Mindset */}
-                    {step.metaSkill && (
-                      <motion.div
-                        initial={{ opacity: 0, y: 8 }}
-                        whileInView={{ opacity: 1, y: 0 }} viewport={SCROLL_ANIMATION_VP}
-                        transition={{ duration: 0.5, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
-                        className="ml-10 mt-6 p-6 rounded-xl discovery-artifact bg-mica border border-stroke"
-                      >
-                        <div className="flex items-start gap-3 mb-3">
-                          <div className="w-8 h-8 rounded-lg bg-accent-subtle flex items-center justify-center flex-shrink-0">
-                            <Brain className="w-4 h-4 text-accent" />
-                          </div>
-                          <h4 className="text-base font-semibold text-text-primary pt-1">
-                            {step.metaSkill.title}
-                          </h4>
-                        </div>
-                        <StyledText
-                          text={step.metaSkill.story}
-                          className="text-sm text-text-secondary leading-relaxed pl-11"
-                          as="p"
-                        />
-                        <div className="mt-4 ml-11 flex items-center gap-2">
-                          <div className="h-px flex-1 bg-gradient-to-r from-accent/20 to-transparent" />
-                          <span className="text-[10px] text-accent/60 tracking-widest uppercase font-medium">
-                            Explore. Connect. Transcend.
+                  <div className="relative z-10 pl-2 sm:pl-4">
+                    <h3 className="text-xl sm:text-2xl font-light text-text-primary mb-4 tracking-tight">
+                      {step.title}
+                    </h3>
+                    
+                    <StyledText
+                      text={`"${step.highlight}"`}
+                      className="text-lg sm:text-xl text-text-secondary font-light italic leading-relaxed mb-6"
+                      as="p"
+                    />
+                    
+                    <StyledText text={step.content} className="text-base text-text-tertiary leading-relaxed mb-8" as="p" />
+                    
+                    {/* Story Trigger & Inline Expansion */}
+                    {(step as any).expansion && (
+                      <div className="mt-6">
+                        <button
+                          onClick={() => setExpandedStory(expandedStory === step.title ? null : step.title)}
+                          className={`inline-flex items-center gap-3 px-5 py-2.5 rounded-full border transition-all group/btn ${
+                            expandedStory === step.title 
+                              ? 'bg-layer-active border-accent/50 text-text-primary' 
+                              : 'bg-layer border-stroke hover:border-accent/40 hover:bg-layer-hover text-text-primary'
+                          } text-sm font-medium`}
+                        >
+                          <span className={`w-7 h-7 rounded-full flex items-center justify-center transition-all ${
+                            expandedStory === step.title ? 'bg-accent/20' : 'bg-accent-subtle group-hover/btn:bg-accent/20 group-hover/btn:scale-110'
+                          }`}>
+                            {(step as any).expansion.icon === 'lightbulb' && <Lightbulb className="w-3.5 h-3.5 text-accent" />}
+                            {(step as any).expansion.icon === 'play' && <Play className="w-3.5 h-3.5 text-accent" fill="currentColor" />}
+                            {(step as any).expansion.icon === 'brain' && <Brain className="w-3.5 h-3.5 text-accent" />}
+                            {(step as any).expansion.icon === 'sparkles' && <Sparkles className="w-3.5 h-3.5 text-accent" />}
                           </span>
-                          <div className="h-px flex-1 bg-gradient-to-l from-accent/20 to-transparent" />
-                        </div>
-                      </motion.div>
+                          <span>{(step as any).expansion.label}</span>
+                          <ChevronDown 
+                            className={`w-4 h-4 text-text-tertiary transition-transform duration-300 ${
+                              expandedStory === step.title ? 'rotate-180 text-accent' : 'group-hover/btn:text-text-secondary'
+                            }`} 
+                          />
+                        </button>
+
+                        <AnimatePresence>
+                          {expandedStory === step.title && (
+                            <motion.div
+                              initial={{ opacity: 0, height: 0, marginTop: 0 }}
+                              animate={{ opacity: 1, height: 'auto', marginTop: 24 }}
+                              exit={{ opacity: 0, height: 0, marginTop: 0 }}
+                              transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
+                              className="overflow-hidden"
+                            >
+                              <div className="p-6 sm:p-8 rounded-2xl bg-layer/50 border border-stroke/50 backdrop-blur-sm relative">
+                                <div className="absolute top-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-accent/30 to-transparent" />
+                                
+                                {(() => {
+                                  const exp = (step as any).expansion;
+                                  const refData = exp.reference ? resolveRef(exp.reference) : exp.data;
+                                  if (!refData) return null;
+
+                                  // 1. Phased Incident (has phases)
+                                  if (refData.phases) {
+                                    return (
+                                      <div className="space-y-8">
+                                        <div>
+                                          <h4 className="text-sm font-semibold text-text-primary">
+                                            {refData.title}
+                                          </h4>
+                                          {refData.subtitle && (
+                                            <span className="text-[11px] text-text-tertiary block mt-1">
+                                              {refData.subtitle}
+                                            </span>
+                                          )}
+                                        </div>
+                                        <div className="relative border-l border-stroke/50 ml-2.5 space-y-8">
+                                          {refData.phases.map((phase: any) => (
+                                            <div key={phase.label} className="relative pl-6">
+                                              <div className="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-accent bg-content" />
+                                              <span className="text-xs font-semibold text-accent uppercase tracking-wider block mb-2">
+                                                {phase.label}
+                                              </span>
+                                              <StyledText text={phase.content} className="text-[15px] text-text-secondary leading-relaxed" as="p" />
+                                            </div>
+                                          ))}
+                                        </div>
+                                        {refData.link && (
+                                          <a
+                                            href={refData.link.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="inline-flex items-center justify-center w-full sm:w-auto gap-2.5 px-6 py-3 rounded-xl bg-accent/10 hover:bg-accent/20 text-accent font-medium transition-colors border border-accent/20"
+                                          >
+                                            <Play className="w-4 h-4" fill="currentColor" />
+                                            {refData.link.label}
+                                          </a>
+                                        )}
+                                      </div>
+                                    );
+                                  }
+
+                                  // 2. Standard Object with title + content
+                                  if (!Array.isArray(refData) && typeof refData === 'object' && (refData.content || refData.description)) {
+                                    return (
+                                      <div className="relative">
+                                        {refData.title && (
+                                          <h4 className="text-sm font-semibold text-text-primary mb-3">
+                                            {refData.title}
+                                          </h4>
+                                        )}
+                                        <StyledText 
+                                          text={refData.content || refData.description} 
+                                          className="text-[15px] text-text-secondary leading-relaxed" 
+                                          as="p" 
+                                        />
+                                      </div>
+                                    );
+                                  }
+
+                                  // 3. Array of { name, description } → flowing definition list
+                                  if (Array.isArray(refData) && refData[0]?.name) {
+                                    return (
+                                      <div className="space-y-6">
+                                        {refData.map((item: any) => (
+                                          <div key={item.name} className="relative pl-5 border-l-2 border-accent/20">
+                                            <h5 className="text-sm font-semibold text-text-primary mb-1.5">{item.name}</h5>
+                                            <StyledText 
+                                              text={item.description} 
+                                              className="text-[15px] text-text-secondary leading-relaxed" 
+                                              as="p" 
+                                            />
+                                          </div>
+                                        ))}
+                                      </div>
+                                    );
+                                  }
+
+                                  // 4. Array of strings → simple list
+                                  if (Array.isArray(refData) && typeof refData[0] === 'string') {
+                                    return (
+                                      <ul className="space-y-2">
+                                        {refData.map((item: string, i: number) => (
+                                          <li key={i} className="text-[15px] text-text-secondary leading-relaxed flex items-start gap-3">
+                                            <span className="text-accent mt-2 text-[5px]">●</span>
+                                            <StyledText text={item} as="span" />
+                                          </li>
+                                        ))}
+                                      </ul>
+                                    );
+                                  }
+
+                                  return null;
+                                })()}
+                              </div>
+                            </motion.div>
+                          )}
+                        </AnimatePresence>
+                      </div>
                     )}
                   </div>
                 </motion.div>
@@ -287,6 +293,7 @@ const Philosophy = () => {
             </div>
           </motion.div>
         </section>
+
 
         {/* ─── Tools That Transform ─── */}
         <section className="py-10 sm:py-12 pl-0 lg:pl-12 border-l-0 lg:border-l border-stroke/50">
