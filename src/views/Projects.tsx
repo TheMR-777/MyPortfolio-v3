@@ -92,6 +92,7 @@ export function Projects({ onNavigate }: { onNavigate: NavigateFn }) {
                 <StyledText 
                   text={project.summary} 
                   className="text-xs text-text-secondary leading-relaxed mb-4 line-clamp-3" 
+                  mode="plain"
                   as="p" 
                 />
 
