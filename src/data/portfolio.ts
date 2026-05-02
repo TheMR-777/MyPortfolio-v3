@@ -619,11 +619,21 @@ export const philosophy = {
         data: [
           {
             name: "The Zero-Branch Fibonacci",
-            description: "Bothered by the standard conditional checks for 0 and 1 that run on every single Fibonacci iteration, I spent hours analyzing the sequence's core logic on paper. By projecting the sequence backward into negative space—starting the generation from unseen negative indices—I was able to completely eliminate the conditional branching. It was a profound realization of how shifting a mathematical perspective can render inherent complexity entirely obsolete."
+            description: "I spent hours analyzing the Fibonacci sequence's core logic on paper, fundamentally bothered by the standard conditional checks for 0 and 1 that run on every single iteration.",
+            points: [
+              "Projected the mathematical sequence backward into negative space.",
+              "Started the generation from unseen negative indices rather than zero.",
+              "This perspective shift [ac]completely eliminated[/ac] the need for conditional branching, rendering the inherent complexity entirely obsolete."
+            ]
           },
           {
             name: "Rediscovering Horner's Method",
-            description: "During university, frustrated with the heavy calculations of binary-to-decimal conversion (even with shortcuts), I experimented and found my own technique: start from the leftmost 1, move right — multiply the result by 2, add the next digit. Repeat until the end. Years later, I learned I had independently discovered Horner's Method of base conversion — a moment that deeply validated my trust in mathematical intuition."
+            description: "During university, I was deeply frustrated with the heavy, repetitive calculations required for binary-to-decimal conversions, even when using standard shortcuts.",
+            points: [
+              "Experimented and devised a personal technique: multiply the running total by 2 and add the next digit, moving left to right.",
+              "Years later, I learned I had independently derived [hi]Horner's Method[/hi] of polynomial evaluation.",
+              "This was a defining moment that deeply validated my trust in raw mathematical intuition."
+            ]
           }
         ]
       }
@@ -676,11 +686,21 @@ export const philosophy = {
         data: [
           {
             name: "Minimalism in Engineering",
-            description: "Every unnecessary branch, abstraction, or dependency is a hidden liability. When I ruthlessly remove what shouldn't exist, the system doesn't just get cleaner — it gets [ac]faster[/ac]. The Zero-Branch Fibonacci is a perfect example: eliminating redundant conditionals didn't just simplify the code, it unlocked a [hi]performance gain that no amount of optimization on the bloated version could have achieved[/hi]. Less logic is not a compromise. It is a force multiplier."
+            description: "Every unnecessary branch, abstraction, or dependency is not just clutter — it is a hidden liability. When I ruthlessly remove what shouldn't exist, the system doesn't just get cleaner.",
+            points: [
+              "It gets [ac]faster[/ac]. The Zero-Branch Fibonacci proved that eliminating conditionals unlocks performance no amount of optimization can achieve.",
+              "It becomes [hi]predictable[/hi]. Fewer moving parts means an exponentially smaller surface area for bugs.",
+              "Less logic is never a compromise; it acts as a powerful force multiplier for system stability."
+            ]
           },
           {
             name: "Restraint as a Design Language",
-            description: "An element can only command attention if there is silence around it. This portfolio is a living proof of this thesis — every accent color, every animated detail exists within deliberate quiet zones that amplify its impact. The same principle governs code architecture: a well-named function in a sea of clean, minimal logic carries far more communicative weight than the same function buried in noise. [em]What you remove defines what you say.[/em]"
+            description: "An element can only truly command attention if there is deliberate silence surrounding it. This portfolio is living proof of this thesis.",
+            points: [
+              "Every accent color and animated detail exists within carefully curated quiet zones that amplify its impact.",
+              "The exact same principle governs code architecture.",
+              "A well-named function carries massive communicative weight only when it isn't buried in noise. [em]What you remove defines what you say.[/em]"
+            ]
           }
         ]
       }
@@ -695,11 +715,21 @@ export const philosophy = {
         data: [
           {
             name: "The Holmesian Attic",
-            description: "Sherlock Holmes famously compared the brain to an empty attic — a space a fool clutters with random facts, while a master curates only what is essential and structurally sound. Rote memorization is just hoarding scattered lumber. True understanding is building a [ac]network of connections[/ac], where every new concept is anchored to something already known. When you construct this mental architecture, forgetting becomes nearly impossible because there is no single point of failure. Pull on one thread, and the entire web reinforces it."
+            description: "Sherlock Holmes famously compared the brain to an empty attic — a finite space that a fool clutters with random facts, while a master curates only what is essential and structurally sound.",
+            points: [
+              "Rote memorization is merely hoarding scattered, brittle, and context-dependent facts.",
+              "True understanding means building a [ac]network of connections[/ac] anchored to existing mental models.",
+              "With this mental architecture, forgetting becomes nearly impossible — pull on one thread, and the entire web reinforces it."
+            ]
           },
           {
             name: "The Compounding Meta-Skill",
-            description: "Most skills improve linearly with practice. Learning [em]how[/em] to learn is different — it improves every other skill simultaneously and permanently. When I internalize a new mental model, it doesn't stay contained. It cross-pollinates. A breakthrough in understanding CPU cache behavior sharpened my intuition for UI rendering performance. A study of cognitive bias from Psychology improved how I architect APIs for human operators. The meta-skill doesn't add — it [ac]multiplies[/ac]."
+            description: "Most skills improve linearly with practice. Learning [em]how[/em] to learn is entirely different — it improves every other skill simultaneously and permanently.",
+            points: [
+              "Internalized mental models don't stay contained; they actively cross-pollinate between domains.",
+              "A breakthrough in understanding CPU cache behavior directly sharpens intuition for UI rendering performance.",
+              "A study of cognitive bias in Psychology directly improves how I architect APIs for human operators. The meta-skill [ac]exponentially multiplies[/ac]."
+            ]
           }
         ]
       }
@@ -713,7 +743,12 @@ export const philosophy = {
         icon: "lightbulb",
         data: {
           title: "The 100x Acceleration Pivot",
-          content: "At ACE Money Transfer, after a strategic campaign to convince the PMs, CTO, and CEO, I successfully deployed Cursor into my enterprise workflow. The result was a 100x acceleration in deployment speed. But speed means nothing without standards. I maintain an iron grip on my engineering values, iteratively correcting the AI until its output perfectly mirrors my intent. It is a new paradigm of engineering: not just writing code, but directing intelligence."
+          content: "At ACE Money Transfer, after a strategic campaign to convince leadership, I successfully deployed Cursor into my enterprise workflow — resulting in a massive 100x acceleration in deployment speed. But speed without standards is a liability. This required a fundamental shift in how I engineer:",
+          points: [
+            "Shifting away from writing cognitive boilerplate to focus entirely on high-level architecture.",
+            "Maintaining an iron grip on engineering values by rigorously correcting the AI's output.",
+            "A new paradigm: not just writing raw code, but [ac]directing intelligence[/ac] to perfectly mirror intent."
+          ]
         }
       }
     }

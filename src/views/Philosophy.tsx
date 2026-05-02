@@ -203,10 +203,14 @@ const Philosophy = () => {
                                             </span>
                                           )}
                                         </div>
-                                        <div className="relative border-l border-stroke/50 ml-2.5 space-y-8">
+                                        <div className="relative space-y-8 ml-2">
+                                          {/* Persistent, glowing timeline track */}
+                                          <div className="absolute left-[3.4px] top-2 bottom-2 w-[1px] bg-accent/20 shadow-[0_0_5px_rgba(var(--color-accent),0.2)]" />
+                                          
                                           {refData.phases.map((phase: any) => (
-                                            <div key={phase.label} className="relative pl-6">
-                                              <div className="absolute left-[-5px] top-1.5 w-2.5 h-2.5 rounded-full border-2 border-accent bg-content" />
+                                            <div key={phase.label} className="relative pl-8">
+                                              {/* Premium glowing dot with cutout effect */}
+                                              <div className="absolute left-0 top-1.5 w-[8px] h-[8px] rounded-full bg-accent ring-4 ring-content shadow-[0_0_12px_rgba(var(--color-accent),0.5)]" />
                                               <span className="text-xs font-semibold text-accent uppercase tracking-wider block mb-2">
                                                 {phase.label}
                                               </span>
@@ -229,36 +233,73 @@ const Philosophy = () => {
                                     );
                                   }
 
-                                  // 2. Standard Object with title + content
-                                  if (!Array.isArray(refData) && typeof refData === 'object' && (refData.content || refData.description)) {
+                                  // 2. Standard Object with title + content/points
+                                  if (!Array.isArray(refData) && typeof refData === 'object' && (refData.content || refData.description || refData.points)) {
                                     return (
                                       <div className="relative">
                                         {refData.title && (
-                                          <h4 className="text-sm font-semibold text-text-primary mb-3">
+                                          <h4 className="text-sm font-semibold text-text-primary mb-4">
                                             {refData.title}
                                           </h4>
                                         )}
-                                        <StyledText 
-                                          text={refData.content || refData.description} 
-                                          className="text-[15px] text-text-secondary leading-relaxed" 
-                                          as="p" 
-                                        />
+                                        {(refData.content || refData.description) && (
+                                          <StyledText 
+                                            text={refData.content || refData.description} 
+                                            className="text-[15px] text-text-secondary leading-relaxed mb-6" 
+                                            as="p" 
+                                          />
+                                        )}
+                                        {refData.points && (
+                                          <div className="p-5 rounded-2xl border border-accent/10 bg-accent/[0.03] backdrop-blur-sm">
+                                            <ul className="space-y-4">
+                                              {refData.points.map((point: string, i: number) => (
+                                                <li key={i} className="text-[14.5px] text-text-secondary leading-relaxed flex items-start gap-3.5">
+                                                  <span className="w-1.5 h-1.5 rounded-full bg-accent/60 shrink-0 mt-2 shadow-[0_0_8px_rgba(var(--color-accent),0.5)]" />
+                                                  <StyledText text={point} as="div" className="flex-1" />
+                                                </li>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        )}
                                       </div>
                                     );
                                   }
 
-                                  // 3. Array of { name, description } → flowing definition list
+                                  // 3. Array of { name, description/points } → flowing definition list
                                   if (Array.isArray(refData) && refData[0]?.name) {
+                                    const hasPoints = refData.some((item: any) => !!item.points);
+                                    
                                     return (
-                                      <div className="space-y-6">
+                                      <div className={`relative space-y-8 ${hasPoints ? '' : 'ml-2'}`}>
+                                        {/* Persistent, glowing timeline track - ONLY if no points */}
+                                        {!hasPoints && <div className="absolute left-[3.3px] top-2 bottom-2 w-[1px] bg-accent/20 shadow-[0_0_5px_rgba(var(--color-accent),0.2)]" />}
+                                        
                                         {refData.map((item: any) => (
-                                          <div key={item.name} className="relative pl-5 border-l-2 border-accent/20">
-                                            <h5 className="text-sm font-semibold text-text-primary mb-1.5">{item.name}</h5>
-                                            <StyledText 
-                                              text={item.description} 
-                                              className="text-[15px] text-text-secondary leading-relaxed" 
-                                              as="p" 
-                                            />
+                                          <div key={item.name} className={`relative ${hasPoints ? '' : 'pl-8'}`}>
+                                            {/* Premium glowing dot with cutout effect - ONLY if no points */}
+                                            {!hasPoints && <div className="absolute left-0 top-1.5 w-[8px] h-[8px] rounded-full bg-accent ring-4 ring-content shadow-[0_0_12px_rgba(var(--color-accent),0.5)]" />}
+                                            <h5 className="text-[15px] font-semibold text-text-primary mb-3 tracking-tight">{item.name}</h5>
+                                            
+                                            {item.description && (
+                                              <StyledText 
+                                                text={item.description} 
+                                                className="text-[15px] text-text-secondary leading-relaxed" 
+                                                as="p" 
+                                              />
+                                            )}
+                                            
+                                            {item.points && (
+                                              <div className="mt-5 p-5 rounded-2xl border border-stroke/50 bg-layer-active/30">
+                                                <ul className="space-y-2.5">
+                                                  {item.points.map((point: string, i: number) => (
+                                                    <li key={i} className="text-[14px] text-text-secondary leading-relaxed flex items-start gap-3.5">
+                                                      <span className="w-1.5 h-1.5 rounded-full bg-accent/60 shrink-0 mt-2.5" />
+                                                      <StyledText text={point} as="div" className="flex-1" />
+                                                    </li>
+                                                  ))}
+                                                </ul>
+                                              </div>
+                                            )}
                                           </div>
                                         ))}
                                       </div>
@@ -271,8 +312,8 @@ const Philosophy = () => {
                                       <ul className="space-y-2">
                                         {refData.map((item: string, i: number) => (
                                           <li key={i} className="text-[15px] text-text-secondary leading-relaxed flex items-start gap-3">
-                                            <span className="text-accent mt-2 text-[5px]">●</span>
-                                            <StyledText text={item} as="span" />
+                                            <span className="text-accent mt-2 text-[5px] shrink-0">●</span>
+                                            <StyledText text={item} as="div" className="flex-1" />
                                           </li>
                                         ))}
                                       </ul>
