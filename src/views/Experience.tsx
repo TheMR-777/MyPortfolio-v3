@@ -227,26 +227,36 @@ export function Experience({ onNavigate }: ExperienceProps) {
                     />
 
                     {/* Highlights - clean bullet list */}
-                    {job.highlights && job.highlights.length > 0 && !isACE && (
-                      <div className="mt-4 pt-3 border-t border-stroke/50">
-                        <ul className="space-y-1.5">
-                          {job.highlights.slice(0, 3).map((highlight, idx) => (
-                            <li
-                              key={idx}
-                              className="flex items-start gap-2 text-xs text-text-secondary"
-                            >
-                              <span className="w-1 h-1 rounded-full bg-accent mt-1.5 flex-shrink-0" />
-                              <StyledText text={highlight} className="leading-relaxed" as="span" />
-                            </li>
-                          ))}
-                          {job.highlights.length > 3 && (
-                            <li className="text-[10px] text-text-disabled pl-3">
-                              +{job.highlights.length - 3} more highlights
-                            </li>
-                          )}
-                        </ul>
-                      </div>
-                    )}
+                    <AnimatePresence>
+                      {job.highlights && job.highlights.length > 0 && (!isACE || !isExpanded) && (
+                        <motion.div
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                          className="overflow-hidden"
+                        >
+                          <div className="mt-4 pt-3 border-t border-stroke/50">
+                            <ul className="space-y-1.5">
+                              {job.highlights.slice(0, 3).map((highlight, idx) => (
+                                <li
+                                  key={idx}
+                                  className="flex items-start gap-2 text-xs text-text-secondary"
+                                >
+                                  <span className="w-1 h-1 rounded-full bg-accent mt-1.5 flex-shrink-0" />
+                                  <StyledText text={highlight} className="leading-relaxed" as="span" />
+                                </li>
+                              ))}
+                              {job.highlights.length > 3 && (
+                                <li className="text-[10px] text-text-disabled pl-3">
+                                  +{job.highlights.length - 3} more highlights
+                                </li>
+                              )}
+                            </ul>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
                   </div>
 
                   {/* ACE Projects Expandable Section */}
