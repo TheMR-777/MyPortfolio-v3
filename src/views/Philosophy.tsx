@@ -523,9 +523,9 @@ const Philosophy = () => {
                <Infinity className="w-6 h-6 text-accent" />
             </div>
             <blockquote className="text-xl lg:text-2xl text-text-primary mb-6 font-light">
-              "<span className="italic">Creating what hasn't been built before,</span>
+              <span className="italic">Creating what hasn't been built before,</span>
               <br />
-              <em className="text-accent font-normal italic">one innovation at a time.</em>"
+              <em className="text-accent font-normal italic">one innovation at a time.</em>
             </blockquote>
             <div className="w-12 h-1 bg-accent mx-auto rounded-full opacity-50" />
           </motion.div>
