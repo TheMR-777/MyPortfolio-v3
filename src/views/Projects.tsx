@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import {
   ExternalLink,
@@ -10,6 +10,7 @@ import {
   Wrench,
   Sparkles,
   ArrowUpRight,
+  Monitor,
 } from "lucide-react";
 import { portfolioData, type Project, type PersonalProject } from "../lib/portfolioDAL";
 import DetailSheet from "../components/DetailSheet";
@@ -26,9 +27,23 @@ export function Projects({ onNavigate }: { onNavigate: NavigateFn }) {
   const { projects, personalProjects, computedStats } = portfolioData;
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedPersonal, setSelectedPersonal] = useState<PersonalProject | null>(null);
+  const [isWidescreen, setIsWidescreen] = useState(false);
+
+  useEffect(() => {
+    const stored = localStorage.getItem('projects-widescreen');
+    if (stored) {
+      setIsWidescreen(JSON.parse(stored));
+    }
+  }, []);
+
+  const toggleWidescreen = () => {
+    const newValue = !isWidescreen;
+    setIsWidescreen(newValue);
+    localStorage.setItem('projects-widescreen', JSON.stringify(newValue));
+  };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12">
+    <div className={`max-w-4xl mx-auto px-4 sm:px-8 py-6 sm:py-12 pb-24 sm:pb-12 ${isWidescreen ? 'xl:max-w-screen' : ''}`}>
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: 12 }}
@@ -36,12 +51,23 @@ export function Projects({ onNavigate }: { onNavigate: NavigateFn }) {
         transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }}
         className="mb-12"
       >
-        <h1 className="text-2xl font-semibold text-text-primary tracking-tight mb-2">
-          Projects
-        </h1>
-        <p className="text-sm text-text-secondary">
-          From enterprise platforms to personal tools — engineering solutions that create real value
-        </p>
+        <div className="flex items-start justify-between gap-4">
+          <div className="flex-1">
+            <h1 className="text-2xl font-semibold text-text-primary tracking-tight mb-2">
+              Projects
+            </h1>
+            <p className="text-sm text-text-secondary">
+              From enterprise platforms to personal tools — engineering solutions that create real value
+            </p>
+          </div>
+          <button
+            onClick={toggleWidescreen}
+            className="p-2 rounded-md hover:bg-layer-hover transition-colors group"
+            title={isWidescreen ? "Disable widescreen mode" : "Enable experimental widescreen mode"}
+          >
+            <Monitor className={`w-4 h-4 ${isWidescreen ? 'text-accent' : 'text-text-tertiary group-hover:text-text-secondary'} transition-colors`} />
+          </button>
+        </div>
       </motion.div>
 
       {/* ─── Flagship Projects ─── */}
@@ -61,7 +87,7 @@ export function Projects({ onNavigate }: { onNavigate: NavigateFn }) {
           </h2>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-4">
+        <div className={`grid md:grid-cols-2 gap-4 ${isWidescreen ? 'lg:grid-cols-3 xl:grid-cols-4' : ''}`}>
           {projects.map((project, index) => (
             <motion.div
               key={project.title}
@@ -133,7 +159,7 @@ export function Projects({ onNavigate }: { onNavigate: NavigateFn }) {
           Tools that transform — each one takes something in and produces something of real value
         </p>
 
-        <div className="space-y-3">
+        <div className={`${isWidescreen ? 'grid grid-cols-1 lg:grid-cols-2 gap-4' : 'space-y-3'}`}>
           {personalProjects.map((project, index) => (
             <motion.div
               key={project.title}
