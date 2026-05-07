@@ -28,12 +28,29 @@ export function Projects({ onNavigate }: { onNavigate: NavigateFn }) {
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [selectedPersonal, setSelectedPersonal] = useState<PersonalProject | null>(null);
   const [isWidescreen, setIsWidescreen] = useState(false);
+  const [contentWidth, setContentWidth] = useState(0);
 
   useEffect(() => {
     const stored = localStorage.getItem('projects-widescreen');
     if (stored) {
       setIsWidescreen(JSON.parse(stored));
     }
+
+    const checkContentWidth = () => {
+      const mainContent = document.querySelector('main');
+      if (mainContent) {
+        setContentWidth(mainContent.offsetWidth);
+      }
+    };
+
+    checkContentWidth();
+    const resizeObserver = new ResizeObserver(checkContentWidth);
+    const mainContent = document.querySelector('main');
+    if (mainContent) {
+      resizeObserver.observe(mainContent);
+    }
+
+    return () => resizeObserver.disconnect();
   }, []);
 
   const toggleWidescreen = () => {
@@ -60,13 +77,15 @@ export function Projects({ onNavigate }: { onNavigate: NavigateFn }) {
               From enterprise platforms to personal tools — engineering solutions that create real value
             </p>
           </div>
-          <button
-            onClick={toggleWidescreen}
-            className="p-2 rounded-md hover:bg-layer-hover transition-colors group"
-            title={isWidescreen ? "Disable widescreen mode" : "Enable experimental widescreen mode"}
-          >
-            <Monitor className={`w-4 h-4 ${isWidescreen ? 'text-accent' : 'text-text-tertiary group-hover:text-text-secondary'} transition-colors`} />
-          </button>
+          {contentWidth > 896 && (
+            <button
+              onClick={toggleWidescreen}
+              className="p-2 rounded-md hover:bg-layer-hover transition-colors group"
+              title={isWidescreen ? "Disable widescreen mode" : "Enable experimental widescreen mode"}
+            >
+              <Monitor className={`w-4 h-4 ${isWidescreen ? 'text-accent' : 'text-text-tertiary group-hover:text-text-secondary'} transition-colors`} />
+            </button>
+          )}
         </div>
       </motion.div>
 
