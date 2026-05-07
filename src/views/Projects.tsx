@@ -39,7 +39,13 @@ export function Projects({ onNavigate }: { onNavigate: NavigateFn }) {
     const checkContentWidth = () => {
       const mainContent = document.querySelector('main');
       if (mainContent) {
-        setContentWidth(mainContent.offsetWidth);
+        const width = mainContent.offsetWidth;
+        setContentWidth(width);
+        // Auto-disable widescreen to ensure layout adapts to smaller content areas
+        if (width <= 896 && isWidescreen) {
+          setIsWidescreen(false);
+          localStorage.setItem('projects-widescreen', 'false');
+        }
       }
     };
 
